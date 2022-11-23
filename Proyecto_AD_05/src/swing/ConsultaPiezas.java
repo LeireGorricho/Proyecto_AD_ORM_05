@@ -8,12 +8,12 @@ package swing;
  *
  * @author leiii
  */
-public class ConsultaProveedores extends javax.swing.JPanel {
+public class ConsultaPiezas extends javax.swing.JPanel {
 
     /**
-     * Creates new form ConsultaProveedores
+     * Creates new form ConsultaPiezas
      */
-    public ConsultaProveedores() {
+    public ConsultaPiezas() {
         initComponents();
     }
 
@@ -32,8 +32,8 @@ public class ConsultaProveedores extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         textBusqueda = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaProveedores = new javax.swing.JTable();
-        jPanel8 = new javax.swing.JPanel();
+        tablaPiezas = new javax.swing.JTable();
+        botonVer = new javax.swing.JPanel();
         botonVer1 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -50,7 +50,7 @@ public class ConsultaProveedores extends javax.swing.JPanel {
             }
         });
 
-        tablaProveedores.setModel(new javax.swing.table.DefaultTableModel(
+        tablaPiezas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -61,25 +61,25 @@ public class ConsultaProveedores extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tablaProveedores);
+        jScrollPane1.setViewportView(tablaPiezas);
 
-        jPanel8.setBackground(new java.awt.Color(0, 204, 204));
+        botonVer.setBackground(new java.awt.Color(0, 204, 204));
 
         botonVer1.setForeground(new java.awt.Color(255, 255, 255));
-        botonVer1.setText("Ver Proveedor");
+        botonVer1.setText("Ver Pieza");
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        javax.swing.GroupLayout botonVerLayout = new javax.swing.GroupLayout(botonVer);
+        botonVer.setLayout(botonVerLayout);
+        botonVerLayout.setHorizontalGroup(
+            botonVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(botonVerLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(botonVer1)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        botonVerLayout.setVerticalGroup(
+            botonVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(botonVerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(botonVer1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -92,7 +92,7 @@ public class ConsultaProveedores extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonVer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -119,8 +119,8 @@ public class ConsultaProveedores extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(botonVer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -141,16 +141,14 @@ public class ConsultaProveedores extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel botonVer;
+    private javax.swing.JPanel botonVer;
     private javax.swing.JLabel botonVer1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> opcionBusqueda;
-    private javax.swing.JTable tablaProveedores;
+    private javax.swing.JTable tablaPiezas;
     private javax.swing.JTextField textBusqueda;
     // End of variables declaration//GEN-END:variables
 }
