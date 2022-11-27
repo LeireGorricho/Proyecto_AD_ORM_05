@@ -4,10 +4,19 @@
  */
 package scrollbar;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.JScrollBar;
+
 /**
  *
  * @author leiii
  */
-public class ScrollBarCustom {
-    
+public class ScrollBarCustom extends JScrollBar{
+    public ScrollBarCustom() {
+        setUI(new ModermScrollBarUI());
+        setPreferredSize(new Dimension(8, 8));
+        setForeground(new Color(198,177,201));
+        setBackground(Color.WHITE);
+    }
 }
