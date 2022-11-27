@@ -44,9 +44,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         botonHome = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         bordeHome = new javax.swing.JPanel();
-        botonProveedores = new javax.swing.JPanel();
+        botonSalir = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        bordeProveedores = new javax.swing.JPanel();
         botonPiezas = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         bordePiezas = new javax.swing.JPanel();
@@ -59,6 +58,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         botonAyuda = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         bordeAyuda = new javax.swing.JPanel();
+        botonProveedores = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        bordeProveedores = new javax.swing.JPanel();
         panel_pagina = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -115,51 +117,35 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         panel_menu.add(botonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 200, 50));
 
-        botonProveedores.setBackground(new java.awt.Color(0, 0, 102));
-        botonProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonSalir.setBackground(new java.awt.Color(0, 0, 102));
+        botonSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                botonProveedoresMousePressed(evt);
+                botonSalirMousePressed(evt);
             }
         });
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText(" Proveedores");
+        jLabel2.setText("Salir");
 
-        bordeProveedores.setBackground(new java.awt.Color(0, 0, 102));
-        bordeProveedores.setPreferredSize(new java.awt.Dimension(5, 50));
-
-        javax.swing.GroupLayout bordeProveedoresLayout = new javax.swing.GroupLayout(bordeProveedores);
-        bordeProveedores.setLayout(bordeProveedoresLayout);
-        bordeProveedoresLayout.setHorizontalGroup(
-            bordeProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-        bordeProveedoresLayout.setVerticalGroup(
-            bordeProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout botonProveedoresLayout = new javax.swing.GroupLayout(botonProveedores);
-        botonProveedores.setLayout(botonProveedoresLayout);
-        botonProveedoresLayout.setHorizontalGroup(
-            botonProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(botonProveedoresLayout.createSequentialGroup()
-                .addComponent(bordeProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+        javax.swing.GroupLayout botonSalirLayout = new javax.swing.GroupLayout(botonSalir);
+        botonSalir.setLayout(botonSalirLayout);
+        botonSalirLayout.setHorizontalGroup(
+            botonSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(botonSalirLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addComponent(jLabel2)
-                .addGap(0, 95, Short.MAX_VALUE))
+                .addGap(0, 151, Short.MAX_VALUE))
         );
-        botonProveedoresLayout.setVerticalGroup(
-            botonProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bordeProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(botonProveedoresLayout.createSequentialGroup()
+        botonSalirLayout.setVerticalGroup(
+            botonSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(botonSalirLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel2)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        panel_menu.add(botonProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 200, -1));
+        panel_menu.add(botonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 200, -1));
 
         botonPiezas.setBackground(new java.awt.Color(0, 0, 102));
         botonPiezas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -346,6 +332,52 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         panel_menu.add(botonAyuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 200, -1));
 
+        botonProveedores.setBackground(new java.awt.Color(0, 0, 102));
+        botonProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonProveedoresMousePressed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText(" Proveedores");
+
+        bordeProveedores.setBackground(new java.awt.Color(0, 0, 102));
+        bordeProveedores.setPreferredSize(new java.awt.Dimension(5, 50));
+
+        javax.swing.GroupLayout bordeProveedoresLayout = new javax.swing.GroupLayout(bordeProveedores);
+        bordeProveedores.setLayout(bordeProveedoresLayout);
+        bordeProveedoresLayout.setHorizontalGroup(
+            bordeProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+        bordeProveedoresLayout.setVerticalGroup(
+            bordeProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout botonProveedoresLayout = new javax.swing.GroupLayout(botonProveedores);
+        botonProveedores.setLayout(botonProveedoresLayout);
+        botonProveedoresLayout.setHorizontalGroup(
+            botonProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(botonProveedoresLayout.createSequentialGroup()
+                .addComponent(bordeProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addGap(0, 95, Short.MAX_VALUE))
+        );
+        botonProveedoresLayout.setVerticalGroup(
+            botonProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bordeProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(botonProveedoresLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel7)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        panel_menu.add(botonProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 200, -1));
+
         jPanel1.add(panel_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 550));
 
         panel_pagina.setBackground(new java.awt.Color(255, 255, 255));
@@ -375,6 +407,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonHomeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonHomeMousePressed
@@ -394,22 +427,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panel_pagina.repaint();
     }//GEN-LAST:event_botonHomeMousePressed
 
-    private void botonProveedoresMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonProveedoresMousePressed
-        darColor(botonProveedores, bordeProveedores);
-        devolverColor(botonHome, bordeHome);
-        devolverColor(botonPiezas, bordePiezas);
-        devolverColor(botonProyectos, bordeProyectos);
-        devolverColor(botonGestionGlobal, bordeGestion);
-        devolverColor(botonAyuda, bordeAyuda);
+    private void botonSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMousePressed
         
-        Proveedores frame = new Proveedores();
-        frame.setSize(700,550);
-        frame.setLocation(0,0);
-        panel_pagina.removeAll();
-        panel_pagina.add(frame, BorderLayout.CENTER);
-        panel_pagina.revalidate();
-        panel_pagina.repaint();
-    }//GEN-LAST:event_botonProveedoresMousePressed
+    }//GEN-LAST:event_botonSalirMousePressed
 
     private void botonPiezasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPiezasMousePressed
         darColor(botonPiezas, bordePiezas);
@@ -423,10 +443,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void botonProyectosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonProyectosMousePressed
         darColor(botonProyectos, bordeProyectos);
         devolverColor(botonHome, bordeHome);
-        devolverColor(botonProveedores, bordeProveedores);
         devolverColor(botonPiezas, bordePiezas);
         devolverColor(botonGestionGlobal, bordeGestion);
         devolverColor(botonAyuda, bordeAyuda);
+        devolverColor(botonProveedores, bordeProveedores);
     }//GEN-LAST:event_botonProyectosMousePressed
 
     private void botonGestionGlobalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionGlobalMousePressed
@@ -446,6 +466,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         devolverColor(botonProyectos, bordeProyectos);
         devolverColor(botonGestionGlobal, bordeGestion);
     }//GEN-LAST:event_botonAyudaMousePressed
+
+    private void botonProveedoresMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonProveedoresMousePressed
+        darColor(botonProveedores, bordeProveedores);
+        devolverColor(botonHome, bordeHome);
+        devolverColor(botonPiezas, bordePiezas);
+        devolverColor(botonProyectos, bordeProyectos);
+        devolverColor(botonGestionGlobal, bordeGestion);
+        devolverColor(botonAyuda, bordeAyuda);
+        
+        Proveedores frame = new Proveedores();
+        frame.setSize(700,550);
+        frame.setLocation(0,0);
+        panel_pagina.removeAll();
+        panel_pagina.add(frame, BorderLayout.CENTER);
+        panel_pagina.revalidate();
+        panel_pagina.repaint();
+    }//GEN-LAST:event_botonProveedoresMousePressed
 
     /**
      * @param args the command line arguments
@@ -505,15 +542,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel botonPiezas;
     private javax.swing.JPanel botonProveedores;
     private javax.swing.JPanel botonProyectos;
+    private javax.swing.JPanel botonSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel panel_menu;
     private javax.swing.JPanel panel_pagina;
     // End of variables declaration//GEN-END:variables
