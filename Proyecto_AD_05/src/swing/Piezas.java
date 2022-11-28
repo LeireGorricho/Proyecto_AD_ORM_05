@@ -21,7 +21,7 @@ public class Piezas extends javax.swing.JPanel {
         initComponents();
         
         GestionPiezas frame = new GestionPiezas();
-        frame.setSize(700,480);
+        frame.setSize(700,490);
         frame.setLocation(0,0);
         
         panel_piezas.removeAll();

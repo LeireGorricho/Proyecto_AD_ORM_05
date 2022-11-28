@@ -455,6 +455,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         devolverColor(botonGestionGlobal, bordeGestion);
         devolverColor(botonAyuda, bordeAyuda);
         devolverColor(botonProveedores, bordeProveedores);
+        
+        Proyectos frame = new Proyectos();
+        frame.setSize(700,550);
+        frame.setLocation(0,0);
+        panel_pagina.removeAll();
+        panel_pagina.add(frame, BorderLayout.CENTER);
+        panel_pagina.revalidate();
+        panel_pagina.repaint();
     }//GEN-LAST:event_botonProyectosMousePressed
 
     private void botonGestionGlobalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionGlobalMousePressed
@@ -464,6 +472,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         devolverColor(botonPiezas, bordePiezas);
         devolverColor(botonProyectos, bordeProyectos);
         devolverColor(botonAyuda, bordeAyuda);
+        
+        GestionGlobal frame = new GestionGlobal();
+        frame.setSize(700,550);
+        frame.setLocation(0,0);
+        panel_pagina.removeAll();
+        panel_pagina.add(frame, BorderLayout.CENTER);
+        panel_pagina.revalidate();
+        panel_pagina.repaint();
     }//GEN-LAST:event_botonGestionGlobalMousePressed
 
     private void botonAyudaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAyudaMousePressed
@@ -473,6 +489,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         devolverColor(botonPiezas, bordePiezas);
         devolverColor(botonProyectos, bordeProyectos);
         devolverColor(botonGestionGlobal, bordeGestion);
+        
+        Ayuda frame = new Ayuda();
+        frame.setSize(700,550);
+        frame.setLocation(0,0);
+        panel_pagina.removeAll();
+        panel_pagina.add(frame, BorderLayout.CENTER);
+        panel_pagina.revalidate();
+        panel_pagina.repaint();
     }//GEN-LAST:event_botonAyudaMousePressed
 
     private void botonProveedoresMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonProveedoresMousePressed

@@ -21,7 +21,7 @@ public class Proveedores extends javax.swing.JPanel {
         initComponents();
         
         GestionProveedores frame = new GestionProveedores();
-        frame.setSize(700,480);
+        frame.setSize(700,490);
         frame.setLocation(0,0);
         
         panel_proveedores.removeAll();

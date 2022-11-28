@@ -97,8 +97,8 @@ public class ConsultaProveedores extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 56, 640, 370));
 
-        jLabel1.setText("Filtrar por: ");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 17, -1, -1));
+        jLabel1.setText("Filtrar por:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
         opcionBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(opcionBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 14, 171, -1));
@@ -110,8 +110,8 @@ public class ConsultaProveedores extends javax.swing.JPanel {
         });
         jPanel1.add(textBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 14, 160, -1));
 
-        jLabel2.setText("Buscar: ");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 17, -1, -1));
+        jLabel2.setText("Buscar:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, -1));
 
         botonBuscar.setBackground(new java.awt.Color(0, 204, 204));
         botonBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -148,20 +148,20 @@ public class ConsultaProveedores extends javax.swing.JPanel {
         label.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         label.setForeground(new java.awt.Color(255, 255, 255));
         label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label.setText("Ver Pieza");
+        label.setText("Ver Proovedor");
 
         javax.swing.GroupLayout botonVerLayout = new javax.swing.GroupLayout(botonVer);
         botonVer.setLayout(botonVerLayout);
         botonVerLayout.setHorizontalGroup(
             botonVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+            .addComponent(label, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
         );
         botonVerLayout.setVerticalGroup(
             botonVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
         );
 
-        jPanel1.add(botonVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 435, -1, -1));
+        jPanel1.add(botonVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 440, 120, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

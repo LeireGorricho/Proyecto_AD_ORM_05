@@ -8,12 +8,12 @@ package swing;
  *
  * @author leiii
  */
-public class NuevaPieza extends javax.swing.JPanel {
+public class NuevoProyecto extends javax.swing.JPanel {
 
     /**
-     * Creates new form NuevaPieza
+     * Creates new form NuevoProyecto
      */
-    public NuevaPieza() {
+    public NuevoProyecto() {
         initComponents();
     }
 
@@ -31,17 +31,14 @@ public class NuevaPieza extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         botonAnadir = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         codigo = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         nombre = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        apellidos = new javax.swing.JTextField();
+        ciudad = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        descripcion = new javax.swing.JTextField();
-        jSeparator4 = new javax.swing.JSeparator();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -49,7 +46,7 @@ public class NuevaPieza extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 26)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 117, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("NUEVA PIEZA");
+        jLabel1.setText("NUEVO PROYECTO");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 437, 40));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -64,33 +61,30 @@ public class NuevaPieza extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Apellidos: ");
+        jLabel4.setText("Ciudad:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("Descripción:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, -1));
 
         botonAnadir.setBackground(new java.awt.Color(0, 204, 204));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Añadir Pieza");
+        jLabel6.setText("Añadir Proyecto");
 
         javax.swing.GroupLayout botonAnadirLayout = new javax.swing.GroupLayout(botonAnadir);
         botonAnadir.setLayout(botonAnadirLayout);
         botonAnadirLayout.setHorizontalGroup(
             botonAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botonAnadirLayout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(16, 16, 16))
         );
         botonAnadirLayout.setVerticalGroup(
             botonAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(botonAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, -1, 30));
+        jPanel1.add(botonAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, -1, 30));
 
         codigo.setForeground(new java.awt.Color(102, 102, 102));
         codigo.setBorder(null);
@@ -112,25 +106,15 @@ public class NuevaPieza extends javax.swing.JPanel {
         jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 210, 260, -1));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 260, 10));
 
-        apellidos.setForeground(new java.awt.Color(102, 102, 102));
-        apellidos.setBorder(null);
-        apellidos.addActionListener(new java.awt.event.ActionListener() {
+        ciudad.setForeground(new java.awt.Color(102, 102, 102));
+        ciudad.setBorder(null);
+        ciudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                apellidosActionPerformed(evt);
+                ciudadActionPerformed(evt);
             }
         });
-        jPanel1.add(apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 250, 260, -1));
+        jPanel1.add(ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 250, 260, -1));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 260, 10));
-
-        descripcion.setForeground(new java.awt.Color(102, 102, 102));
-        descripcion.setBorder(null);
-        descripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                descripcionActionPerformed(evt);
-            }
-        });
-        jPanel1.add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 290, 260, -1));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 260, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -152,31 +136,24 @@ public class NuevaPieza extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_nombreActionPerformed
 
-    private void apellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidosActionPerformed
+    private void ciudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciudadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_apellidosActionPerformed
-
-    private void descripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descripcionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_descripcionActionPerformed
+    }//GEN-LAST:event_ciudadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField apellidos;
     private javax.swing.JPanel botonAnadir;
+    private javax.swing.JTextField ciudad;
     private javax.swing.JTextField codigo;
-    private javax.swing.JTextField descripcion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }

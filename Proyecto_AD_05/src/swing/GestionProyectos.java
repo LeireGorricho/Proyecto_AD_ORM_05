@@ -4,6 +4,17 @@
  */
 package swing;
 
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import scrollbar.ScrollBarCustom;
+import table.TableHeader;
+
 /**
  *
  * @author leiii
@@ -15,6 +26,33 @@ public class GestionProyectos extends javax.swing.JPanel {
      */
     public GestionProyectos() {
         initComponents();
+        
+        tablaProyectos.setShowHorizontalLines(true);
+        tablaProyectos.setGridColor(new Color(230,230,230));
+        tablaProyectos.setRowHeight(27);
+        tablaProyectos.getTableHeader().setReorderingAllowed(true);
+        tablaProyectos.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                TableHeader header = new TableHeader(value + "");
+                if(column==4){
+                    header.setHorizontalAlignment(JLabel.CENTER);
+                }
+                return header;
+            }
+       });
+       jScrollPane1.getViewport().setBackground(Color.WHITE);
+       jScrollPane1.setVerticalScrollBar(new ScrollBarCustom());
+       fixtable(jScrollPane1);
+       // cargarDatos();
+    }
+    
+    public void fixtable(JScrollPane scroll) {
+        scroll.getViewport().setBackground(Color.WHITE);
+        scroll.setVerticalScrollBar(new ScrollBarCustom());
+        JPanel p = new JPanel();
+        scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
+        scroll.setBorder(new EmptyBorder(5, 10, 5, 10));
     }
 
     /**
@@ -27,14 +65,102 @@ public class GestionProyectos extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        botonEliminar = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        BotonModificar = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaProyectos = new javax.swing.JTable();
+        botonVer = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        botonEliminar.setBackground(new java.awt.Color(0, 204, 204));
+        botonEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonEliminarMousePressed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Eliminar Proyectos");
+
+        javax.swing.GroupLayout botonEliminarLayout = new javax.swing.GroupLayout(botonEliminar);
+        botonEliminar.setLayout(botonEliminarLayout);
+        botonEliminarLayout.setHorizontalGroup(
+            botonEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(botonEliminarLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel6)
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+        botonEliminarLayout.setVerticalGroup(
+            botonEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(botonEliminarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 434, -1, -1));
+
+        BotonModificar.setBackground(new java.awt.Color(0, 204, 204));
+        BotonModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                BotonModificarMousePressed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Modificar Proyectos");
+
+        javax.swing.GroupLayout BotonModificarLayout = new javax.swing.GroupLayout(BotonModificar);
+        BotonModificar.setLayout(BotonModificarLayout);
+        BotonModificarLayout.setHorizontalGroup(
+            BotonModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BotonModificarLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel7)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+        BotonModificarLayout.setVerticalGroup(
+            BotonModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BotonModificarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(BotonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(451, 434, -1, -1));
+
+        tablaProyectos.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        tablaProyectos.setForeground(new java.awt.Color(102, 102, 102));
         tablaProyectos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -44,52 +170,72 @@ public class GestionProyectos extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaProyectos.setSelectionBackground(new java.awt.Color(224, 255, 255));
         jScrollPane1.setViewportView(tablaProyectos);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 15, 631, 390));
+
+        botonVer.setBackground(new java.awt.Color(0, 204, 204));
+        botonVer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonVerMousePressed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Ver Proyectos");
+
+        javax.swing.GroupLayout botonVerLayout = new javax.swing.GroupLayout(botonVer);
+        botonVer.setLayout(botonVerLayout);
+        botonVerLayout.setHorizontalGroup(
+            botonVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+        botonVerLayout.setVerticalGroup(
+            botonVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(botonVerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jPanel1.add(botonVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 434, 160, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonEliminarMousePressed
+
+    private void BotonModificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonModificarMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonModificarMousePressed
+
+    private void botonVerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVerMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonVerMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel BotonModificar;
+    private javax.swing.JPanel botonEliminar;
+    private javax.swing.JPanel botonVer;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaProyectos;
     // End of variables declaration//GEN-END:variables
