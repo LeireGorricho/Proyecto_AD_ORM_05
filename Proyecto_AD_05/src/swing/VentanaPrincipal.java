@@ -438,6 +438,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         devolverColor(botonProyectos, bordeProyectos);
         devolverColor(botonGestionGlobal, bordeGestion);
         devolverColor(botonAyuda, bordeAyuda);
+        
+        Piezas frame = new Piezas();
+        frame.setSize(700,550);
+        frame.setLocation(0,0);
+        panel_pagina.removeAll();
+        panel_pagina.add(frame, BorderLayout.CENTER);
+        panel_pagina.revalidate();
+        panel_pagina.repaint();
     }//GEN-LAST:event_botonPiezasMousePressed
 
     private void botonProyectosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonProyectosMousePressed

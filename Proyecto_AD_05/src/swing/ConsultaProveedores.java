@@ -65,28 +65,19 @@ public class ConsultaProveedores extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        opcionBusqueda = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        textBusqueda = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaProveedores = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        opcionBusqueda = new javax.swing.JComboBox<>();
+        textBusqueda = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         botonBuscar = new javax.swing.JPanel();
         labelVer1 = new javax.swing.JLabel();
+        botonVer = new javax.swing.JPanel();
+        label = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setText("Filtrar por: ");
-
-        opcionBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel2.setText("Buscar: ");
-
-        textBusqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textBusquedaActionPerformed(evt);
-            }
-        });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablaProveedores.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         tablaProveedores.setForeground(new java.awt.Color(102, 102, 102));
@@ -103,6 +94,24 @@ public class ConsultaProveedores extends javax.swing.JPanel {
         ));
         tablaProveedores.setSelectionBackground(new java.awt.Color(224, 255, 255));
         jScrollPane1.setViewportView(tablaProveedores);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 56, 640, 370));
+
+        jLabel1.setText("Filtrar por: ");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 17, -1, -1));
+
+        opcionBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(opcionBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 14, 171, -1));
+
+        textBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textBusquedaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(textBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 14, 160, -1));
+
+        jLabel2.setText("Buscar: ");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 17, -1, -1));
 
         botonBuscar.setBackground(new java.awt.Color(0, 204, 204));
         botonBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -132,51 +141,37 @@ public class ConsultaProveedores extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(opcionBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(textBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
+        jPanel1.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 12, -1, -1));
+
+        botonVer.setBackground(new java.awt.Color(0, 204, 204));
+
+        label.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        label.setForeground(new java.awt.Color(255, 255, 255));
+        label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label.setText("Ver Pieza");
+
+        javax.swing.GroupLayout botonVerLayout = new javax.swing.GroupLayout(botonVer);
+        botonVer.setLayout(botonVerLayout);
+        botonVerLayout.setHorizontalGroup(
+            botonVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(opcionBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)
-                        .addComponent(textBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+        botonVerLayout.setVerticalGroup(
+            botonVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
         );
+
+        jPanel1.add(botonVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 435, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -191,10 +186,12 @@ public class ConsultaProveedores extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel botonBuscar;
+    private javax.swing.JPanel botonVer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel label;
     private javax.swing.JLabel labelVer1;
     private javax.swing.JComboBox<String> opcionBusqueda;
     private javax.swing.JTable tablaProveedores;

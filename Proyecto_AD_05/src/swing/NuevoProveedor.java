@@ -38,7 +38,7 @@ public class NuevoProveedor extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         nombre = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        apellido = new javax.swing.JTextField();
+        apellidos = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         dirPostal = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
@@ -65,7 +65,7 @@ public class NuevoProveedor extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Apellido: ");
+        jLabel4.setText("Apellidos: ");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -115,14 +115,14 @@ public class NuevoProveedor extends javax.swing.JPanel {
         jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 210, 260, -1));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 260, 10));
 
-        apellido.setForeground(new java.awt.Color(102, 102, 102));
-        apellido.setBorder(null);
-        apellido.addActionListener(new java.awt.event.ActionListener() {
+        apellidos.setForeground(new java.awt.Color(102, 102, 102));
+        apellidos.setBorder(null);
+        apellidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                apellidoActionPerformed(evt);
+                apellidosActionPerformed(evt);
             }
         });
-        jPanel1.add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 250, 260, -1));
+        jPanel1.add(apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 250, 260, -1));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 260, 10));
 
         dirPostal.setForeground(new java.awt.Color(102, 102, 102));
@@ -155,9 +155,9 @@ public class NuevoProveedor extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_nombreActionPerformed
 
-    private void apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoActionPerformed
+    private void apellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_apellidoActionPerformed
+    }//GEN-LAST:event_apellidosActionPerformed
 
     private void dirPostalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dirPostalActionPerformed
         // TODO add your handling code here:
@@ -165,7 +165,7 @@ public class NuevoProveedor extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField apellido;
+    private javax.swing.JTextField apellidos;
     private javax.swing.JPanel botonAnadir;
     private javax.swing.JTextField codigo;
     private javax.swing.JTextField dirPostal;

@@ -6,7 +6,7 @@ package swing;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 /**
  *
@@ -40,83 +40,17 @@ public class Piezas extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        botonConsulta = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        bordeConsulta = new javax.swing.JPanel();
-        botonGestion = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        bordeGestion = new javax.swing.JPanel();
         panel_piezas = new javax.swing.JPanel();
+        botonGestion = new javax.swing.JPanel();
+        labelGestion = new javax.swing.JLabel();
+        botonNuevo = new javax.swing.JPanel();
+        labelNuevo = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        botonConsulta = new javax.swing.JPanel();
+        labelConsulta = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        botonConsulta.setBackground(new java.awt.Color(0, 204, 204));
-        botonConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                botonConsultaMousePressed(evt);
-            }
-        });
-        botonConsulta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Consulta de Piezas");
-        botonConsulta.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 15, -1, -1));
-
-        bordeConsulta.setBackground(new java.awt.Color(0, 204, 204));
-        bordeConsulta.setPreferredSize(new java.awt.Dimension(5, 0));
-
-        javax.swing.GroupLayout bordeConsultaLayout = new javax.swing.GroupLayout(bordeConsulta);
-        bordeConsulta.setLayout(bordeConsultaLayout);
-        bordeConsultaLayout.setHorizontalGroup(
-            bordeConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-        bordeConsultaLayout.setVerticalGroup(
-            bordeConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        botonConsulta.add(bordeConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 50));
-
-        jPanel2.add(botonConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 150, 50));
-
-        botonGestion.setBackground(new java.awt.Color(0, 153, 153));
-        botonGestion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                botonGestionMousePressed(evt);
-            }
-        });
-        botonGestion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Gestión de Piezas");
-        botonGestion.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 15, -1, -1));
-
-        bordeGestion.setPreferredSize(new java.awt.Dimension(5, 0));
-
-        javax.swing.GroupLayout bordeGestionLayout = new javax.swing.GroupLayout(bordeGestion);
-        bordeGestion.setLayout(bordeGestionLayout);
-        bordeGestionLayout.setHorizontalGroup(
-            bordeGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-        bordeGestionLayout.setVerticalGroup(
-            bordeGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        botonGestion.add(bordeGestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 50));
-
-        jPanel2.add(botonGestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 140, 50));
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 18, 700, 50));
 
         panel_piezas.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -124,14 +58,63 @@ public class Piezas extends javax.swing.JPanel {
         panel_piezas.setLayout(panel_piezasLayout);
         panel_piezasLayout.setHorizontalGroup(
             panel_piezasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
         panel_piezasLayout.setVerticalGroup(
             panel_piezasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGap(0, 490, Short.MAX_VALUE)
         );
 
-        jPanel1.add(panel_piezas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 700, 480));
+        jPanel1.add(panel_piezas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 58, 700, 490));
+
+        botonGestion.setBackground(new java.awt.Color(255, 255, 255));
+        botonGestion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonGestionMousePressed(evt);
+            }
+        });
+        botonGestion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelGestion.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        labelGestion.setForeground(new java.awt.Color(0, 117, 153));
+        labelGestion.setText("Gestión de Piezas");
+        botonGestion.add(labelGestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        jPanel1.add(botonGestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 40));
+
+        botonNuevo.setBackground(new java.awt.Color(255, 255, 255));
+        botonNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonNuevoMousePressed(evt);
+            }
+        });
+        botonNuevo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelNuevo.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        labelNuevo.setForeground(new java.awt.Color(0, 204, 204));
+        labelNuevo.setText("Nueva Pieza");
+        botonNuevo.add(labelNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        jPanel1.add(botonNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 110, 40));
+
+        jSeparator1.setForeground(new java.awt.Color(0, 117, 153));
+        jSeparator1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 700, 10));
+
+        botonConsulta.setBackground(new java.awt.Color(255, 255, 255));
+        botonConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonConsultaMousePressed(evt);
+            }
+        });
+        botonConsulta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelConsulta.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        labelConsulta.setForeground(new java.awt.Color(0, 204, 204));
+        labelConsulta.setText("Consulta de Piezas");
+        botonConsulta.add(labelConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        jPanel1.add(botonConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 160, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -141,29 +124,17 @@ public class Piezas extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonConsultaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonConsultaMousePressed
-        darColor(botonConsulta, bordeConsulta);
-        devolverColor(botonGestion, bordeGestion);
-
-        ConsultaProveedores frame = new ConsultaProveedores();
-        frame.setSize(700,480);
-        frame.setLocation(0,0);
-        panel_piezas.removeAll();
-        panel_piezas.add(frame, BorderLayout.CENTER);
-        panel_piezas.revalidate();
-        panel_piezas.repaint();
-    }//GEN-LAST:event_botonConsultaMousePressed
-
     private void botonGestionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionMousePressed
-        darColor(botonGestion, bordeGestion);
-        devolverColor(botonConsulta, bordeConsulta);
+        darColor(labelGestion);
+        devolverColor(labelNuevo);
+        devolverColor(labelConsulta);
 
-        GestionProveedores frame = new GestionProveedores();
-        frame.setSize(700,480);
+        GestionPiezas frame = new GestionPiezas();
+        frame.setSize(700,490);
         frame.setLocation(0,0);
         panel_piezas.removeAll();
         panel_piezas.add(frame, BorderLayout.CENTER);
@@ -171,26 +142,52 @@ public class Piezas extends javax.swing.JPanel {
         panel_piezas.repaint();
     }//GEN-LAST:event_botonGestionMousePressed
 
-    private void darColor(JPanel pane, JPanel borde) {
-        pane.setBackground(new Color(0, 153, 153));
-        borde.setBackground(new Color(255,255,255));
+    private void botonNuevoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNuevoMousePressed
+        darColor(labelNuevo);
+        devolverColor(labelGestion);
+        devolverColor(labelConsulta);
+
+        NuevaPieza frame = new NuevaPieza();
+        frame.setSize(700,490);
+        frame.setLocation(0,0);
+        panel_piezas.removeAll();
+        panel_piezas.add(frame, BorderLayout.CENTER);
+        panel_piezas.revalidate();
+        panel_piezas.repaint();
+    }//GEN-LAST:event_botonNuevoMousePressed
+
+    private void botonConsultaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonConsultaMousePressed
+        darColor(labelConsulta);
+        devolverColor(labelGestion);
+        devolverColor(labelNuevo);
+
+        ConsultaPiezas frame = new ConsultaPiezas();
+        frame.setSize(700,490);
+        frame.setLocation(0,0);
+        panel_piezas.removeAll();
+        panel_piezas.add(frame, BorderLayout.CENTER);
+        panel_piezas.revalidate();
+        panel_piezas.repaint();
+    }//GEN-LAST:event_botonConsultaMousePressed
+
+    private void darColor(JLabel label) {
+        label.setForeground(new Color(0, 117, 153));
     }
     
-    private void devolverColor(JPanel pane, JPanel borde) {
-        pane.setBackground(new Color(0, 204, 204));
-        borde.setBackground(new Color(0, 204, 204));
+    private void devolverColor(JLabel label) {
+        label.setForeground(new Color(0, 204, 204));
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel bordeConsulta;
-    private javax.swing.JPanel bordeGestion;
     private javax.swing.JPanel botonConsulta;
     private javax.swing.JPanel botonGestion;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel botonNuevo;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel labelConsulta;
+    private javax.swing.JLabel labelGestion;
+    private javax.swing.JLabel labelNuevo;
     private javax.swing.JPanel panel_piezas;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,17 @@
  */
 package swing;
 
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import scrollbar.ScrollBarCustom;
+import table.TableHeader;
+
 /**
  *
  * @author leiii
@@ -15,6 +26,33 @@ public class ConsultaPiezas extends javax.swing.JPanel {
      */
     public ConsultaPiezas() {
         initComponents();
+        
+        tablaPiezas.setShowHorizontalLines(true);
+        tablaPiezas.setGridColor(new Color(230,230,230));
+        tablaPiezas.setRowHeight(27);
+        tablaPiezas.getTableHeader().setReorderingAllowed(true);
+        tablaPiezas.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                TableHeader header = new TableHeader(value + "");
+                if(column==4){
+                    header.setHorizontalAlignment(JLabel.CENTER);
+                }
+                return header;
+            }
+       });
+       jScrollPane1.getViewport().setBackground(Color.WHITE);
+       jScrollPane1.setVerticalScrollBar(new ScrollBarCustom());
+       fixtable(jScrollPane1);
+       // cargarDatos();
+    }
+    
+    public void fixtable(JScrollPane scroll) {
+        scroll.getViewport().setBackground(Color.WHITE);
+        scroll.setVerticalScrollBar(new ScrollBarCustom());
+        JPanel p = new JPanel();
+        scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
+        scroll.setBorder(new EmptyBorder(5, 10, 5, 10));
     }
 
     /**
@@ -34,21 +72,28 @@ public class ConsultaPiezas extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaPiezas = new javax.swing.JTable();
         botonVer = new javax.swing.JPanel();
-        botonVer1 = new javax.swing.JLabel();
+        label = new javax.swing.JLabel();
+        botonBuscar = new javax.swing.JPanel();
+        labelVer1 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Filtrar por: ");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 17, -1, -1));
 
         opcionBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(opcionBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 14, 171, -1));
 
         jLabel2.setText("Buscar: ");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 17, -1, -1));
 
         textBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textBusquedaActionPerformed(evt);
             }
         });
+        jPanel1.add(textBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 14, 160, -1));
 
         tablaPiezas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,75 +108,67 @@ public class ConsultaPiezas extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tablaPiezas);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 55, 640, 368));
+
         botonVer.setBackground(new java.awt.Color(0, 204, 204));
 
-        botonVer1.setForeground(new java.awt.Color(255, 255, 255));
-        botonVer1.setText("Ver Pieza");
+        label.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        label.setForeground(new java.awt.Color(255, 255, 255));
+        label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label.setText("Ver Pieza");
 
         javax.swing.GroupLayout botonVerLayout = new javax.swing.GroupLayout(botonVer);
         botonVer.setLayout(botonVerLayout);
         botonVerLayout.setHorizontalGroup(
             botonVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(botonVerLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(botonVer1)
-                .addContainerGap(15, Short.MAX_VALUE))
+            .addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
         );
         botonVerLayout.setVerticalGroup(
             botonVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(botonVerLayout.createSequentialGroup()
+            .addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(botonVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 435, -1, -1));
+
+        botonBuscar.setBackground(new java.awt.Color(0, 204, 204));
+        botonBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonBuscarMousePressed(evt);
+            }
+        });
+
+        labelVer1.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        labelVer1.setForeground(new java.awt.Color(255, 255, 255));
+        labelVer1.setText("Buscar");
+
+        javax.swing.GroupLayout botonBuscarLayout = new javax.swing.GroupLayout(botonBuscar);
+        botonBuscar.setLayout(botonBuscarLayout);
+        botonBuscarLayout.setHorizontalGroup(
+            botonBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(botonBuscarLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(labelVer1)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+        botonBuscarLayout.setVerticalGroup(
+            botonBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(botonBuscarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(botonVer1)
+                .addComponent(labelVer1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botonVer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(35, 35, 35)
-                            .addComponent(jLabel1)
-                            .addGap(18, 18, 18)
-                            .addComponent(opcionBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2)
-                            .addGap(26, 26, 26)
-                            .addComponent(textBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(40, 40, 40))))
-                .addContainerGap(41, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(opcionBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(textBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botonVer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
+        jPanel1.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 12, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -139,14 +176,20 @@ public class ConsultaPiezas extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_textBusquedaActionPerformed
 
+    private void botonBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBuscarMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonBuscarMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel botonBuscar;
     private javax.swing.JPanel botonVer;
-    private javax.swing.JLabel botonVer1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel label;
+    private javax.swing.JLabel labelVer1;
     private javax.swing.JComboBox<String> opcionBusqueda;
     private javax.swing.JTable tablaPiezas;
     private javax.swing.JTextField textBusqueda;
