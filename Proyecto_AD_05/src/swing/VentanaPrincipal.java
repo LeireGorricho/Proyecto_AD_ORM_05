@@ -80,7 +80,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swing/imagenes/home (1).png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/home (1).png"))); // NOI18N
         jLabel1.setText(" Home");
 
         bordeHome.setPreferredSize(new java.awt.Dimension(5, 0));
@@ -294,7 +294,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swing/imagenes/help.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/help.png"))); // NOI18N
         jLabel6.setText(" Ayuda");
 
         bordeAyuda.setBackground(new java.awt.Color(0, 0, 102));

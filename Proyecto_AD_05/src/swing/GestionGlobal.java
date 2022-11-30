@@ -35,12 +35,12 @@ public class GestionGlobal extends javax.swing.JPanel {
         botonGestion = new javax.swing.JPanel();
         labelGestion = new javax.swing.JLabel();
         botonSuminProveedor = new javax.swing.JPanel();
-        labelConsulta = new javax.swing.JLabel();
+        labelSuminProveedores = new javax.swing.JLabel();
         botonSuminPiezas = new javax.swing.JPanel();
-        labelNuevo = new javax.swing.JLabel();
+        labelSuminPiezas = new javax.swing.JLabel();
         panel_global = new javax.swing.JPanel();
         botonEstadisticas = new javax.swing.JPanel();
-        labelNuevo1 = new javax.swing.JLabel();
+        labelEstadisticas = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -72,10 +72,10 @@ public class GestionGlobal extends javax.swing.JPanel {
         });
         botonSuminProveedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelConsulta.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        labelConsulta.setForeground(new java.awt.Color(0, 204, 204));
-        labelConsulta.setText("Suministros por Proveedor");
-        botonSuminProveedor.add(labelConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, -1));
+        labelSuminProveedores.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        labelSuminProveedores.setForeground(new java.awt.Color(0, 204, 204));
+        labelSuminProveedores.setText("Suministros por Proveedor");
+        botonSuminProveedor.add(labelSuminProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, -1));
 
         jPanel1.add(botonSuminProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 190, 40));
 
@@ -87,10 +87,10 @@ public class GestionGlobal extends javax.swing.JPanel {
         });
         botonSuminPiezas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelNuevo.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        labelNuevo.setForeground(new java.awt.Color(0, 204, 204));
-        labelNuevo.setText("Suministros por Piezas");
-        botonSuminPiezas.add(labelNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+        labelSuminPiezas.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        labelSuminPiezas.setForeground(new java.awt.Color(0, 204, 204));
+        labelSuminPiezas.setText("Suministros por Piezas");
+        botonSuminPiezas.add(labelSuminPiezas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         jPanel1.add(botonSuminPiezas, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, -1, 40));
 
@@ -117,10 +117,10 @@ public class GestionGlobal extends javax.swing.JPanel {
         });
         botonEstadisticas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelNuevo1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        labelNuevo1.setForeground(new java.awt.Color(0, 204, 204));
-        labelNuevo1.setText("Estadísticas");
-        botonEstadisticas.add(labelNuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, -1));
+        labelEstadisticas.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        labelEstadisticas.setForeground(new java.awt.Color(0, 204, 204));
+        labelEstadisticas.setText("Estadísticas");
+        botonEstadisticas.add(labelEstadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, -1));
 
         jPanel1.add(botonEstadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 0, 90, 40));
 
@@ -138,10 +138,11 @@ public class GestionGlobal extends javax.swing.JPanel {
 
     private void botonGestionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionMousePressed
         darColor(labelGestion);
-        devolverColor(labelNuevo);
-        devolverColor(labelConsulta);
+        devolverColor(labelSuminPiezas);
+        devolverColor(labelSuminProveedores);
+        devolverColor(labelEstadisticas);
 
-        GestionProveedores frame = new GestionProveedores();
+        GestionPedidos frame = new GestionPedidos();
         frame.setSize(700,490);
         frame.setLocation(0,0);
         panel_global.removeAll();
@@ -151,35 +152,30 @@ public class GestionGlobal extends javax.swing.JPanel {
     }//GEN-LAST:event_botonGestionMousePressed
 
     private void botonSuminProveedorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSuminProveedorMousePressed
-        darColor(labelConsulta);
+        darColor(labelSuminProveedores);
         devolverColor(labelGestion);
-        devolverColor(labelNuevo);
+        devolverColor(labelSuminPiezas);
+        devolverColor(labelEstadisticas);
 
-        ConsultaProveedores frame = new ConsultaProveedores();
-        frame.setSize(700,490);
-        frame.setLocation(0,0);
-        panel_global.removeAll();
-        panel_global.add(frame, BorderLayout.CENTER);
-        panel_global.revalidate();
-        panel_global.repaint();
+        
     }//GEN-LAST:event_botonSuminProveedorMousePressed
 
     private void botonSuminPiezasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSuminPiezasMousePressed
-        darColor(labelNuevo);
+        darColor(labelSuminPiezas);
         devolverColor(labelGestion);
-        devolverColor(labelConsulta);
+        devolverColor(labelSuminProveedores);
+        devolverColor(labelEstadisticas);
 
-        NuevoProveedor frame = new NuevoProveedor();
-        frame.setSize(700,490);
-        frame.setLocation(0,0);
-        panel_global.removeAll();
-        panel_global.add(frame, BorderLayout.CENTER);
-        panel_global.revalidate();
-        panel_global.repaint();
+        
     }//GEN-LAST:event_botonSuminPiezasMousePressed
 
     private void botonEstadisticasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEstadisticasMousePressed
-        // TODO add your handling code here:
+        darColor(labelEstadisticas);
+        devolverColor(labelGestion);
+        devolverColor(labelSuminProveedores);
+        devolverColor(labelSuminPiezas);
+        
+        
     }//GEN-LAST:event_botonEstadisticasMousePressed
 
     private void darColor(JLabel label) {
@@ -197,10 +193,10 @@ public class GestionGlobal extends javax.swing.JPanel {
     private javax.swing.JPanel botonSuminProveedor;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel labelConsulta;
+    private javax.swing.JLabel labelEstadisticas;
     private javax.swing.JLabel labelGestion;
-    private javax.swing.JLabel labelNuevo;
-    private javax.swing.JLabel labelNuevo1;
+    private javax.swing.JLabel labelSuminPiezas;
+    private javax.swing.JLabel labelSuminProveedores;
     private javax.swing.JPanel panel_global;
     // End of variables declaration//GEN-END:variables
 }

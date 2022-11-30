@@ -99,6 +99,8 @@ public class EditarProveedor extends javax.swing.JPanel {
 
         jPanel1.add(botonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, -1, 30));
 
+        codigo.setEditable(false);
+        codigo.setBackground(new java.awt.Color(255, 255, 255));
         codigo.setForeground(new java.awt.Color(102, 102, 102));
         codigo.setBorder(null);
         codigo.addActionListener(new java.awt.event.ActionListener() {

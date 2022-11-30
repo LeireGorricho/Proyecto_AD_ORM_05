@@ -32,7 +32,7 @@ public class Home extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swing/imagenes/mejorado-mejorable.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mejorado-mejorable.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Lao MN", 3, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 169, 212));

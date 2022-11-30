@@ -6,15 +6,12 @@ package swing;
 
 import java.awt.Color;
 import java.awt.Component;
-import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import java.util.ArrayList;
-import java.util.List;
-
-import consultas.ConsultasProveedores;
-import hibernate_bd.ProveedoresEntity;
 import scrollbar.ScrollBarCustom;
 import table.TableHeader;
 
@@ -22,21 +19,21 @@ import table.TableHeader;
  *
  * @author leiii
  */
-public class GestionProveedores extends javax.swing.JPanel {
-
-    String[] nombreColumnas = {"ID", "Nombre", "Apellidos", "Direccion", "Estado"};
+public class GestionPedidos extends javax.swing.JPanel {
+    
+    String[] nombreColumnas = {"Proveedor", "Pieza", "Proyecto", "Cantidad", "Estado"};
 
     /**
-     * Creates new form GestionProveedores
+     * Creates new form GestionPedidos
      */
-    public GestionProveedores() {
+    public GestionPedidos() {
         initComponents();
         
-        tablaProveedores.setShowHorizontalLines(true);
-        tablaProveedores.setGridColor(new Color(230,230,230));
-        tablaProveedores.setRowHeight(27);
-        tablaProveedores.getTableHeader().setReorderingAllowed(true);
-        tablaProveedores.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+        tablaGestion.setShowHorizontalLines(true);
+        tablaGestion.setGridColor(new Color(230,230,230));
+        tablaGestion.setRowHeight(27);
+        tablaGestion.getTableHeader().setReorderingAllowed(true);
+        tablaGestion.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 TableHeader header = new TableHeader(value + "");
@@ -59,34 +56,9 @@ public class GestionProveedores extends javax.swing.JPanel {
         scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
         scroll.setBorder(new EmptyBorder(5, 10, 5, 10));
     }
-
+    
     public void cargarDatos() {
-        ConsultasProveedores con = new ConsultasProveedores();
-        List<ProveedoresEntity> proveedores = new ArrayList<ProveedoresEntity>();
-        proveedores = con.recuperarDatosProveedores();
-        int cantidad = proveedores.size();
-        String[][] d = new String[cantidad][3];
-        for (int i = 0; i < proveedores.size(); i++) {
-            d[i][0] = String.valueOf(proveedores.get(i).getCodigo());
-            d[i][1] = String.valueOf(proveedores.get(i).getNombre());
-            d[i][2] = String.valueOf(proveedores.get(i).getApellidos());
-            d[i][3] = String.valueOf(proveedores.get(i).getDireccion());
-        }
-        //se carga el modelo de la tabla
-        tablaProveedores.setModel(new DefaultTableModel(d, nombreColumnas) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        });
-    }
-
-    public void eliminarProveedor(String cod) {
-
-    }
-
-    public void editarProveedor(String cod) {
-
+        
     }
 
     /**
@@ -104,14 +76,17 @@ public class GestionProveedores extends javax.swing.JPanel {
         BotonModificar = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaProveedores = new javax.swing.JTable();
+        tablaGestion = new javax.swing.JTable();
         botonVer = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        botonAnadir = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         botonEliminar.setBackground(new java.awt.Color(0, 204, 204));
+        botonEliminar.setPreferredSize(new java.awt.Dimension(100, 31));
         botonEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 botonEliminarMousePressed(evt);
@@ -120,16 +95,14 @@ public class GestionProveedores extends javax.swing.JPanel {
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Eliminar Proveedor");
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Eliminar");
 
         javax.swing.GroupLayout botonEliminarLayout = new javax.swing.GroupLayout(botonEliminar);
         botonEliminar.setLayout(botonEliminarLayout);
         botonEliminarLayout.setHorizontalGroup(
             botonEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(botonEliminarLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel6)
-                .addContainerGap(12, Short.MAX_VALUE))
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
         botonEliminarLayout.setVerticalGroup(
             botonEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,9 +112,10 @@ public class GestionProveedores extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 434, -1, -1));
+        jPanel1.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, -1, -1));
 
         BotonModificar.setBackground(new java.awt.Color(0, 204, 204));
+        BotonModificar.setPreferredSize(new java.awt.Dimension(100, 31));
         BotonModificar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 BotonModificarMousePressed(evt);
@@ -150,16 +124,14 @@ public class GestionProveedores extends javax.swing.JPanel {
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Modificar Proveedor");
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Modificar");
 
         javax.swing.GroupLayout BotonModificarLayout = new javax.swing.GroupLayout(BotonModificar);
         BotonModificar.setLayout(BotonModificarLayout);
         BotonModificarLayout.setHorizontalGroup(
             BotonModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BotonModificarLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel7)
-                .addContainerGap(15, Short.MAX_VALUE))
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
         BotonModificarLayout.setVerticalGroup(
             BotonModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,11 +141,11 @@ public class GestionProveedores extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(BotonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(451, 434, -1, -1));
+        jPanel1.add(BotonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, -1, -1));
 
-        tablaProveedores.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        tablaProveedores.setForeground(new java.awt.Color(102, 102, 102));
-        tablaProveedores.setModel(new javax.swing.table.DefaultTableModel(
+        tablaGestion.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        tablaGestion.setForeground(new java.awt.Color(102, 102, 102));
+        tablaGestion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -204,8 +176,8 @@ public class GestionProveedores extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tablaProveedores.setSelectionBackground(new java.awt.Color(224, 255, 255));
-        jScrollPane1.setViewportView(tablaProveedores);
+        tablaGestion.setSelectionBackground(new java.awt.Color(224, 255, 255));
+        jScrollPane1.setViewportView(tablaGestion);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 15, 631, 390));
 
@@ -219,13 +191,13 @@ public class GestionProveedores extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Ver Proveedor");
+        jLabel5.setText("Ver");
 
         javax.swing.GroupLayout botonVerLayout = new javax.swing.GroupLayout(botonVer);
         botonVer.setLayout(botonVerLayout);
         botonVerLayout.setHorizontalGroup(
             botonVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
         botonVerLayout.setVerticalGroup(
             botonVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,42 +207,78 @@ public class GestionProveedores extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(botonVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 434, 160, -1));
+        jPanel1.add(botonVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 430, 100, -1));
+
+        botonAnadir.setBackground(new java.awt.Color(0, 204, 204));
+        botonAnadir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonAnadirMousePressed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Añadir");
+
+        javax.swing.GroupLayout botonAnadirLayout = new javax.swing.GroupLayout(botonAnadir);
+        botonAnadir.setLayout(botonAnadirLayout);
+        botonAnadirLayout.setHorizontalGroup(
+            botonAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(botonAnadirLayout.createSequentialGroup()
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        botonAnadirLayout.setVerticalGroup(
+            botonAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(botonAnadirLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(botonAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 100, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void botonVerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVerMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonVerMousePressed
-
-    private void BotonModificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonModificarMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BotonModificarMousePressed
 
     private void botonEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarMousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonEliminarMousePressed
 
+    private void BotonModificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonModificarMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonModificarMousePressed
+
+    private void botonVerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVerMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonVerMousePressed
+
+    private void botonAnadirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAnadirMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BotonModificar;
+    private javax.swing.JPanel botonAnadir;
     private javax.swing.JPanel botonEliminar;
     private javax.swing.JPanel botonVer;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaProveedores;
+    private javax.swing.JTable tablaGestion;
     // End of variables declaration//GEN-END:variables
 }
