@@ -24,7 +24,7 @@ import table.TableHeader;
  */
 public class GestionProveedores extends javax.swing.JPanel {
 
-    String[] nombreColumnas = {"ID", "Nombre", "Apellidos", "Direccion", "Estado"};
+    String[] nombreColumnas = {"TÍTULO", "AUTOR", "EDITORIAL", "IDIOMA"};
 
     /**
      * Creates new form GestionProveedores

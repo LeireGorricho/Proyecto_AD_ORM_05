@@ -23,7 +23,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Home frame = new Home();
         frame.setSize(700,550);
         frame.setLocation(0,0);
-        
         panel_pagina.removeAll();
         panel_pagina.add(frame, BorderLayout.CENTER);
         panel_pagina.revalidate();
@@ -126,6 +125,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/exit.png"))); // NOI18N
         jLabel2.setText("Salir");
 
         javax.swing.GroupLayout botonSalirLayout = new javax.swing.GroupLayout(botonSalir);
@@ -135,7 +135,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(botonSalirLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel2)
-                .addGap(0, 151, Short.MAX_VALUE))
+                .addGap(0, 127, Short.MAX_VALUE))
         );
         botonSalirLayout.setVerticalGroup(
             botonSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

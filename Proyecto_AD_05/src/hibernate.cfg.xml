@@ -7,11 +7,13 @@
     <property name="hibernate.ejb.metamodel.population">disabled</property>
     <property name="connection.url">jdbc:mysql://localhost:3306/proyecto_ad3_orm</property>
     <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
     <property name="connection.username">root</property>
     <property name="connection.password">lgp200267</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
     <property name="current_session_context_class">thread</property>
+
       <mapping class="hibernate_bd.PiezasEntity"/>
     <mapping resource="PiezasEntity.hbm.xml"/>
     <mapping class="hibernate_bd.ProveedoresEntity"/>
