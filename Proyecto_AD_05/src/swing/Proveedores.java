@@ -7,6 +7,7 @@ package swing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -14,13 +15,15 @@ import javax.swing.JLabel;
  */
 public class Proveedores extends javax.swing.JPanel {
 
+    JPanel panel;
+            
     /**
      * Creates new form Proveedores
      */
-    public Proveedores() {
+    public Proveedores(JPanel panel) {
         initComponents();
         
-        GestionProveedores frame = new GestionProveedores();
+        GestionProveedores frame = new GestionProveedores(panel_proveedores);
         frame.setSize(700,490);
         frame.setLocation(0,0);
         
@@ -133,7 +136,7 @@ public class Proveedores extends javax.swing.JPanel {
         devolverColor(labelNuevo);
         devolverColor(labelConsulta);
         
-        GestionProveedores frame = new GestionProveedores();
+        GestionProveedores frame = new GestionProveedores(panel_proveedores);
         frame.setSize(700,490);
         frame.setLocation(0,0);
         panel_proveedores.removeAll();
@@ -147,7 +150,7 @@ public class Proveedores extends javax.swing.JPanel {
         devolverColor(labelGestion);
         devolverColor(labelConsulta);
         
-        NuevoProveedor frame = new NuevoProveedor();
+        NuevoProveedor frame = new NuevoProveedor(panel_proveedores);
         frame.setSize(700,490);
         frame.setLocation(0,0);
         panel_proveedores.removeAll();

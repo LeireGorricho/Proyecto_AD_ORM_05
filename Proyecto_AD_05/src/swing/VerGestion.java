@@ -4,17 +4,24 @@
  */
 package swing;
 
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author leiii
  */
 public class VerGestion extends javax.swing.JPanel {
 
+    JPanel panel;
+    
     /**
      * Creates new form VerGestion
      */
-    public VerGestion() {
+    public VerGestion(JPanel panel) {
         initComponents();
+        
+        this.panel = panel;
     }
 
     /**
@@ -32,19 +39,19 @@ public class VerGestion extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        botonAnadir = new javax.swing.JPanel();
+        botonVolver = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
-        codProveedor = new javax.swing.JComboBox<>();
         infoProyecto = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
         infoProveedor = new javax.swing.JTextField();
         infoPieza = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
         cantidad = new javax.swing.JTextField();
+        codProveedor = new javax.swing.JTextField();
+        codProyecto = new javax.swing.JTextField();
+        codPieza = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -73,56 +80,77 @@ public class VerGestion extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Cantidad:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, -1, -1));
 
-        botonAnadir.setBackground(new java.awt.Color(0, 204, 204));
+        botonVolver.setBackground(new java.awt.Color(0, 204, 204));
+        botonVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonVolverMousePressed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Volver");
 
-        javax.swing.GroupLayout botonAnadirLayout = new javax.swing.GroupLayout(botonAnadir);
-        botonAnadir.setLayout(botonAnadirLayout);
-        botonAnadirLayout.setHorizontalGroup(
-            botonAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+        javax.swing.GroupLayout botonVolverLayout = new javax.swing.GroupLayout(botonVolver);
+        botonVolver.setLayout(botonVolverLayout);
+        botonVolverLayout.setHorizontalGroup(
+            botonVolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
         );
-        botonAnadirLayout.setVerticalGroup(
-            botonAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        botonVolverLayout.setVerticalGroup(
+            botonVolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(botonAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, 160, 30));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 370, 20));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 370, 10));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 370, 10));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 370, 10));
-
-        codProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(codProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 100, -1));
+        jPanel1.add(botonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 420, 130, 30));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 370, 20));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 370, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 370, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 120, 10));
 
         infoProyecto.setEditable(false);
         infoProyecto.setBackground(new java.awt.Color(255, 255, 255));
+        infoProyecto.setText("<html><p></p></html>");
         infoProyecto.setBorder(null);
-        jPanel1.add(infoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 240, 60));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 100, -1));
+        jPanel1.add(infoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 240, 60));
 
         infoProveedor.setEditable(false);
         infoProveedor.setBackground(new java.awt.Color(255, 255, 255));
+        infoProveedor.setText("<html><p></p></html>");
         infoProveedor.setBorder(null);
-        jPanel1.add(infoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 240, 60));
+        jPanel1.add(infoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 240, 60));
 
         infoPieza.setEditable(false);
         infoPieza.setBackground(new java.awt.Color(255, 255, 255));
+        infoPieza.setText("<html><p></p></html>");
         infoPieza.setBorder(null);
-        jPanel1.add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 240, 60));
+        jPanel1.add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 240, 60));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 100, -1));
-        jPanel1.add(cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 120, -1));
+        cantidad.setEditable(false);
+        cantidad.setBackground(new java.awt.Color(255, 255, 255));
+        cantidad.setBorder(null);
+        jPanel1.add(cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 120, -1));
+
+        codProveedor.setEditable(false);
+        codProveedor.setBackground(new java.awt.Color(255, 255, 255));
+        codProveedor.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        codProveedor.setBorder(null);
+        jPanel1.add(codProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, -1, -1));
+
+        codProyecto.setEditable(false);
+        codProyecto.setBackground(new java.awt.Color(255, 255, 255));
+        codProyecto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        codProyecto.setBorder(null);
+        jPanel1.add(codProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, -1, -1));
+
+        codPieza.setEditable(false);
+        codPieza.setBackground(new java.awt.Color(255, 255, 255));
+        codPieza.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        codPieza.setBorder(null);
+        jPanel1.add(codPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -136,16 +164,26 @@ public class VerGestion extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonVolverMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVolverMousePressed
+        GestionPedidos frame = new GestionPedidos(panel);
+        frame.setSize(700,490);
+        frame.setLocation(0,0);
+        panel.removeAll();
+        panel.add(frame, BorderLayout.CENTER);
+        panel.revalidate();
+        panel.repaint();
+    }//GEN-LAST:event_botonVolverMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel botonAnadir;
+    private javax.swing.JPanel botonVolver;
     private javax.swing.JTextField cantidad;
-    private javax.swing.JComboBox<String> codProveedor;
+    private javax.swing.JTextField codPieza;
+    private javax.swing.JTextField codProveedor;
+    private javax.swing.JTextField codProyecto;
     private javax.swing.JTextField infoPieza;
     private javax.swing.JTextField infoProveedor;
     private javax.swing.JTextField infoProyecto;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

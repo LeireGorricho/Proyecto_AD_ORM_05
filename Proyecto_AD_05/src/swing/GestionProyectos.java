@@ -4,6 +4,7 @@
  */
 package swing;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JLabel;
@@ -21,11 +22,15 @@ import table.TableHeader;
  */
 public class GestionProyectos extends javax.swing.JPanel {
 
+    JPanel panel;
+    
     /**
      * Creates new form GestionProyectos
      */
-    public GestionProyectos() {
+    public GestionProyectos(JPanel panel) {
         initComponents();
+        
+        this.panel = panel;
         
         tablaProyectos.setShowHorizontalLines(true);
         tablaProyectos.setGridColor(new Color(230,230,230));
@@ -65,77 +70,19 @@ public class GestionProyectos extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        botonEliminar = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        BotonModificar = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaProyectos = new javax.swing.JTable();
+        botonEliminar1 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        BotonModificar1 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
         botonVer = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        botonAnadir = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        botonEliminar.setBackground(new java.awt.Color(0, 204, 204));
-        botonEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                botonEliminarMousePressed(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Eliminar Proyectos");
-
-        javax.swing.GroupLayout botonEliminarLayout = new javax.swing.GroupLayout(botonEliminar);
-        botonEliminar.setLayout(botonEliminarLayout);
-        botonEliminarLayout.setHorizontalGroup(
-            botonEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(botonEliminarLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel6)
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
-        botonEliminarLayout.setVerticalGroup(
-            botonEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(botonEliminarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 434, -1, -1));
-
-        BotonModificar.setBackground(new java.awt.Color(0, 204, 204));
-        BotonModificar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                BotonModificarMousePressed(evt);
-            }
-        });
-
-        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Modificar Proyectos");
-
-        javax.swing.GroupLayout BotonModificarLayout = new javax.swing.GroupLayout(BotonModificar);
-        BotonModificar.setLayout(BotonModificarLayout);
-        BotonModificarLayout.setHorizontalGroup(
-            BotonModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BotonModificarLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel7)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-        BotonModificarLayout.setVerticalGroup(
-            BotonModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BotonModificarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(BotonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(451, 434, -1, -1));
 
         tablaProyectos.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         tablaProyectos.setForeground(new java.awt.Color(102, 102, 102));
@@ -173,7 +120,65 @@ public class GestionProyectos extends javax.swing.JPanel {
         tablaProyectos.setSelectionBackground(new java.awt.Color(224, 255, 255));
         jScrollPane1.setViewportView(tablaProyectos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 15, 631, 390));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 25, 580, 440));
+
+        botonEliminar1.setBackground(new java.awt.Color(0, 204, 204));
+        botonEliminar1.setPreferredSize(new java.awt.Dimension(100, 31));
+        botonEliminar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonEliminar1MousePressed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minus.png"))); // NOI18N
+
+        javax.swing.GroupLayout botonEliminar1Layout = new javax.swing.GroupLayout(botonEliminar1);
+        botonEliminar1.setLayout(botonEliminar1Layout);
+        botonEliminar1Layout.setHorizontalGroup(
+            botonEliminar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(botonEliminar1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        botonEliminar1Layout.setVerticalGroup(
+            botonEliminar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(botonEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 70, 50, -1));
+
+        BotonModificar1.setBackground(new java.awt.Color(0, 204, 204));
+        BotonModificar1.setPreferredSize(new java.awt.Dimension(100, 31));
+        BotonModificar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                BotonModificar1MousePressed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/edit.png"))); // NOI18N
+
+        javax.swing.GroupLayout BotonModificar1Layout = new javax.swing.GroupLayout(BotonModificar1);
+        BotonModificar1.setLayout(BotonModificar1Layout);
+        BotonModificar1Layout.setHorizontalGroup(
+            BotonModificar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BotonModificar1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        BotonModificar1Layout.setVerticalGroup(
+            BotonModificar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(BotonModificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 110, 50, -1));
 
         botonVer.setBackground(new java.awt.Color(0, 204, 204));
         botonVer.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -182,26 +187,60 @@ public class GestionProyectos extends javax.swing.JPanel {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Ver Proyectos");
+        jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa25x25.png"))); // NOI18N
 
         javax.swing.GroupLayout botonVerLayout = new javax.swing.GroupLayout(botonVer);
         botonVer.setLayout(botonVerLayout);
         botonVerLayout.setHorizontalGroup(
             botonVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+            .addGroup(botonVerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(7, Short.MAX_VALUE))
         );
         botonVerLayout.setVerticalGroup(
             botonVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(botonVerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5)
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel1.add(botonVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 150, 50, -1));
+
+        botonAnadir.setBackground(new java.awt.Color(0, 204, 204));
+        botonAnadir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonAnadirMousePressed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/plus.png"))); // NOI18N
+
+        javax.swing.GroupLayout botonAnadirLayout = new javax.swing.GroupLayout(botonAnadir);
+        botonAnadir.setLayout(botonAnadirLayout);
+        botonAnadirLayout.setHorizontalGroup(
+            botonAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(botonAnadirLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        botonAnadirLayout.setVerticalGroup(
+            botonAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(botonAnadirLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(botonVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 434, 160, -1));
+        jPanel1.add(botonAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 25, 50, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -215,26 +254,50 @@ public class GestionProyectos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarMousePressed
+    private void botonEliminar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminar1MousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonEliminarMousePressed
+    }//GEN-LAST:event_botonEliminar1MousePressed
 
-    private void BotonModificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonModificarMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BotonModificarMousePressed
+    private void BotonModificar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonModificar1MousePressed
+        EditarProyecto frame = new EditarProyecto(panel);
+        frame.setSize(700,490);
+        frame.setLocation(0,0);
+        panel.removeAll();
+        panel.add(frame, BorderLayout.CENTER);
+        panel.revalidate();
+        panel.repaint();
+    }//GEN-LAST:event_BotonModificar1MousePressed
 
     private void botonVerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVerMousePressed
-        // TODO add your handling code here:
+        VerProyecto frame = new VerProyecto(panel);
+        frame.setSize(700,490);
+        frame.setLocation(0,0);
+        panel.removeAll();
+        panel.add(frame, BorderLayout.CENTER);
+        panel.revalidate();
+        panel.repaint();
     }//GEN-LAST:event_botonVerMousePressed
+
+    private void botonAnadirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirMousePressed
+        NuevoProyecto frame = new NuevoProyecto(panel);
+        frame.setSize(700,490);
+        frame.setLocation(0,0);
+        panel.removeAll();
+        panel.add(frame, BorderLayout.CENTER);
+        panel.revalidate();
+        panel.repaint();
+    }//GEN-LAST:event_botonAnadirMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel BotonModificar;
-    private javax.swing.JPanel botonEliminar;
+    private javax.swing.JPanel BotonModificar1;
+    private javax.swing.JPanel botonAnadir;
+    private javax.swing.JPanel botonEliminar1;
     private javax.swing.JPanel botonVer;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaProyectos;

@@ -1,12 +1,11 @@
 package hibernate_bd;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
-@Table(name = "proveedores", schema = "proyecto_ad3_orm")
-public class ProveedoresEntity implements Serializable {
+@Table(name = "proveedores", schema = "proyecto_ad3_orm", catalog = "")
+public class ProveedoresEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "codigo", nullable = false, length = 6)

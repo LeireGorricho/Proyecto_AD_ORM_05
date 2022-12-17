@@ -4,17 +4,24 @@
  */
 package swing;
 
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author leiii
  */
 public class VerProveedor extends javax.swing.JPanel {
 
+    JPanel panel;
+    
     /**
      * Creates new form VerProveedor
      */
-    public VerProveedor() {
+    public VerProveedor(JPanel panel) {
         initComponents();
+        
+        this.panel = panel;
     }
 
     /**
@@ -74,45 +81,30 @@ public class VerProveedor extends javax.swing.JPanel {
 
         codigo.setForeground(new java.awt.Color(102, 102, 102));
         codigo.setBorder(null);
-        codigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                codigoActionPerformed(evt);
-            }
-        });
         jPanel1.add(codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 170, 260, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 260, 20));
 
         nombre.setForeground(new java.awt.Color(102, 102, 102));
         nombre.setBorder(null);
-        nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreActionPerformed(evt);
-            }
-        });
         jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 210, 260, -1));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 260, 10));
 
         apellidos.setForeground(new java.awt.Color(102, 102, 102));
         apellidos.setBorder(null);
-        apellidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                apellidosActionPerformed(evt);
-            }
-        });
         jPanel1.add(apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 250, 260, -1));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 260, 10));
 
         dirPostal.setForeground(new java.awt.Color(102, 102, 102));
         dirPostal.setBorder(null);
-        dirPostal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dirPostalActionPerformed(evt);
-            }
-        });
         jPanel1.add(dirPostal, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 290, 260, -1));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 260, 10));
 
         botonVolver.setBackground(new java.awt.Color(0, 204, 204));
+        botonVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonVolverMousePressed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -149,21 +141,15 @@ public class VerProveedor extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_codigoActionPerformed
-
-    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombreActionPerformed
-
-    private void apellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_apellidosActionPerformed
-
-    private void dirPostalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dirPostalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dirPostalActionPerformed
+    private void botonVolverMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVolverMousePressed
+        Proveedores frame = new Proveedores(panel);
+        frame.setSize(700,490);
+        frame.setLocation(0,0);
+        panel.removeAll();
+        panel.add(frame, BorderLayout.CENTER);
+        panel.revalidate();
+        panel.repaint();
+    }//GEN-LAST:event_botonVolverMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

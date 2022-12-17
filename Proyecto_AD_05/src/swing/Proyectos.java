@@ -7,6 +7,7 @@ package swing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -17,10 +18,10 @@ public class Proyectos extends javax.swing.JPanel {
     /**
      * Creates new form Proyectos
      */
-    public Proyectos() {
+    public Proyectos(JPanel panel) {
         initComponents();
         
-        GestionProyectos frame = new GestionProyectos();
+        GestionProyectos frame = new GestionProyectos(panel_proyectos);
         frame.setSize(700,490);
         frame.setLocation(0,0);
         
@@ -133,7 +134,7 @@ public class Proyectos extends javax.swing.JPanel {
         devolverColor(labelNuevo);
         devolverColor(labelConsulta);
 
-        GestionProyectos frame = new GestionProyectos();
+        GestionProyectos frame = new GestionProyectos(panel_proyectos);
         frame.setSize(700,490);
         frame.setLocation(0,0);
         panel_proyectos.removeAll();
@@ -147,7 +148,7 @@ public class Proyectos extends javax.swing.JPanel {
         devolverColor(labelGestion);
         devolverColor(labelConsulta);
 
-        NuevoProyecto frame = new NuevoProyecto();
+        NuevoProyecto frame = new NuevoProyecto(panel_proyectos);
         frame.setSize(700,490);
         frame.setLocation(0,0);
         panel_proyectos.removeAll();

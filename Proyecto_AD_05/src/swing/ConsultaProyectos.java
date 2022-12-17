@@ -104,12 +104,6 @@ public class ConsultaProyectos extends javax.swing.JPanel {
 
         opcionBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(opcionBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 14, 171, -1));
-
-        textBusqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textBusquedaActionPerformed(evt);
-            }
-        });
         jPanel1.add(textBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 14, 160, -1));
 
         jLabel2.setText("Buscar:");
@@ -146,6 +140,11 @@ public class ConsultaProyectos extends javax.swing.JPanel {
         jPanel1.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 12, -1, -1));
 
         botonVer.setBackground(new java.awt.Color(0, 204, 204));
+        botonVer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonVerMousePressed(evt);
+            }
+        });
 
         label.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         label.setForeground(new java.awt.Color(255, 255, 255));
@@ -158,7 +157,7 @@ public class ConsultaProyectos extends javax.swing.JPanel {
             botonVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(botonVerLayout.createSequentialGroup()
                 .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         botonVerLayout.setVerticalGroup(
             botonVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,13 +178,13 @@ public class ConsultaProyectos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textBusquedaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textBusquedaActionPerformed
-
     private void botonBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBuscarMousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonBuscarMousePressed
+
+    private void botonVerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVerMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonVerMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

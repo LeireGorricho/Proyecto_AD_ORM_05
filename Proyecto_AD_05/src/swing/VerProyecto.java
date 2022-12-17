@@ -4,17 +4,23 @@
  */
 package swing;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author leiii
  */
 public class VerProyecto extends javax.swing.JPanel {
 
+    JPanel panel;
+    
     /**
      * Creates new form VerProyecto
      */
-    public VerProyecto() {
+    public VerProyecto(JPanel panel) {
         initComponents();
+        
+        this.panel = panel;
     }
 
     /**

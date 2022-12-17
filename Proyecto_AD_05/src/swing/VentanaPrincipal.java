@@ -439,7 +439,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         devolverColor(botonGestionGlobal, bordeGestion);
         devolverColor(botonAyuda, bordeAyuda);
         
-        Piezas frame = new Piezas();
+        Piezas frame = new Piezas(panel_pagina);
         frame.setSize(700,550);
         frame.setLocation(0,0);
         panel_pagina.removeAll();
@@ -456,7 +456,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         devolverColor(botonAyuda, bordeAyuda);
         devolverColor(botonProveedores, bordeProveedores);
         
-        Proyectos frame = new Proyectos();
+        Proyectos frame = new Proyectos(panel_pagina);
         frame.setSize(700,550);
         frame.setLocation(0,0);
         panel_pagina.removeAll();
@@ -473,7 +473,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         devolverColor(botonProyectos, bordeProyectos);
         devolverColor(botonAyuda, bordeAyuda);
         
-        GestionGlobal frame = new GestionGlobal();
+        GestionGlobal frame = new GestionGlobal(panel_pagina);
         frame.setSize(700,550);
         frame.setLocation(0,0);
         panel_pagina.removeAll();
@@ -507,7 +507,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         devolverColor(botonGestionGlobal, bordeGestion);
         devolverColor(botonAyuda, bordeAyuda);
         
-        Proveedores frame = new Proveedores();
+        Proveedores frame = new Proveedores(panel_pagina);
         frame.setSize(700,550);
         frame.setLocation(0,0);
         panel_pagina.removeAll();

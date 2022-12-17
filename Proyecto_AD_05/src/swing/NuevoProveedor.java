@@ -4,17 +4,24 @@
  */
 package swing;
 
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author leiii
  */
 public class NuevoProveedor extends javax.swing.JPanel {
 
+    JPanel panel;
+    
     /**
      * Creates new form NuevoProveedor
      */
-    public NuevoProveedor() {
+    public NuevoProveedor(JPanel panel) {
         initComponents();
+        
+        this.panel = panel;
     }
 
     /**
@@ -42,6 +49,10 @@ public class NuevoProveedor extends javax.swing.JPanel {
         jSeparator3 = new javax.swing.JSeparator();
         dirPostal = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
+        botonLimpiar = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        botonCancelar = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(550, 400));
@@ -74,6 +85,11 @@ public class NuevoProveedor extends javax.swing.JPanel {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, -1));
 
         botonAnadir.setBackground(new java.awt.Color(0, 204, 204));
+        botonAnadir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonAnadirMousePressed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -93,47 +109,83 @@ public class NuevoProveedor extends javax.swing.JPanel {
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(botonAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, -1, 30));
+        jPanel1.add(botonAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 360, -1, 30));
 
         codigo.setForeground(new java.awt.Color(102, 102, 102));
         codigo.setBorder(null);
-        codigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                codigoActionPerformed(evt);
-            }
-        });
         jPanel1.add(codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 170, 260, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 260, 20));
 
         nombre.setForeground(new java.awt.Color(102, 102, 102));
         nombre.setBorder(null);
-        nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreActionPerformed(evt);
-            }
-        });
         jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 210, 260, -1));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 260, 10));
 
         apellidos.setForeground(new java.awt.Color(102, 102, 102));
         apellidos.setBorder(null);
-        apellidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                apellidosActionPerformed(evt);
-            }
-        });
         jPanel1.add(apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 250, 260, -1));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 260, 10));
 
         dirPostal.setForeground(new java.awt.Color(102, 102, 102));
         dirPostal.setBorder(null);
-        dirPostal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dirPostalActionPerformed(evt);
-            }
-        });
         jPanel1.add(dirPostal, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 290, 260, -1));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 260, 10));
+
+        botonLimpiar.setBackground(new java.awt.Color(0, 117, 153));
+        botonLimpiar.setPreferredSize(new java.awt.Dimension(170, 30));
+        botonLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonLimpiarMousePressed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Limpiar");
+
+        javax.swing.GroupLayout botonLimpiarLayout = new javax.swing.GroupLayout(botonLimpiar);
+        botonLimpiar.setLayout(botonLimpiarLayout);
+        botonLimpiarLayout.setHorizontalGroup(
+            botonLimpiarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+        );
+        botonLimpiarLayout.setVerticalGroup(
+            botonLimpiarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botonLimpiarLayout.createSequentialGroup()
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(botonLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 110, 30));
+
+        botonCancelar.setBackground(new java.awt.Color(0, 117, 153));
+        botonCancelar.setPreferredSize(new java.awt.Dimension(170, 30));
+        botonCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonCancelarMousePressed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Cancelar");
+
+        javax.swing.GroupLayout botonCancelarLayout = new javax.swing.GroupLayout(botonCancelar);
+        botonCancelar.setLayout(botonCancelarLayout);
+        botonCancelarLayout.setHorizontalGroup(
+            botonCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+        );
+        botonCancelarLayout.setVerticalGroup(
+            botonCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botonCancelarLayout.createSequentialGroup()
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, 110, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -147,26 +199,30 @@ public class NuevoProveedor extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoActionPerformed
+    private void botonAnadirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_codigoActionPerformed
+    }//GEN-LAST:event_botonAnadirMousePressed
 
-    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
+    private void botonLimpiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLimpiarMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nombreActionPerformed
+    }//GEN-LAST:event_botonLimpiarMousePressed
 
-    private void apellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_apellidosActionPerformed
-
-    private void dirPostalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dirPostalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dirPostalActionPerformed
+    private void botonCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCancelarMousePressed
+        Proveedores frame = new Proveedores(panel);
+        frame.setSize(700,490);
+        frame.setLocation(0,0);
+        panel.removeAll();
+        panel.add(frame, BorderLayout.CENTER);
+        panel.revalidate();
+        panel.repaint();
+    }//GEN-LAST:event_botonCancelarMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidos;
     private javax.swing.JPanel botonAnadir;
+    private javax.swing.JPanel botonCancelar;
+    private javax.swing.JPanel botonLimpiar;
     private javax.swing.JTextField codigo;
     private javax.swing.JTextField dirPostal;
     private javax.swing.JLabel jLabel1;
@@ -175,6 +231,8 @@ public class NuevoProveedor extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

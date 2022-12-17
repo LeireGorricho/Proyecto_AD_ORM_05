@@ -4,17 +4,23 @@
  */
 package swing;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author leiii
  */
 public class NuevaGestion extends javax.swing.JPanel {
 
+    JPanel panel;
+    
     /**
      * Creates new form NuevaGestion
      */
-    public NuevaGestion() {
+    public NuevaGestion(JPanel panel) {
         initComponents();
+        
+        this.panel = panel;
     }
 
     /**
@@ -38,15 +44,17 @@ public class NuevaGestion extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
-        botonCancelar = new javax.swing.JPanel();
+        botonLimpiar = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         codProveedor = new javax.swing.JComboBox<>();
         infoProyecto = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        codPieza = new javax.swing.JComboBox<>();
         infoProveedor = new javax.swing.JTextField();
         infoPieza = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        codProyecto = new javax.swing.JComboBox<>();
         cantidad = new javax.swing.JTextField();
+        botonCancelar = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -55,7 +63,7 @@ public class NuevaGestion extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(0, 117, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("NUEVA GESTIÓN");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 700, 40));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 710, 40));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
@@ -78,9 +86,15 @@ public class NuevaGestion extends javax.swing.JPanel {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, -1, -1));
 
         botonAnadir.setBackground(new java.awt.Color(0, 204, 204));
+        botonAnadir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonAnadirMousePressed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Añadir Gestión");
 
         javax.swing.GroupLayout botonAnadirLayout = new javax.swing.GroupLayout(botonAnadir);
@@ -88,8 +102,8 @@ public class NuevaGestion extends javax.swing.JPanel {
         botonAnadirLayout.setHorizontalGroup(
             botonAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botonAnadirLayout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
         botonAnadirLayout.setVerticalGroup(
@@ -97,45 +111,50 @@ public class NuevaGestion extends javax.swing.JPanel {
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(botonAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 420, 160, 30));
+        jPanel1.add(botonAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 420, 160, 30));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 370, 20));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 370, 10));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 370, 10));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 370, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 120, 10));
 
-        botonCancelar.setBackground(new java.awt.Color(0, 117, 153));
-        botonCancelar.setPreferredSize(new java.awt.Dimension(170, 30));
+        botonLimpiar.setBackground(new java.awt.Color(0, 117, 153));
+        botonLimpiar.setPreferredSize(new java.awt.Dimension(170, 30));
+        botonLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonLimpiarMousePressed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Cancelar");
+        jLabel7.setText("Limpiar");
 
-        javax.swing.GroupLayout botonCancelarLayout = new javax.swing.GroupLayout(botonCancelar);
-        botonCancelar.setLayout(botonCancelarLayout);
-        botonCancelarLayout.setHorizontalGroup(
-            botonCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+        javax.swing.GroupLayout botonLimpiarLayout = new javax.swing.GroupLayout(botonLimpiar);
+        botonLimpiar.setLayout(botonLimpiarLayout);
+        botonLimpiarLayout.setHorizontalGroup(
+            botonLimpiarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
         );
-        botonCancelarLayout.setVerticalGroup(
-            botonCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botonCancelarLayout.createSequentialGroup()
+        botonLimpiarLayout.setVerticalGroup(
+            botonLimpiarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botonLimpiarLayout.createSequentialGroup()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 160, 30));
+        jPanel1.add(botonLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 110, 30));
 
         codProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(codProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 100, -1));
+        jPanel1.add(codProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 85, 100, -1));
 
         infoProyecto.setEditable(false);
         infoProyecto.setBackground(new java.awt.Color(255, 255, 255));
         infoProyecto.setBorder(null);
         jPanel1.add(infoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 240, 60));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 100, -1));
+        codPieza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(codPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 175, 100, -1));
 
         infoProveedor.setEditable(false);
         infoProveedor.setBackground(new java.awt.Color(255, 255, 255));
@@ -147,9 +166,39 @@ public class NuevaGestion extends javax.swing.JPanel {
         infoPieza.setBorder(null);
         jPanel1.add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 240, 60));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 100, -1));
-        jPanel1.add(cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 120, -1));
+        codProyecto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(codProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 265, 100, -1));
+
+        cantidad.setBorder(null);
+        jPanel1.add(cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, 120, -1));
+
+        botonCancelar.setBackground(new java.awt.Color(0, 117, 153));
+        botonCancelar.setPreferredSize(new java.awt.Dimension(170, 30));
+        botonCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonCancelarMousePressed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Cancelar");
+
+        javax.swing.GroupLayout botonCancelarLayout = new javax.swing.GroupLayout(botonCancelar);
+        botonCancelar.setLayout(botonCancelarLayout);
+        botonCancelarLayout.setHorizontalGroup(
+            botonCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+        );
+        botonCancelarLayout.setVerticalGroup(
+            botonCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botonCancelarLayout.createSequentialGroup()
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, 110, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -159,21 +208,34 @@ public class NuevaGestion extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCancelarMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonCancelarMousePressed
+
+    private void botonAnadirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAnadirMousePressed
+
+    private void botonLimpiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLimpiarMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonLimpiarMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel botonAnadir;
     private javax.swing.JPanel botonCancelar;
+    private javax.swing.JPanel botonLimpiar;
     private javax.swing.JTextField cantidad;
+    private javax.swing.JComboBox<String> codPieza;
     private javax.swing.JComboBox<String> codProveedor;
+    private javax.swing.JComboBox<String> codProyecto;
     private javax.swing.JTextField infoPieza;
     private javax.swing.JTextField infoProveedor;
     private javax.swing.JTextField infoProyecto;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -181,6 +243,7 @@ public class NuevaGestion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

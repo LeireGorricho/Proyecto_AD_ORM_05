@@ -4,17 +4,24 @@
  */
 package swing;
 
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author leiii
  */
 public class EditarProyecto extends javax.swing.JPanel {
 
+    JPanel panel;
+    
     /**
      * Creates new form EditarProyecto
      */
-    public EditarProyecto() {
+    public EditarProyecto(JPanel panel) {
         initComponents();
+        
+        this.panel = panel;
     }
 
     /**
@@ -68,6 +75,11 @@ public class EditarProyecto extends javax.swing.JPanel {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
 
         botonEditar.setBackground(new java.awt.Color(0, 204, 204));
+        botonEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonEditarMousePressed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -78,9 +90,7 @@ public class EditarProyecto extends javax.swing.JPanel {
         botonEditar.setLayout(botonEditarLayout);
         botonEditarLayout.setHorizontalGroup(
             botonEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botonEditarLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
         botonEditarLayout.setVerticalGroup(
             botonEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,35 +105,25 @@ public class EditarProyecto extends javax.swing.JPanel {
         codigo.setBackground(new java.awt.Color(255, 255, 255));
         codigo.setForeground(new java.awt.Color(102, 102, 102));
         codigo.setBorder(null);
-        codigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                codigoActionPerformed(evt);
-            }
-        });
         jPanel1.add(codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 170, 260, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 260, 20));
 
         nombre.setForeground(new java.awt.Color(102, 102, 102));
         nombre.setBorder(null);
-        nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreActionPerformed(evt);
-            }
-        });
         jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 210, 260, -1));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 260, 10));
 
         ciudad.setForeground(new java.awt.Color(102, 102, 102));
         ciudad.setBorder(null);
-        ciudad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ciudadActionPerformed(evt);
-            }
-        });
         jPanel1.add(ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 250, 260, -1));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 260, 10));
 
         botonCancelar.setBackground(new java.awt.Color(0, 117, 153));
+        botonCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonCancelarMousePressed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -134,9 +134,7 @@ public class EditarProyecto extends javax.swing.JPanel {
         botonCancelar.setLayout(botonCancelarLayout);
         botonCancelarLayout.setHorizontalGroup(
             botonCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botonCancelarLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
         botonCancelarLayout.setVerticalGroup(
             botonCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,17 +157,19 @@ public class EditarProyecto extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ciudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciudadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ciudadActionPerformed
+    private void botonCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCancelarMousePressed
+        Proyectos frame = new Proyectos(panel);
+        frame.setSize(700,490);
+        frame.setLocation(0,0);
+        panel.removeAll();
+        panel.add(frame, BorderLayout.CENTER);
+        panel.revalidate();
+        panel.repaint();
+    }//GEN-LAST:event_botonCancelarMousePressed
 
-    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
+    private void botonEditarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nombreActionPerformed
-
-    private void codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_codigoActionPerformed
+    }//GEN-LAST:event_botonEditarMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

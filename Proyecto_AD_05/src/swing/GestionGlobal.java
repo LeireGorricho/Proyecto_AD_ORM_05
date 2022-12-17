@@ -7,6 +7,7 @@ package swing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -14,11 +15,14 @@ import javax.swing.JLabel;
  */
 public class GestionGlobal extends javax.swing.JPanel {
 
+    JPanel panel;
     /**
      * Creates new form GestionGlobal
      */
-    public GestionGlobal() {
+    public GestionGlobal(JPanel panel) {
         initComponents();
+        
+        this.panel = panel;
     }
 
     /**
@@ -142,7 +146,7 @@ public class GestionGlobal extends javax.swing.JPanel {
         devolverColor(labelSuminProveedores);
         devolverColor(labelEstadisticas);
 
-        GestionPedidos frame = new GestionPedidos();
+        GestionPedidos frame = new GestionPedidos(panel);
         frame.setSize(700,490);
         frame.setLocation(0,0);
         panel_global.removeAll();

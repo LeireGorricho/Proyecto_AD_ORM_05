@@ -1,24 +1,14 @@
 package hibernate_bd;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "gestion", schema = "proyecto_ad3_orm", catalog = "")
-@IdClass(GestionEntityPK.class)
-public class GestionEntity implements Serializable {
+public class GestionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "codproveedor", nullable = false, length = 6)
-    private String codproveedor;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "codpieza", nullable = false, length = 6)
-    private String codpieza;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "codproyecto", nullable = false, length = 6)
-    private String codproyecto;
+    @Column(name = "codigo", nullable = false, length = 6)
+    private String codigo;
     @Basic
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
@@ -26,37 +16,21 @@ public class GestionEntity implements Serializable {
     @Column(name = "estado", nullable = false, length = 4)
     private String estado;
     @ManyToOne
-    @JoinColumn(name = "codproveedor", referencedColumnName = "codigo", nullable = false)
-    private ProveedoresEntity proveedoresByCodproveedor;
-    @ManyToOne
     @JoinColumn(name = "codpieza", referencedColumnName = "codigo", nullable = false)
     private PiezasEntity piezasByCodpieza;
     @ManyToOne
     @JoinColumn(name = "codproyecto", referencedColumnName = "codigo", nullable = false)
     private ProyectosEntity proyectosByCodproyecto;
+    @ManyToOne
+    @JoinColumn(name = "codproveedor", referencedColumnName = "codigo", nullable = false)
+    private ProveedoresEntity proveedoresByCodproveedor;
 
-    public String getCodproveedor() {
-        return codproveedor;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setCodproveedor(String codproveedor) {
-        this.codproveedor = codproveedor;
-    }
-
-    public String getCodpieza() {
-        return codpieza;
-    }
-
-    public void setCodpieza(String codpieza) {
-        this.codpieza = codpieza;
-    }
-
-    public String getCodproyecto() {
-        return codproyecto;
-    }
-
-    public void setCodproyecto(String codproyecto) {
-        this.codproyecto = codproyecto;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public int getCantidad() {
@@ -75,14 +49,6 @@ public class GestionEntity implements Serializable {
         this.estado = estado;
     }
 
-    public ProveedoresEntity getProveedoresByCodproveedor() {
-        return proveedoresByCodproveedor;
-    }
-
-    public void setProveedoresByCodproveedor(ProveedoresEntity proveedoresByCodproveedor) {
-        this.proveedoresByCodproveedor = proveedoresByCodproveedor;
-    }
-
     public PiezasEntity getPiezasByCodpieza() {
         return piezasByCodpieza;
     }
@@ -97,5 +63,13 @@ public class GestionEntity implements Serializable {
 
     public void setProyectosByCodproyecto(ProyectosEntity proyectosByCodproyecto) {
         this.proyectosByCodproyecto = proyectosByCodproyecto;
+    }
+
+    public ProveedoresEntity getProveedoresByCodproveedor() {
+        return proveedoresByCodproveedor;
+    }
+
+    public void setProveedoresByCodproveedor(ProveedoresEntity proveedoresByCodproveedor) {
+        this.proveedoresByCodproveedor = proveedoresByCodproveedor;
     }
 }

@@ -4,17 +4,24 @@
  */
 package swing;
 
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author leiii
  */
 public class EditarGestion extends javax.swing.JPanel {
 
+    JPanel panel;
+    
     /**
      * Creates new form EditarGestion
      */
-    public EditarGestion() {
+    public EditarGestion(JPanel panel) {
         initComponents();
+        
+        this.panel = panel;
     }
 
     /**
@@ -32,7 +39,7 @@ public class EditarGestion extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        botonAnadir = new javax.swing.JPanel();
+        botonEditar = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -42,10 +49,10 @@ public class EditarGestion extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         codProveedor = new javax.swing.JComboBox<>();
         infoProyecto = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        codPieza = new javax.swing.JComboBox<>();
         infoProveedor = new javax.swing.JTextField();
         infoPieza = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        codProyecto = new javax.swing.JComboBox<>();
         cantidad = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -78,32 +85,42 @@ public class EditarGestion extends javax.swing.JPanel {
         jLabel5.setText("Cantidad:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, -1, -1));
 
-        botonAnadir.setBackground(new java.awt.Color(0, 204, 204));
+        botonEditar.setBackground(new java.awt.Color(0, 204, 204));
+        botonEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonEditarMousePressed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Editar Gestión");
 
-        javax.swing.GroupLayout botonAnadirLayout = new javax.swing.GroupLayout(botonAnadir);
-        botonAnadir.setLayout(botonAnadirLayout);
-        botonAnadirLayout.setHorizontalGroup(
-            botonAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout botonEditarLayout = new javax.swing.GroupLayout(botonEditar);
+        botonEditar.setLayout(botonEditarLayout);
+        botonEditarLayout.setHorizontalGroup(
+            botonEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
         );
-        botonAnadirLayout.setVerticalGroup(
-            botonAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        botonEditarLayout.setVerticalGroup(
+            botonEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(botonAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 420, 160, 30));
+        jPanel1.add(botonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 420, 160, 30));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 370, 20));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 370, 10));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 370, 10));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 370, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 120, 10));
 
         botonCancelar.setBackground(new java.awt.Color(0, 117, 153));
         botonCancelar.setPreferredSize(new java.awt.Dimension(170, 30));
+        botonCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonCancelarMousePressed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -130,25 +147,30 @@ public class EditarGestion extends javax.swing.JPanel {
 
         infoProyecto.setEditable(false);
         infoProyecto.setBackground(new java.awt.Color(255, 255, 255));
+        infoProyecto.setText("<html><p></p></html>");
         infoProyecto.setBorder(null);
         jPanel1.add(infoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 240, 60));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 100, -1));
+        codPieza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(codPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 100, -1));
 
         infoProveedor.setEditable(false);
         infoProveedor.setBackground(new java.awt.Color(255, 255, 255));
+        infoProveedor.setText("<html><p></p></html>");
         infoProveedor.setBorder(null);
         jPanel1.add(infoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 240, 60));
 
         infoPieza.setEditable(false);
         infoPieza.setBackground(new java.awt.Color(255, 255, 255));
+        infoPieza.setText("<html><p></p></html>");
         infoPieza.setBorder(null);
         jPanel1.add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 240, 60));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 100, -1));
-        jPanel1.add(cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 120, -1));
+        codProyecto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(codProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 100, -1));
+
+        cantidad.setBorder(null);
+        jPanel1.add(cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, 120, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -162,17 +184,31 @@ public class EditarGestion extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCancelarMousePressed
+        GestionPedidos frame = new GestionPedidos(panel);
+        frame.setSize(700,490);
+        frame.setLocation(0,0);
+        panel.removeAll();
+        panel.add(frame, BorderLayout.CENTER);
+        panel.revalidate();
+        panel.repaint();
+    }//GEN-LAST:event_botonCancelarMousePressed
+
+    private void botonEditarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonEditarMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel botonAnadir;
     private javax.swing.JPanel botonCancelar;
+    private javax.swing.JPanel botonEditar;
     private javax.swing.JTextField cantidad;
+    private javax.swing.JComboBox<String> codPieza;
     private javax.swing.JComboBox<String> codProveedor;
+    private javax.swing.JComboBox<String> codProyecto;
     private javax.swing.JTextField infoPieza;
     private javax.swing.JTextField infoProveedor;
     private javax.swing.JTextField infoProyecto;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
