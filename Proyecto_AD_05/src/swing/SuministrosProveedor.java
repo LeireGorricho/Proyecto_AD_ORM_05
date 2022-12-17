@@ -101,12 +101,14 @@ public class SuministrosProveedor extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        numProyectos = new javax.swing.JTextField();
+        piezasSuministradas = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaPiezasProveedor = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaProyectosProveedor = new javax.swing.JTable();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -114,9 +116,8 @@ public class SuministrosProveedor extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Proveedor: ");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
 
-        codProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(codProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 100, -1));
 
         infoProveedor.setEditable(false);
@@ -132,17 +133,17 @@ public class SuministrosProveedor extends javax.swing.JPanel {
         jLabel3.setText("Proyectos:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 315, -1, -1));
 
-        jTextField2.setEditable(false);
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField2.setBorder(null);
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 315, 50, -1));
+        numProyectos.setEditable(false);
+        numProyectos.setBackground(new java.awt.Color(255, 255, 255));
+        numProyectos.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        numProyectos.setBorder(null);
+        jPanel1.add(numProyectos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, 50, -1));
 
-        jTextField3.setEditable(false);
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField3.setBorder(null);
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 50, -1));
+        piezasSuministradas.setEditable(false);
+        piezasSuministradas.setBackground(new java.awt.Color(255, 255, 255));
+        piezasSuministradas.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        piezasSuministradas.setBorder(null);
+        jPanel1.add(piezasSuministradas, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 50, -1));
 
         tablaPiezasProveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -173,6 +174,8 @@ public class SuministrosProveedor extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tablaProyectosProveedor);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, 420, 160));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 50, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 50, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -197,8 +200,10 @@ public class SuministrosProveedor extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JTextField numProyectos;
+    private javax.swing.JTextField piezasSuministradas;
     private javax.swing.JTable tablaPiezasProveedor;
     private javax.swing.JTable tablaProyectosProveedor;
     // End of variables declaration//GEN-END:variables
