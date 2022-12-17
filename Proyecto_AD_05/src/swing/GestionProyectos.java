@@ -7,12 +7,15 @@ package swing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+
+import consultas.ConsultasProyectos;
+import hibernate_bd.ProyectosEntity;
 import scrollbar.ScrollBarCustom;
 import table.TableHeader;
 
@@ -23,7 +26,8 @@ import table.TableHeader;
 public class GestionProyectos extends javax.swing.JPanel {
 
     JPanel panel;
-    
+    String[] nombreColumnas = {"Código", "Nombre", "Ciudad", "Estado"};
+
     /**
      * Creates new form GestionProyectos
      */
@@ -49,7 +53,7 @@ public class GestionProyectos extends javax.swing.JPanel {
        jScrollPane1.getViewport().setBackground(Color.WHITE);
        jScrollPane1.setVerticalScrollBar(new ScrollBarCustom());
        fixtable(jScrollPane1);
-       // cargarDatos();
+       cargarDatos();
     }
     
     public void fixtable(JScrollPane scroll) {
@@ -58,6 +62,28 @@ public class GestionProyectos extends javax.swing.JPanel {
         JPanel p = new JPanel();
         scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
         scroll.setBorder(new EmptyBorder(5, 10, 5, 10));
+    }
+
+    public void cargarDatos() {
+        ConsultasProyectos consultasProyectos = new ConsultasProyectos();
+        List<ProyectosEntity> proyectos = new ArrayList<ProyectosEntity>();
+        proyectos = consultasProyectos.recuperarDatosProyectos();
+        int cantidad = proyectos.size();
+        String[][] d = new String[cantidad][4];
+        for (int i = 0; i < proyectos.size(); i++) {
+            d[i][0] = String.valueOf(proyectos.get(i).getCodigo());
+            d[i][1] = String.valueOf(proyectos.get(i).getNombre());
+            d[i][2] = String.valueOf(proyectos.get(i).getCiudad());
+            d[i][3] = String.valueOf(proyectos.get(i).getEstado());
+        }
+        //se carga el modelo de la tabla
+        tablaProyectos.setModel(new DefaultTableModel(d, nombreColumnas) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
+        consultasProyectos.cerrarConexion();
     }
 
     /**
@@ -255,27 +281,48 @@ public class GestionProyectos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonEliminar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminar1MousePressed
-        // TODO add your handling code here:
+        if (tablaProyectos.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Para eliminar debes seleccionar un proyecto en la tabla");
+        } else {
+            //Obtencion del id del objeto seleccionaod en la tabla
+            String cod = tablaProyectos.getValueAt(tablaProyectos.getSelectedRow(), 0).toString();
+            ConsultasProyectos consultasProyectos = new ConsultasProyectos();
+            consultasProyectos.eliminarProyecto(cod);
+            consultasProyectos.cerrarConexion();
+            cargarDatos();
+        }
     }//GEN-LAST:event_botonEliminar1MousePressed
 
     private void BotonModificar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonModificar1MousePressed
-        EditarProyecto frame = new EditarProyecto(panel);
-        frame.setSize(700,490);
-        frame.setLocation(0,0);
-        panel.removeAll();
-        panel.add(frame, BorderLayout.CENTER);
-        panel.revalidate();
-        panel.repaint();
+        if (tablaProyectos.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Para modificar debes seleccionar un proyecto en la tabla");
+        } else {
+            //Obtencion del id del objeto seleccionaod en la tabla
+            String cod = tablaProyectos.getValueAt(tablaProyectos.getSelectedRow(), 0).toString();
+            EditarProyecto frame = new EditarProyecto(panel, cod);
+            frame.setSize(700, 490);
+            frame.setLocation(0, 0);
+            panel.removeAll();
+            panel.add(frame, BorderLayout.CENTER);
+            panel.revalidate();
+            panel.repaint();
+        }
     }//GEN-LAST:event_BotonModificar1MousePressed
 
     private void botonVerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVerMousePressed
-        VerProyecto frame = new VerProyecto(panel);
-        frame.setSize(700,490);
-        frame.setLocation(0,0);
-        panel.removeAll();
-        panel.add(frame, BorderLayout.CENTER);
-        panel.revalidate();
-        panel.repaint();
+        if (tablaProyectos.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Para ver más información debes seleccionar un proyecto en la tabla");
+        } else {
+            //Obtencion del id del objeto seleccionaod en la tabla
+            String cod = tablaProyectos.getValueAt(tablaProyectos.getSelectedRow(), 0).toString();
+            VerProyecto frame = new VerProyecto(panel, cod);
+            frame.setSize(700, 490);
+            frame.setLocation(0, 0);
+            panel.removeAll();
+            panel.add(frame, BorderLayout.CENTER);
+            panel.revalidate();
+            panel.repaint();
+        }
     }//GEN-LAST:event_botonVerMousePressed
 
     private void botonAnadirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirMousePressed

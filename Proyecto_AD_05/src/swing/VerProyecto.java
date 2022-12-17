@@ -17,7 +17,7 @@ public class VerProyecto extends javax.swing.JPanel {
     /**
      * Creates new form VerProyecto
      */
-    public VerProyecto(JPanel panel) {
+    public VerProyecto(JPanel panel, String cod) {
         initComponents();
         
         this.panel = panel;

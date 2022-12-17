@@ -18,7 +18,7 @@ public class VerPieza extends javax.swing.JPanel {
     /**
      * Creates new form VerPieza
      */
-    public VerPieza(JPanel panel) {
+    public VerPieza(JPanel panel, String cod) {
         initComponents();
         
         this.panel = panel;

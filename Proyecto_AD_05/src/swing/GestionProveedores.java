@@ -25,7 +25,7 @@ import table.TableHeader;
  */
 public class GestionProveedores extends javax.swing.JPanel {
 
-    String[] nombreColumnas = {"TÍTULO", "AUTOR", "EDITORIAL", "IDIOMA"};
+    String[] nombreColumnas = {"Código", "Nombre", "Apellidos", "Estado"};
     JPanel panel;
     
     /**
@@ -69,12 +69,12 @@ public class GestionProveedores extends javax.swing.JPanel {
         List<ProveedoresEntity> proveedores = new ArrayList<ProveedoresEntity>();
         proveedores = con.recuperarDatosProveedores();
         int cantidad = proveedores.size();
-        String[][] d = new String[cantidad][3];
+        String[][] d = new String[cantidad][4];
         for (int i = 0; i < proveedores.size(); i++) {
             d[i][0] = String.valueOf(proveedores.get(i).getCodigo());
             d[i][1] = String.valueOf(proveedores.get(i).getNombre());
             d[i][2] = String.valueOf(proveedores.get(i).getApellidos());
-            d[i][3] = String.valueOf(proveedores.get(i).getDireccion());
+            d[i][3] = String.valueOf(proveedores.get(i).getEstado());
         }
         //se carga el modelo de la tabla
         tablaProveedores.setModel(new DefaultTableModel(d, nombreColumnas) {
@@ -83,14 +83,6 @@ public class GestionProveedores extends javax.swing.JPanel {
                 return false;
             }
         });
-    }
-
-    public void eliminarProveedor(String cod) {
-
-    }
-
-    public void editarProveedor(String cod) {
-
     }
 
     /**
@@ -288,27 +280,47 @@ public class GestionProveedores extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarMousePressed
-        // TODO add your handling code here:
+        if (tablaProveedores.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Para eliminar debes seleccionar un proveedor en la tabla");
+        } else {
+            //Obtencion del id del objeto seleccionaod en la tabla
+            String cod = tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 0).toString();
+            ConsultasProveedores consultasProveedores = new ConsultasProveedores();
+            consultasProveedores.eliminarProveedor(cod);
+            consultasProveedores.cerrarConexion();
+            cargarDatos();
+        }
     }//GEN-LAST:event_botonEliminarMousePressed
 
     private void BotonModificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonModificarMousePressed
-        EditarProveedor frame = new EditarProveedor(panel);
-        frame.setSize(700,490);
-        frame.setLocation(0,0);
-        panel.removeAll();
-        panel.add(frame, BorderLayout.CENTER);
-        panel.revalidate();
-        panel.repaint();
+        if (tablaProveedores.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Para modificar debes seleccionar un proveedor en la tabla");
+        } else {
+            //Obtencion del id del objeto seleccionaod en la tabla
+            String cod = tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 0).toString();
+            EditarProveedor frame = new EditarProveedor(panel, cod);
+            frame.setSize(700,490);
+            frame.setLocation(0,0);
+            panel.removeAll();
+            panel.add(frame, BorderLayout.CENTER);
+            panel.revalidate();
+            panel.repaint();
+        }
     }//GEN-LAST:event_BotonModificarMousePressed
 
     private void botonVerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVerMousePressed
-        VerProveedor frame = new VerProveedor(panel);
-        frame.setSize(700,490);
-        frame.setLocation(0,0);
-        panel.removeAll();
-        panel.add(frame, BorderLayout.CENTER);
-        panel.revalidate();
-        panel.repaint();
+        if (tablaProveedores.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Para ver más información debes seleccionar un proveedor en la tabla");
+        } else {
+            String cod = tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 0).toString();
+            VerProveedor frame = new VerProveedor(panel, cod);
+            frame.setSize(700, 490);
+            frame.setLocation(0, 0);
+            panel.removeAll();
+            panel.add(frame, BorderLayout.CENTER);
+            panel.revalidate();
+            panel.repaint();
+        }
     }//GEN-LAST:event_botonVerMousePressed
 
     private void botonAnadirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirMousePressed

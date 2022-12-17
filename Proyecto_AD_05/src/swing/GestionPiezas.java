@@ -7,12 +7,15 @@ package swing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+
+import consultas.ConsultasPiezas;
+import hibernate_bd.PiezasEntity;
 import scrollbar.ScrollBarCustom;
 import table.TableHeader;
 
@@ -23,7 +26,8 @@ import table.TableHeader;
 public class GestionPiezas extends javax.swing.JPanel {
 
     JPanel panel;
-    
+    String[] nombreColumnas = {"Código", "Nombre", "Precio", "Estado"};
+
     /**
      * Creates new form GestionPiezas
      */
@@ -49,7 +53,7 @@ public class GestionPiezas extends javax.swing.JPanel {
        jScrollPane1.getViewport().setBackground(Color.WHITE);
        jScrollPane1.setVerticalScrollBar(new ScrollBarCustom());
        fixtable(jScrollPane1);
-       // cargarDatos();
+       cargarDatos();
     }
     
     public void fixtable(JScrollPane scroll) {
@@ -58,6 +62,28 @@ public class GestionPiezas extends javax.swing.JPanel {
         JPanel p = new JPanel();
         scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
         scroll.setBorder(new EmptyBorder(5, 10, 5, 10));
+    }
+
+    public void cargarDatos() {
+        ConsultasPiezas consultasPiezas = new ConsultasPiezas();
+        List<PiezasEntity> piezas = new ArrayList<PiezasEntity>();
+        piezas = consultasPiezas.recuperarDatosPiezas();
+        int cantidad = piezas.size();
+        String[][] d = new String[cantidad][4];
+        for (int i = 0; i < piezas.size(); i++) {
+            d[i][0] = String.valueOf(piezas.get(i).getCodigo());
+            d[i][1] = String.valueOf(piezas.get(i).getNombre());
+            d[i][2] = String.valueOf(piezas.get(i).getPrecio());
+            d[i][3] = String.valueOf(piezas.get(i).getEstado());
+        }
+        //se carga el modelo de la tabla
+        tablaPiezas.setModel(new DefaultTableModel(d, nombreColumnas) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
+        consultasPiezas.cerrarConexion();
     }
 
     /**
@@ -232,15 +258,45 @@ public class GestionPiezas extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonEliminar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminar1MousePressed
-        // TODO add your handling code here:
+        if (tablaPiezas.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Para eliminar debes seleccionar una pieza en la tabla");
+        } else {
+            String cod = tablaPiezas.getValueAt(tablaPiezas.getSelectedRow(), 0).toString();
+            ConsultasPiezas consultasPiezas = new ConsultasPiezas();
+            consultasPiezas.eliminarPieza(cod);
+            consultasPiezas.cerrarConexion();
+            cargarDatos();
+        }
     }//GEN-LAST:event_botonEliminar1MousePressed
 
     private void BotonModificar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonModificar1MousePressed
-        // TODO add your handling code here:
+        if (tablaPiezas.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Para editar debes seleccionar una pieza en la tabla");
+        } else {
+            String cod = tablaPiezas.getValueAt(tablaPiezas.getSelectedRow(), 0).toString();
+            EditarPieza frame = new EditarPieza(panel, cod);
+            frame.setSize(700,490);
+            frame.setLocation(0,0);
+            panel.removeAll();
+            panel.add(frame, BorderLayout.CENTER);
+            panel.revalidate();
+            panel.repaint();
+        }
     }//GEN-LAST:event_BotonModificar1MousePressed
 
     private void botonVer1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVer1MousePressed
-        // TODO add your handling code here:
+        if (tablaPiezas.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Para ver más información debes seleccionar una pieza en la tabla");
+        } else {
+            String cod = tablaPiezas.getValueAt(tablaPiezas.getSelectedRow(), 0).toString();
+            VerPieza frame = new VerPieza(panel, cod);
+            frame.setSize(700,490);
+            frame.setLocation(0,0);
+            panel.removeAll();
+            panel.add(frame, BorderLayout.CENTER);
+            panel.revalidate();
+            panel.repaint();
+        }
     }//GEN-LAST:event_botonVer1MousePressed
 
     private void botonAnadirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirMousePressed

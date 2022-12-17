@@ -18,7 +18,7 @@ public class VerProveedor extends javax.swing.JPanel {
     /**
      * Creates new form VerProveedor
      */
-    public VerProveedor(JPanel panel) {
+    public VerProveedor(JPanel panel, String cod) {
         initComponents();
         
         this.panel = panel;
