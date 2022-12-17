@@ -6,12 +6,23 @@ package swing;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+
+import consultas.ConsultasGestion;
+import consultas.ConsultasPiezas;
+import consultas.ConsultasProveedores;
+import hibernate_bd.GestionEntity;
+import hibernate_bd.PiezasEntity;
+import hibernate_bd.ProveedoresEntity;
+import hibernate_bd.ProyectosEntity;
 import scrollbar.ScrollBarCustom;
 import table.TableHeader;
 
@@ -46,8 +57,6 @@ public class SuministrosProveedor extends javax.swing.JPanel {
        jScrollPane1.getViewport().setBackground(Color.WHITE);
        jScrollPane1.setVerticalScrollBar(new ScrollBarCustom());
        fixtable(jScrollPane1);
-       cargarDatosPiezas();
-       
        
         tablaProyectosProveedor.setShowHorizontalLines(true);
         tablaProyectosProveedor.setGridColor(new Color(230,230,230));
@@ -66,7 +75,11 @@ public class SuministrosProveedor extends javax.swing.JPanel {
        jScrollPane2.getViewport().setBackground(Color.WHITE);
        jScrollPane2.setVerticalScrollBar(new ScrollBarCustom());
        fixtable(jScrollPane2);
-       cargarDatosProyectos();
+        ConsultasProveedores consultasProveedores = new ConsultasProveedores();
+        List<ProveedoresEntity> proveedores = consultasProveedores.recuperarDatosProveedores();
+        for (ProveedoresEntity proveedor : proveedores) {
+            codProveedor.addItem(proveedor.getCodigo());
+        }
     }
     
     public void fixtable(JScrollPane scroll) {
@@ -77,12 +90,40 @@ public class SuministrosProveedor extends javax.swing.JPanel {
         scroll.setBorder(new EmptyBorder(5, 10, 5, 10));
     }
     
-    public void cargarDatosPiezas() {
-        
+    public void cargarDatosPiezas(List<PiezasEntity> piezas) {
+        int cantidad = piezas.size();
+        String[][] d = new String[cantidad][4];
+        for (int i = 0; i < piezas.size(); i++) {
+            d[i][0] = String.valueOf(piezas.get(i).getCodigo());
+            d[i][1] = String.valueOf(piezas.get(i).getNombre());
+            d[i][2] = String.valueOf(piezas.get(i).getPrecio());
+            d[i][3] = String.valueOf(piezas.get(i).getDescripcion());
+        }
+        //se carga el modelo de la tabla
+        tablaPiezasProveedor.setModel(new DefaultTableModel(d, columnasPiezas) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
     }
     
-    public void cargarDatosProyectos() {
-        
+    public void cargarDatosProyectos(List<ProyectosEntity> proyectos) {
+        int cantidad = proyectos.size();
+        String[][] d = new String[cantidad][4];
+        for (int i = 0; i < proyectos.size(); i++) {
+            d[i][0] = String.valueOf(proyectos.get(i).getCodigo());
+            d[i][1] = String.valueOf(proyectos.get(i).getNombre());
+            d[i][2] = String.valueOf(proyectos.get(i).getCiudad());
+            d[i][3] = String.valueOf(proyectos.get(i).getEstado());
+        }
+        //se carga el modelo de la tabla
+        tablaProyectosProveedor.setModel(new DefaultTableModel(d, columnasProyectos) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
     }
 
     /**
@@ -118,6 +159,11 @@ public class SuministrosProveedor extends javax.swing.JPanel {
         jLabel2.setText("Proveedor: ");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
 
+        codProveedor.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                codProveedorItemStateChanged(evt);
+            }
+        });
         jPanel1.add(codProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 100, -1));
 
         infoProveedor.setEditable(false);
@@ -188,6 +234,29 @@ public class SuministrosProveedor extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void codProveedorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codProveedorItemStateChanged
+        //cambiar automaticamente los datos al cambiar el objeto del combobox
+        List<PiezasEntity> piezas = new ArrayList<PiezasEntity>();
+        List<ProyectosEntity> proyectos = new ArrayList<ProyectosEntity>();
+        String cod = codProveedor.getSelectedItem().toString();
+        ConsultasGestion consultasGestion = new ConsultasGestion();
+        List<GestionEntity> gestiones = consultasGestion.recuperarDatosGestiones();
+        for (GestionEntity gestione : gestiones) {
+            if (gestione.getProveedoresByCodproveedor().getCodigo().equals(cod)) {
+                piezas.add(gestione.getPiezasByCodpieza());
+                proyectos.add(gestione.getProyectosByCodproyecto());
+            }
+        }
+        cargarDatosPiezas(piezas);
+        cargarDatosProyectos(proyectos);
+        consultasGestion.cerrarConexion();
+
+        ConsultasProveedores consultasProveedores = new ConsultasProveedores();
+        ProveedoresEntity proveedor = consultasProveedores.recuperarProveedor(codProveedor.getSelectedItem().toString());
+        infoProveedor.setText(proveedor.getCodigo() + ", " + proveedor.getNombre() + ", " + proveedor.getApellidos() + ", " + proveedor.getDireccion());
+        consultasProveedores.cerrarConexion();
+    }//GEN-LAST:event_codProveedorItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

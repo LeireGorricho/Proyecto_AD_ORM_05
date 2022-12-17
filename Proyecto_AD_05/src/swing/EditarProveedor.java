@@ -4,8 +4,11 @@
  */
 package swing;
 
+import consultas.ConsultasProveedores;
+import hibernate_bd.ProveedoresEntity;
+
 import java.awt.BorderLayout;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  *
@@ -18,10 +21,25 @@ public class EditarProveedor extends javax.swing.JPanel {
     /**
      * Creates new form EditarProveedor
      */
-    public EditarProveedor(JPanel panel) {
+    public EditarProveedor(JPanel panel, String cod) {
         initComponents();
         
         this.panel = panel;
+
+        ConsultasProveedores consultaProv = new ConsultasProveedores();
+        ProveedoresEntity proveedor = consultaProv.recuperarProveedor(codigo);
+        codigo.setText(proveedor.getCodigo());
+        nombre.setText(proveedor.getNombre());
+        apellidos.setText(proveedor.getApellidos());
+        dirPostal.setText(proveedor.getDireccion());
+        consultaProv.cerrarConexion();
+        estado.addItem("ALTA");
+        estado.addItem("BAJA");
+        if (proveedor.getEstado().equals("ALTA")) {
+            estado.setSelectedIndex(0);
+        } else {
+            estado.setSelectedIndex(1);
+        }
     }
 
     /**
@@ -51,6 +69,9 @@ public class EditarProveedor extends javax.swing.JPanel {
         jSeparator4 = new javax.swing.JSeparator();
         botonCancelar = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+        estado = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -62,27 +83,27 @@ public class EditarProveedor extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(0, 117, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("EDITAR PROVEEDOR");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 700, 40));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 700, 40));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Código: ");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Nombre: ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Apellido: ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Dirección postal: ");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
 
         botonEditar.setBackground(new java.awt.Color(0, 204, 204));
         botonEditar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -107,29 +128,29 @@ public class EditarProveedor extends javax.swing.JPanel {
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(botonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 120, 30));
+        jPanel1.add(botonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, 120, 30));
 
         codigo.setEditable(false);
         codigo.setBackground(new java.awt.Color(255, 255, 255));
         codigo.setForeground(new java.awt.Color(102, 102, 102));
         codigo.setBorder(null);
-        jPanel1.add(codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 170, 260, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 260, 20));
+        jPanel1.add(codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 260, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 260, 20));
 
         nombre.setForeground(new java.awt.Color(102, 102, 102));
         nombre.setBorder(null);
-        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 210, 260, -1));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 260, 10));
+        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 260, -1));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 260, 10));
 
         apellidos.setForeground(new java.awt.Color(102, 102, 102));
         apellidos.setBorder(null);
-        jPanel1.add(apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 250, 260, -1));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 260, 10));
+        jPanel1.add(apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 260, -1));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 260, 10));
 
         dirPostal.setForeground(new java.awt.Color(102, 102, 102));
         dirPostal.setBorder(null);
-        jPanel1.add(dirPostal, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 290, 260, -1));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 260, 10));
+        jPanel1.add(dirPostal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 260, -1));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 260, 10));
 
         botonCancelar.setBackground(new java.awt.Color(0, 117, 153));
         botonCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -156,7 +177,14 @@ public class EditarProveedor extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 120, 30));
+        jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, 120, 30));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 335, 260, -1));
+
+        jLabel8.setText("Estado:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, -1, -1));
+
+        estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 260, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -171,7 +199,7 @@ public class EditarProveedor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCancelarMousePressed
-        Proveedores frame = new Proveedores(panel);
+        GestionProveedores frame = new GestionProveedores(panel);
         frame.setSize(700,490);
         frame.setLocation(0,0);
         panel.removeAll();
@@ -181,7 +209,28 @@ public class EditarProveedor extends javax.swing.JPanel {
     }//GEN-LAST:event_botonCancelarMousePressed
 
     private void botonEditarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarMousePressed
-        // TODO add your handling code here:
+        if (nombre.getText().isBlank() || apellidos.getText().isBlank() || dirPostal.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Debes rellenar todos los campos para poder editar");
+        } else {
+            ConsultasProveedores consultasProv = new ConsultasProveedores();
+            String estadoText;
+            if (estado.getSelectedIndex() == 0) {
+                estadoText = "ALTA";
+            } else {
+                estadoText = "BAJA";
+            }
+            if (consultasProv.modificarProveedor(codigo.getText().toUpperCase(), nombre.getText(), apellidos.getText(), dirPostal.getText(), estadoText)) {
+                consultasProv.cerrarConexion();
+
+                GestionProveedores frame = new GestionProveedores(panel);
+                frame.setSize(830, 490);
+                frame.setLocation(0, 0);
+                panel.removeAll();
+                panel.add(frame, BorderLayout.CENTER);
+                panel.revalidate();
+                panel.repaint();
+            }
+        }
     }//GEN-LAST:event_botonEditarMousePressed
 
 
@@ -191,6 +240,7 @@ public class EditarProveedor extends javax.swing.JPanel {
     private javax.swing.JPanel botonEditar;
     private javax.swing.JTextField codigo;
     private javax.swing.JTextField dirPostal;
+    private javax.swing.JComboBox<String> estado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -198,11 +248,13 @@ public class EditarProveedor extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }

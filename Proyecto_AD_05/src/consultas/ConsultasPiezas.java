@@ -80,7 +80,7 @@ public class ConsultasPiezas {
         session.update(pieza);
         try {
             tx.commit();
-            JOptionPane.showMessageDialog(null, "La pieza se ha editado correctamente.");
+            JOptionPane.showMessageDialog(null, "La pieza se ha editado correctamente");
         } catch (PersistenceException e) {
             JOptionPane.showMessageDialog(null, "No se ha podido editar la pieza, comprueba que los datos introducidos son correctos");
             return false;

@@ -4,18 +4,125 @@
  */
 package swing;
 
+import consultas.ConsultasGestion;
+import consultas.ConsultasPiezas;
+import hibernate_bd.GestionEntity;
+import hibernate_bd.PiezasEntity;
+import hibernate_bd.ProveedoresEntity;
+import hibernate_bd.ProyectosEntity;
+import scrollbar.ScrollBarCustom;
+import table.TableHeader;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author leiii
  */
 public class SuminstrosPiezas extends javax.swing.JPanel {
 
+    String[] nombreColumnasProyectos = {"Código", "Nombre", "Ciudad", "Estado"};
+    String[] nombreColumnasProveedores = {"Código", "Nombre", "Dirección", "Estado"};
+
     /**
      * Creates new form SuminstrosPiezas
      */
     public SuminstrosPiezas() {
         initComponents();
+
+        tablaProyectos.setShowHorizontalLines(true);
+        tablaProyectos.setGridColor(new Color(230,230,230));
+        tablaProyectos.setRowHeight(27);
+        tablaProyectos.getTableHeader().setReorderingAllowed(true);
+        tablaProyectos.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                TableHeader header = new TableHeader(value + "");
+                if(column== nombreColumnasProyectos.length){
+                    header.setHorizontalAlignment(JLabel.CENTER);
+                }
+                return header;
+            }
+        });
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        jScrollPane1.setVerticalScrollBar(new ScrollBarCustom());
+        fixtable(jScrollPane1);
+
+        tablaProveedores.setShowHorizontalLines(true);
+        tablaProveedores.setGridColor(new Color(230,230,230));
+        tablaProveedores.setRowHeight(27);
+        tablaProveedores.getTableHeader().setReorderingAllowed(true);
+        tablaProveedores.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                TableHeader header = new TableHeader(value + "");
+                if(column== nombreColumnasProveedores.length){
+                    header.setHorizontalAlignment(JLabel.CENTER);
+                }
+                return header;
+            }
+        });
+        jScrollPane2.getViewport().setBackground(Color.WHITE);
+        jScrollPane2.setVerticalScrollBar(new ScrollBarCustom());
+        fixtable(jScrollPane2);
+
+        ConsultasPiezas consultasPiezas = new ConsultasPiezas();
+        List<PiezasEntity> piezas = consultasPiezas.recuperarDatosPiezas();
+        for (PiezasEntity pieza : piezas) {
+            codPieza.addItem(pieza.getCodigo());
+        }
+        consultasPiezas.cerrarConexion();
     }
+
+    public void fixtable(JScrollPane scroll) {
+        scroll.getViewport().setBackground(Color.WHITE);
+        scroll.setVerticalScrollBar(new ScrollBarCustom());
+        JPanel p = new JPanel();
+        scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
+        scroll.setBorder(new EmptyBorder(5, 10, 5, 10));
+    }
+
+    public void cargarTablaProyectos(List<ProyectosEntity> proyectos) {
+        int cantidad = proyectos.size();
+        String[][] d = new String[cantidad][4];
+        for (int i = 0; i < proyectos.size(); i++) {
+            d[i][0] = String.valueOf(proyectos.get(i).getCodigo());
+            d[i][1] = String.valueOf(proyectos.get(i).getNombre());
+            d[i][2] = String.valueOf(proyectos.get(i).getCiudad());
+            d[i][3] = String.valueOf(proyectos.get(i).getEstado());
+        }
+        tablaProyectos.setModel(new DefaultTableModel(d, nombreColumnasProyectos) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
+    }
+
+    public void cargarTablaProveedores(List<ProveedoresEntity> proveedores) {
+        int cantidad = proveedores.size();
+        String[][] d = new String[cantidad][4];
+        for (int i = 0; i < proveedores.size(); i++) {
+            d[i][0] = String.valueOf(proveedores.get(i).getCodigo());
+            d[i][1] = String.valueOf(proveedores.get(i).getNombre());
+            d[i][2] = String.valueOf(proveedores.get(i).getDireccion());
+            d[i][3] = String.valueOf(proveedores.get(i).getEstado());
+        }
+        tablaProveedores.setModel(new DefaultTableModel(d, nombreColumnasProveedores) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
+    }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,6 +159,11 @@ public class SuminstrosPiezas extends javax.swing.JPanel {
         jLabel2.setText("Pieza:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 50, -1));
 
+        codPieza.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                codPiezaItemStateChanged(evt);
+            }
+        });
         add(codPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 100, -1));
 
         infoPieza.setEditable(false);
@@ -121,6 +233,29 @@ public class SuminstrosPiezas extends javax.swing.JPanel {
         add(totalPiezas, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 70, -1));
         add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 70, 10));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void codPiezaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codPiezaItemStateChanged
+        //cambiar automaticamente los datos al cambiar el objeto del combobox
+        List<ProyectosEntity> proyectos = new ArrayList<ProyectosEntity>();
+        List<ProveedoresEntity> proveedores = new ArrayList<ProveedoresEntity>();
+        String cod = codPieza.getSelectedItem().toString();
+        ConsultasGestion consultasGestion = new ConsultasGestion();
+        List<GestionEntity> gestiones = consultasGestion.recuperarDatosGestiones();
+        for (GestionEntity gestione : gestiones) {
+            if (gestione.getPiezasByCodpieza().getCodigo().equals(cod)) {
+                proveedores.add(gestione.getProveedoresByCodproveedor());
+                proyectos.add(gestione.getProyectosByCodproyecto());
+            }
+        }
+        cargarTablaProyectos(proyectos);
+        cargarTablaProveedores(proveedores);
+        consultasGestion.cerrarConexion();
+
+        ConsultasPiezas consultasPiezas = new ConsultasPiezas();
+        PiezasEntity pieza = consultasPiezas.recuperarPieza(codPieza.getSelectedItem().toString());
+        infoPieza.setText(pieza.getCodigo() + ", " + pieza.getNombre() + ", " + pieza.getDescripcion());
+        consultasPiezas.cerrarConexion();
+    }//GEN-LAST:event_codPiezaItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

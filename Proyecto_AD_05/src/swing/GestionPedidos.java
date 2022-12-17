@@ -7,12 +7,15 @@ package swing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+
+import consultas.ConsultasGestion;
+import hibernate_bd.GestionEntity;
 import scrollbar.ScrollBarCustom;
 import table.TableHeader;
 
@@ -22,7 +25,7 @@ import table.TableHeader;
  */
 public class GestionPedidos extends javax.swing.JPanel {
     
-    String[] nombreColumnas = {"Proveedor", "Pieza", "Proyecto", "Cantidad", "Estado"};
+    String[] nombreColumnas = {"Código", "Proveedor", "Pieza", "Proyecto", "Estado"};
     JPanel panel;
     
     /**
@@ -62,7 +65,25 @@ public class GestionPedidos extends javax.swing.JPanel {
     }
     
     public void cargarDatos() {
-        
+        ConsultasGestion consultasGestion = new ConsultasGestion();
+        List<GestionEntity> gestion = new ArrayList<GestionEntity>();
+        gestion = consultasGestion.recuperarDatosGestiones();
+        int cantidad = gestion.size();
+        String[][] d = new String[cantidad][5];
+        for (int i = 0; i < gestion.size(); i++) {
+            d[i][0] = String.valueOf(gestion.get(i).getCodigo());
+            d[i][1] = String.valueOf(gestion.get(i).getProveedoresByCodproveedor().getCodigo());
+            d[i][2] = String.valueOf(gestion.get(i).getPiezasByCodpieza().getCodigo());
+            d[i][3] = String.valueOf(gestion.get(i).getProyectosByCodproyecto().getCodigo());
+            d[i][4] = String.valueOf(gestion.get(i).getEstado());
+        }
+        tablaGestion.setModel(new DefaultTableModel(d, nombreColumnas) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
+        consultasGestion.cerrarConexion();
     }
 
     /**
@@ -260,15 +281,46 @@ public class GestionPedidos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarMousePressed
-        // TODO add your handling code here:
+        ConsultasGestion consultasGestion = new ConsultasGestion();
+        if (tablaGestion.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Para dar de baja debes seleccionar un elemento en la tabla");
+        } else {
+            //Obtencion del id del objeto seleccionaod en la tabla
+            int codigo = Integer.parseInt(tablaGestion.getValueAt(tablaGestion.getSelectedRow(), 0).toString());
+            consultasGestion.eliminarGestion(codigo);
+            consultasGestion.cerrarConexion();
+        }
+        cargarDatos();
     }//GEN-LAST:event_botonEliminarMousePressed
 
     private void BotonModificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonModificarMousePressed
-        // TODO add your handling code here:
+        if (tablaGestion.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Para editar debes seleccionar un elemento en la tabla");
+        } else {
+            String cod = tablaGestion.getValueAt(tablaGestion.getSelectedRow(), 0).toString();
+            EditarGestion frame = new EditarGestion(panel, cod);
+            frame.setSize(700,490);
+            frame.setLocation(0,0);
+            panel.removeAll();
+            panel.add(frame, BorderLayout.CENTER);
+            panel.revalidate();
+            panel.repaint();
+        }
     }//GEN-LAST:event_BotonModificarMousePressed
 
     private void botonVerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVerMousePressed
-        // TODO add your handling code here:
+        if (tablaGestion.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Para ver más información debes seleccionar un elemento en la tabla");
+        } else {
+            String cod = tablaGestion.getValueAt(tablaGestion.getSelectedRow(), 0).toString();
+            VerGestion frame = new VerGestion(panel, cod);
+            frame.setSize(700,490);
+            frame.setLocation(0,0);
+            panel.removeAll();
+            panel.add(frame, BorderLayout.CENTER);
+            panel.revalidate();
+            panel.repaint();
+        }
     }//GEN-LAST:event_botonVerMousePressed
 
     private void botonAnadirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirMousePressed

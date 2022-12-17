@@ -4,8 +4,11 @@
  */
 package swing;
 
+import consultas.ConsultasProyectos;
+import hibernate_bd.ProyectosEntity;
+
 import java.awt.BorderLayout;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  *
@@ -18,10 +21,24 @@ public class EditarProyecto extends javax.swing.JPanel {
     /**
      * Creates new form EditarProyecto
      */
-    public EditarProyecto(JPanel panel) {
+    public EditarProyecto(JPanel panel, String cod) {
         initComponents();
         
         this.panel = panel;
+
+        ConsultasProyectos consultasProy = new ConsultasProyectos();
+        ProyectosEntity proyecto = consultasProy.recuperarProyecto(cod);
+        codigo.setText(proyecto.getCodigo());
+        nombre.setText(proyecto.getNombre());
+        ciudad.setText(proyecto.getCiudad());
+        consultasProy.cerrarConexion();
+        estado.addItem("ALTA");
+        estado.addItem("BAJA");
+        if (proyecto.getEstado().equals("ALTA")) {
+            estado.setSelectedIndex(0);
+        } else {
+            estado.setSelectedIndex(1);
+        }
     }
 
     /**
@@ -48,6 +65,9 @@ public class EditarProyecto extends javax.swing.JPanel {
         jSeparator3 = new javax.swing.JSeparator();
         botonCancelar = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        estado = new javax.swing.JComboBox<>();
+        jSeparator4 = new javax.swing.JSeparator();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(550, 400));
@@ -99,7 +119,7 @@ public class EditarProyecto extends javax.swing.JPanel {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(botonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, -1, 30));
+        jPanel1.add(botonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, -1, 30));
 
         codigo.setEditable(false);
         codigo.setBackground(new java.awt.Color(255, 255, 255));
@@ -116,7 +136,7 @@ public class EditarProyecto extends javax.swing.JPanel {
         ciudad.setForeground(new java.awt.Color(102, 102, 102));
         ciudad.setBorder(null);
         jPanel1.add(ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 250, 260, -1));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 260, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 315, 260, 10));
 
         botonCancelar.setBackground(new java.awt.Color(0, 117, 153));
         botonCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -143,7 +163,14 @@ public class EditarProyecto extends javax.swing.JPanel {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, -1, 30));
+        jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, -1, 30));
+
+        jLabel5.setText("Estado:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, -1));
+
+        estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 290, 260, -1));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 260, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -158,7 +185,7 @@ public class EditarProyecto extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCancelarMousePressed
-        Proyectos frame = new Proyectos(panel);
+        GestionProyectos frame = new GestionProyectos(panel);
         frame.setSize(700,490);
         frame.setLocation(0,0);
         panel.removeAll();
@@ -168,7 +195,27 @@ public class EditarProyecto extends javax.swing.JPanel {
     }//GEN-LAST:event_botonCancelarMousePressed
 
     private void botonEditarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarMousePressed
-        // TODO add your handling code here:
+        if (nombre.getText().isBlank() || ciudad.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Debes rellenar todos los campos para poder editar");
+        } else {
+            ConsultasProyectos con = new ConsultasProyectos();
+            String estadoText;
+            if (estado.getSelectedIndex() == 0) {
+                estadoText = "alta";
+            } else {
+                estadoText = "baja";
+            }
+            if (con.editarProyecto(codigo.getText().toUpperCase(), nombre.getText(), ciudad.getText(), estadoText)) {
+                con.cerrarConexion();
+                GestionProyectos frame = new GestionProyectos(panel);
+                frame.setSize(700, 490);
+                frame.setLocation(0, 0);
+                panel.removeAll();
+                panel.add(frame, BorderLayout.CENTER);
+                panel.revalidate();
+                panel.repaint();
+            }
+        }
     }//GEN-LAST:event_botonEditarMousePressed
 
 
@@ -177,16 +224,19 @@ public class EditarProyecto extends javax.swing.JPanel {
     private javax.swing.JPanel botonEditar;
     private javax.swing.JTextField ciudad;
     private javax.swing.JTextField codigo;
+    private javax.swing.JComboBox<String> estado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }
