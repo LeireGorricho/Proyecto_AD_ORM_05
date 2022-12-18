@@ -78,6 +78,45 @@ public class ConsultasGestion {
         session.update(gestion);
     }
 
+    public boolean modificarGestion(String codigo, String codprove, String codpieza, String codproye, int cantidad, String estado, List<PiezasEntity> piezas, List<ProyectosEntity> proyectos, List<ProveedoresEntity> proveedores) {
+        try {
+            PiezasEntity pieza = null;
+            ProveedoresEntity proveedor = null;
+            ProyectosEntity proyecto = null;
+            for (PiezasEntity piezasEntity : piezas) {
+                if (piezasEntity.getCodigo().equals(codpieza)) {
+                    pieza = piezasEntity;
+                }
+            }
+            for (ProveedoresEntity proveedore : proveedores) {
+                if (proveedore.getCodigo().equals(codprove)) {
+                    proveedor = proveedore;
+                }
+            }
+            for (ProyectosEntity proyectosEntity : proyectos) {
+                if (proyectosEntity.getCodigo().equals(codproye)) {
+                    proyecto = proyectosEntity;
+                }
+            }
+            Transaction transaction = session.beginTransaction();
+            GestionEntity gestion = new GestionEntity();
+            gestion.setCodigo(codigo);
+            gestion.setPiezasByCodpieza(pieza);
+            gestion.setProveedoresByCodproveedor(proveedor);
+            gestion.setProyectosByCodproyecto(proyecto);
+            gestion.setCantidad(cantidad);
+            gestion.setEstado(estado);
+            session.update(gestion);
+            transaction.commit();
+            JOptionPane.showMessageDialog(null, "La gestión se ha editado correctamente");
+        } catch (PersistenceException e) {
+            JOptionPane.showMessageDialog(null, "No se ha podido editar la gestión, comprueba que los datos introducidos son correctos");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
     public void cerrarConexion() {
         session.close();
     }

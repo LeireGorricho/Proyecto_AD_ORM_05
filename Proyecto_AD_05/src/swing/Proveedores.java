@@ -46,8 +46,6 @@ public class Proveedores extends javax.swing.JPanel {
         panel_proveedores = new javax.swing.JPanel();
         botonGestion = new javax.swing.JPanel();
         labelGestion = new javax.swing.JLabel();
-        botonNuevo = new javax.swing.JPanel();
-        labelNuevo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         botonConsulta = new javax.swing.JPanel();
         labelConsulta = new javax.swing.JLabel();
@@ -85,21 +83,6 @@ public class Proveedores extends javax.swing.JPanel {
 
         jPanel1.add(botonGestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 40));
 
-        botonNuevo.setBackground(new java.awt.Color(255, 255, 255));
-        botonNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                botonNuevoMousePressed(evt);
-            }
-        });
-        botonNuevo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        labelNuevo.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        labelNuevo.setForeground(new java.awt.Color(0, 204, 204));
-        labelNuevo.setText("Nuevo Proveedor");
-        botonNuevo.add(labelNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
-
-        jPanel1.add(botonNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 140, 40));
-
         jSeparator1.setForeground(new java.awt.Color(0, 117, 153));
         jSeparator1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 700, 10));
@@ -133,7 +116,6 @@ public class Proveedores extends javax.swing.JPanel {
 
     private void botonGestionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionMousePressed
         darColor(labelGestion);
-        devolverColor(labelNuevo);
         devolverColor(labelConsulta);
         
         GestionProveedores frame = new GestionProveedores(panel_proveedores);
@@ -145,26 +127,11 @@ public class Proveedores extends javax.swing.JPanel {
         panel_proveedores.repaint();
     }//GEN-LAST:event_botonGestionMousePressed
 
-    private void botonNuevoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNuevoMousePressed
-        darColor(labelNuevo);
-        devolverColor(labelGestion);
-        devolverColor(labelConsulta);
-        
-        NuevoProveedor frame = new NuevoProveedor(panel_proveedores);
-        frame.setSize(700,490);
-        frame.setLocation(0,0);
-        panel_proveedores.removeAll();
-        panel_proveedores.add(frame, BorderLayout.CENTER);
-        panel_proveedores.revalidate();
-        panel_proveedores.repaint();
-    }//GEN-LAST:event_botonNuevoMousePressed
-
     private void botonConsultaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonConsultaMousePressed
         darColor(labelConsulta);
         devolverColor(labelGestion);
-        devolverColor(labelNuevo);
         
-        ConsultaProveedores frame = new ConsultaProveedores();
+        ConsultaProveedores frame = new ConsultaProveedores(panel_proveedores);
         frame.setSize(700,490);
         frame.setLocation(0,0);
         panel_proveedores.removeAll();
@@ -184,12 +151,10 @@ public class Proveedores extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel botonConsulta;
     private javax.swing.JPanel botonGestion;
-    private javax.swing.JPanel botonNuevo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelConsulta;
     private javax.swing.JLabel labelGestion;
-    private javax.swing.JLabel labelNuevo;
     private javax.swing.JPanel panel_proveedores;
     // End of variables declaration//GEN-END:variables
 }

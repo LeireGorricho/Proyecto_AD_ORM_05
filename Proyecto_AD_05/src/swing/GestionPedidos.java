@@ -202,6 +202,7 @@ public class GestionPedidos extends javax.swing.JPanel {
             }
         ));
         tablaGestion.setSelectionBackground(new java.awt.Color(224, 255, 255));
+        tablaGestion.setSelectionForeground(new java.awt.Color(102, 102, 102));
         jScrollPane1.setViewportView(tablaGestion);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 25, 580, 440));

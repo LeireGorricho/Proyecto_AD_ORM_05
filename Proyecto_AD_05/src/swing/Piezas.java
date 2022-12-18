@@ -21,9 +21,9 @@ public class Piezas extends javax.swing.JPanel {
      */
     public Piezas(JPanel panel) {
         initComponents();
-        
+
         this.panel = panel;
-        
+
         GestionPiezas frame = new GestionPiezas(panel_piezas);
         frame.setSize(700,490);
         frame.setLocation(0,0);
@@ -132,7 +132,7 @@ public class Piezas extends javax.swing.JPanel {
         darColor(labelConsulta);
         devolverColor(labelGestion);
 
-        ConsultaPiezas frame = new ConsultaPiezas();
+        ConsultaPiezas frame = new ConsultaPiezas(panel_piezas);
         frame.setSize(700,490);
         frame.setLocation(0,0);
         panel_piezas.removeAll();

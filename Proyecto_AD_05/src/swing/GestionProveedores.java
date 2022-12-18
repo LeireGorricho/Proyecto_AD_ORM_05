@@ -83,6 +83,7 @@ public class GestionProveedores extends javax.swing.JPanel {
                 return false;
             }
         });
+        con.cerrarConexion();
     }
 
     /**
@@ -143,6 +144,7 @@ public class GestionProveedores extends javax.swing.JPanel {
             }
         ));
         tablaProveedores.setSelectionBackground(new java.awt.Color(224, 255, 255));
+        tablaProveedores.setSelectionForeground(new java.awt.Color(102, 102, 102));
         jScrollPane1.setViewportView(tablaProveedores);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 25, 580, 440));

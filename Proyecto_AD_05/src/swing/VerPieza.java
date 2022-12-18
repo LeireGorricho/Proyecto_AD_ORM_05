@@ -4,6 +4,9 @@
  */
 package swing;
 
+import consultas.ConsultasPiezas;
+import hibernate_bd.PiezasEntity;
+
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
@@ -14,7 +17,8 @@ import javax.swing.JPanel;
 public class VerPieza extends javax.swing.JPanel {
 
     JPanel panel;
-    
+    String cod;
+
     /**
      * Creates new form VerPieza
      */
@@ -22,8 +26,18 @@ public class VerPieza extends javax.swing.JPanel {
         initComponents();
         
         this.panel = panel;
+        this.cod = cod;
 
+        ConsultasPiezas consultaPiezas = new ConsultasPiezas();
+        PiezasEntity pieza = consultaPiezas.recuperarPieza(cod);
 
+        codigo.setText(cod);
+        nombre.setText(pieza.getNombre());
+        precio.setText(String.valueOf(pieza.getPrecio()));
+        descripcion.setText(pieza.getDescripcion());
+        estado.setText(pieza.getEstado());
+
+        consultaPiezas.cerrarConexion();
     }
 
     /**
@@ -46,10 +60,13 @@ public class VerPieza extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         nombre = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        apellidos = new javax.swing.JTextField();
+        precio = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         descripcion = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+        estado = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -72,7 +89,7 @@ public class VerPieza extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Apellidos: ");
+        jLabel4.setText("Precio:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -106,7 +123,7 @@ public class VerPieza extends javax.swing.JPanel {
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        add(botonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 120, 30));
+        add(botonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 120, 30));
 
         codigo.setEditable(false);
         codigo.setBackground(new java.awt.Color(255, 255, 255));
@@ -124,12 +141,12 @@ public class VerPieza extends javax.swing.JPanel {
         add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 210, 260, -1));
         add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 260, 10));
 
-        apellidos.setEditable(false);
-        apellidos.setBackground(new java.awt.Color(255, 255, 255));
-        apellidos.setForeground(new java.awt.Color(102, 102, 102));
-        apellidos.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        apellidos.setBorder(null);
-        add(apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 250, 260, -1));
+        precio.setEditable(false);
+        precio.setBackground(new java.awt.Color(255, 255, 255));
+        precio.setForeground(new java.awt.Color(102, 102, 102));
+        precio.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        precio.setBorder(null);
+        add(precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 250, 260, -1));
         add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 260, 10));
 
         descripcion.setEditable(false);
@@ -139,10 +156,20 @@ public class VerPieza extends javax.swing.JPanel {
         descripcion.setBorder(null);
         add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 290, 260, -1));
         add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 260, 10));
+        add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 260, 10));
+
+        jLabel8.setText("Estado:");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, -1, -1));
+
+        estado.setEditable(false);
+        estado.setBackground(new java.awt.Color(255, 255, 255));
+        estado.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        estado.setBorder(null);
+        add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 260, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonVolverMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVolverMousePressed
-        Piezas frame = new Piezas(panel);
+        GestionPiezas frame = new GestionPiezas(panel);
         frame.setSize(700,490);
         frame.setLocation(0,0);
         panel.removeAll();
@@ -153,20 +180,23 @@ public class VerPieza extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField apellidos;
     private javax.swing.JPanel botonVolver;
     private javax.swing.JTextField codigo;
     private javax.swing.JTextField descripcion;
+    private javax.swing.JTextField estado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextField nombre;
+    private javax.swing.JTextField precio;
     // End of variables declaration//GEN-END:variables
 }

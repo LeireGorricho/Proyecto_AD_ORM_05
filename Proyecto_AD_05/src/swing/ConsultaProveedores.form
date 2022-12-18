@@ -68,6 +68,9 @@
                 <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="e0" type="rgb"/>
                 </Property>
+                <Property name="selectionForeground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="66" red="66" type="rgb"/>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>
@@ -78,19 +81,14 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="40" y="20" width="-1" height="-1"/>
+              <AbsoluteConstraints x="30" y="20" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JComboBox" name="opcionBusqueda">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -98,17 +96,23 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="110" y="14" width="171" height="-1"/>
+              <AbsoluteConstraints x="101" y="14" width="180" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="textBusqueda">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+          </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textBusquedaActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textBusquedaKeyReleased"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="392" y="14" width="160" height="-1"/>
+              <AbsoluteConstraints x="390" y="20" width="280" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -122,61 +126,15 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Container class="javax.swing.JPanel" name="botonBuscar">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="cc" red="0" type="rgb"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonBuscarMousePressed"/>
-          </Events>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="575" y="12" width="-1" height="-1"/>
-            </Constraint>
-          </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                      <Component id="labelVer1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="16" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="labelVer1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="labelVer1">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Helvetica Neue" size="15" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Buscar"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
         <Container class="javax.swing.JPanel" name="botonVer">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="0" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonVerMousePressed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="550" y="440" width="120" height="-1"/>
@@ -210,6 +168,13 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JSeparator" name="jSeparator1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="390" y="40" width="280" height="10"/>
+            </Constraint>
+          </Constraints>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

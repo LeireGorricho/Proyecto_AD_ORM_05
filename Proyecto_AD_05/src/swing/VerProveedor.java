@@ -4,6 +4,9 @@
  */
 package swing;
 
+import consultas.ConsultasProveedores;
+import hibernate_bd.ProveedoresEntity;
+
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
@@ -14,7 +17,7 @@ import javax.swing.JPanel;
 public class VerProveedor extends javax.swing.JPanel {
 
     JPanel panel;
-    
+    String cod;
     /**
      * Creates new form VerProveedor
      */
@@ -22,6 +25,18 @@ public class VerProveedor extends javax.swing.JPanel {
         initComponents();
         
         this.panel = panel;
+        this.cod = cod;
+
+        ConsultasProveedores consultaProveedores = new ConsultasProveedores();
+        ProveedoresEntity proveedor = consultaProveedores.recuperarProveedor(cod);
+
+        codigo.setText(cod);
+        nombre.setText(proveedor.getNombre());
+        apellidos.setText(proveedor.getApellidos());
+        dirPostal.setText(proveedor.getDireccion());
+        estado.setText(proveedor.getEstado());
+
+        consultaProveedores.cerrarConexion();
     }
 
     /**
@@ -49,6 +64,9 @@ public class VerProveedor extends javax.swing.JPanel {
         jSeparator4 = new javax.swing.JSeparator();
         botonVolver = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+        estado = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -80,21 +98,25 @@ public class VerProveedor extends javax.swing.JPanel {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, -1));
 
         codigo.setForeground(new java.awt.Color(102, 102, 102));
+        codigo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         codigo.setBorder(null);
         jPanel1.add(codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 170, 260, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 260, 20));
 
         nombre.setForeground(new java.awt.Color(102, 102, 102));
+        nombre.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         nombre.setBorder(null);
         jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 210, 260, -1));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 260, 10));
 
         apellidos.setForeground(new java.awt.Color(102, 102, 102));
+        apellidos.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         apellidos.setBorder(null);
         jPanel1.add(apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 250, 260, -1));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 260, 10));
 
         dirPostal.setForeground(new java.awt.Color(102, 102, 102));
+        dirPostal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         dirPostal.setBorder(null);
         jPanel1.add(dirPostal, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 290, 260, -1));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 260, 10));
@@ -127,7 +149,18 @@ public class VerProveedor extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel1.add(botonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 130, 30));
+        jPanel1.add(botonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 380, 130, 30));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 260, 10));
+
+        jLabel8.setText("Estado:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, -1, -1));
+
+        estado.setEditable(false);
+        estado.setBackground(new java.awt.Color(255, 255, 255));
+        estado.setForeground(new java.awt.Color(102, 102, 102));
+        estado.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        estado.setBorder(null);
+        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 330, 260, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -137,12 +170,12 @@ public class VerProveedor extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonVolverMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVolverMousePressed
-        Proveedores frame = new Proveedores(panel);
+        GestionProveedores frame = new GestionProveedores(panel);
         frame.setSize(700,490);
         frame.setLocation(0,0);
         panel.removeAll();
@@ -157,17 +190,20 @@ public class VerProveedor extends javax.swing.JPanel {
     private javax.swing.JPanel botonVolver;
     private javax.swing.JTextField codigo;
     private javax.swing.JTextField dirPostal;
+    private javax.swing.JTextField estado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }

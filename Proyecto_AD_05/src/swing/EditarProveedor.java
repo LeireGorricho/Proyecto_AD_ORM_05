@@ -27,7 +27,7 @@ public class EditarProveedor extends javax.swing.JPanel {
         this.panel = panel;
 
         ConsultasProveedores consultaProv = new ConsultasProveedores();
-        ProveedoresEntity proveedor = consultaProv.recuperarProveedor(codigo);
+        ProveedoresEntity proveedor = consultaProv.recuperarProveedor(cod);
         codigo.setText(proveedor.getCodigo());
         nombre.setText(proveedor.getNombre());
         apellidos.setText(proveedor.getApellidos());

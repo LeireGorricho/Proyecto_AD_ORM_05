@@ -168,7 +168,6 @@ public class SuminstrosPiezas extends javax.swing.JPanel {
 
         infoPieza.setEditable(false);
         infoPieza.setBackground(new java.awt.Color(255, 255, 255));
-        infoPieza.setText("<html><p></p></html>");
         infoPieza.setBorder(null);
         add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 240, 60));
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 370, 20));
@@ -202,6 +201,7 @@ public class SuminstrosPiezas extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaProyectos.setRowSelectionAllowed(false);
         jScrollPane1.setViewportView(tablaProyectos);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 420, 150));
@@ -217,6 +217,7 @@ public class SuminstrosPiezas extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaProveedores.setRowSelectionAllowed(false);
         jScrollPane2.setViewportView(tablaProveedores);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 420, 160));

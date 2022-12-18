@@ -4,14 +4,17 @@
  */
 package swing;
 
-import java.awt.Color;
-import java.awt.Component;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
+import consultas.ConsultasProyectos;
+import hibernate_bd.ProyectosEntity;
 import scrollbar.ScrollBarCustom;
 import table.TableHeader;
 
@@ -21,10 +24,14 @@ import table.TableHeader;
  */
 public class ConsultaProyectos extends javax.swing.JPanel {
 
+    String[] nombreColumnas = {"Código", "Nombre", "Ciudad", "Estado"};
+    TableRowSorter<DefaultTableModel> sorter;
+    JPanel panel;
+
     /**
      * Creates new form ConsultaProyectos
      */
-    public ConsultaProyectos() {
+    public ConsultaProyectos(JPanel panel) {
         initComponents();
         
         tablaProyectos.setShowHorizontalLines(true);
@@ -44,7 +51,11 @@ public class ConsultaProyectos extends javax.swing.JPanel {
        jScrollPane1.getViewport().setBackground(Color.WHITE);
        jScrollPane1.setVerticalScrollBar(new ScrollBarCustom());
        fixtable(jScrollPane1);
-       // cargarDatos();
+       cargarDatos();
+       
+       opcionBusqueda.addItem("Codigo");
+       opcionBusqueda.addItem("Nombre");
+       opcionBusqueda.addItem("Ciudad");
     }
     
     public void fixtable(JScrollPane scroll) {
@@ -53,6 +64,32 @@ public class ConsultaProyectos extends javax.swing.JPanel {
         JPanel p = new JPanel();
         scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
         scroll.setBorder(new EmptyBorder(5, 10, 5, 10));
+    }
+
+    public void cargarDatos() {
+        ConsultasProyectos consultasProyectos = new ConsultasProyectos();
+        List<ProyectosEntity> proyectos = new ArrayList<ProyectosEntity>();
+        proyectos = consultasProyectos.recuperarDatosProyectos();
+        int cantidad = proyectos.size();
+        String[][] d = new String[cantidad][4];
+        for (int i = 0; i < proyectos.size(); i++) {
+            d[i][0] = String.valueOf(proyectos.get(i).getCodigo());
+            d[i][1] = String.valueOf(proyectos.get(i).getNombre());
+            d[i][2] = String.valueOf(proyectos.get(i).getCiudad());
+            d[i][3] = String.valueOf(proyectos.get(i).getEstado());
+        }
+        //se carga el modelo de la tabla
+        DefaultTableModel modelo = new DefaultTableModel(d, nombreColumnas) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        tablaProyectos.setModel(modelo);
+        tablaProyectos.setAutoCreateRowSorter(true);
+        sorter = new TableRowSorter<>(modelo);
+        tablaProyectos.setRowSorter(sorter);
+        consultasProyectos.cerrarConexion();
     }
 
     /**
@@ -71,10 +108,9 @@ public class ConsultaProyectos extends javax.swing.JPanel {
         opcionBusqueda = new javax.swing.JComboBox<>();
         textBusqueda = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        botonBuscar = new javax.swing.JPanel();
-        labelVer1 = new javax.swing.JLabel();
         botonVer = new javax.swing.JPanel();
         label = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setPreferredSize(new java.awt.Dimension(700, 490));
 
@@ -95,49 +131,27 @@ public class ConsultaProyectos extends javax.swing.JPanel {
             }
         ));
         tablaProyectos.setSelectionBackground(new java.awt.Color(224, 255, 255));
+        tablaProyectos.setSelectionForeground(new java.awt.Color(102, 102, 102));
         jScrollPane1.setViewportView(tablaProyectos);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 56, 640, 370));
 
         jLabel1.setText("Filtrar por:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        opcionBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(opcionBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 14, 171, -1));
-        jPanel1.add(textBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 14, 160, -1));
+        jPanel1.add(opcionBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 14, 180, -1));
+
+        textBusqueda.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        textBusqueda.setBorder(null);
+        textBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textBusquedaKeyReleased(evt);
+            }
+        });
+        jPanel1.add(textBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 280, -1));
 
         jLabel2.setText("Buscar:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, -1));
-
-        botonBuscar.setBackground(new java.awt.Color(0, 204, 204));
-        botonBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                botonBuscarMousePressed(evt);
-            }
-        });
-
-        labelVer1.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
-        labelVer1.setForeground(new java.awt.Color(255, 255, 255));
-        labelVer1.setText("Buscar");
-
-        javax.swing.GroupLayout botonBuscarLayout = new javax.swing.GroupLayout(botonBuscar);
-        botonBuscar.setLayout(botonBuscarLayout);
-        botonBuscarLayout.setHorizontalGroup(
-            botonBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(botonBuscarLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(labelVer1)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-        botonBuscarLayout.setVerticalGroup(
-            botonBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(botonBuscarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelVer1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 12, -1, -1));
 
         botonVer.setBackground(new java.awt.Color(0, 204, 204));
         botonVer.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -157,7 +171,7 @@ public class ConsultaProyectos extends javax.swing.JPanel {
             botonVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(botonVerLayout.createSequentialGroup()
                 .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         botonVerLayout.setVerticalGroup(
             botonVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,6 +179,7 @@ public class ConsultaProyectos extends javax.swing.JPanel {
         );
 
         jPanel1.add(botonVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 440, 120, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 280, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -178,24 +193,34 @@ public class ConsultaProyectos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBuscarMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonBuscarMousePressed
-
     private void botonVerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVerMousePressed
-        // TODO add your handling code here:
+        if (tablaProyectos.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Para ver más información debes seleccionar un proyecto en la tabla");
+        } else {
+            String cod = tablaProyectos.getValueAt(tablaProyectos.getSelectedRow(), 0).toString();
+            VerProyecto frame = new VerProyecto(panel, cod);
+            frame.setSize(700,490);
+            frame.setLocation(0,0);
+            panel.removeAll();
+            panel.add(frame, BorderLayout.CENTER);
+            panel.revalidate();
+            panel.repaint();
+        }
     }//GEN-LAST:event_botonVerMousePressed
+
+    private void textBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBusquedaKeyReleased
+        sorter.setRowFilter(RowFilter.regexFilter("(?i)"+textBusqueda.getText(), opcionBusqueda.getSelectedIndex()));
+    }//GEN-LAST:event_textBusquedaKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel botonBuscar;
     private javax.swing.JPanel botonVer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel label;
-    private javax.swing.JLabel labelVer1;
     private javax.swing.JComboBox<String> opcionBusqueda;
     private javax.swing.JTable tablaProyectos;
     private javax.swing.JTextField textBusqueda;

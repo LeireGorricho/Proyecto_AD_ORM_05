@@ -23,6 +23,14 @@ public class GestionGlobal extends javax.swing.JPanel {
         initComponents();
         
         this.panel = panel;
+        
+        GestionPedidos frame = new GestionPedidos(panel);
+        frame.setSize(700,490);
+        frame.setLocation(0,0);
+        panel_global.removeAll();
+        panel_global.add(frame, BorderLayout.CENTER);
+        panel_global.revalidate();
+        panel_global.repaint();
     }
 
     /**
@@ -161,7 +169,13 @@ public class GestionGlobal extends javax.swing.JPanel {
         devolverColor(labelSuminPiezas);
         devolverColor(labelEstadisticas);
 
-        
+        SuministrosProveedor frame = new SuministrosProveedor();
+        frame.setSize(700,490);
+        frame.setLocation(0,0);
+        panel_global.removeAll();
+        panel_global.add(frame, BorderLayout.CENTER);
+        panel_global.revalidate();
+        panel_global.repaint();
     }//GEN-LAST:event_botonSuminProveedorMousePressed
 
     private void botonSuminPiezasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSuminPiezasMousePressed
@@ -170,7 +184,13 @@ public class GestionGlobal extends javax.swing.JPanel {
         devolverColor(labelSuminProveedores);
         devolverColor(labelEstadisticas);
 
-        
+        SuminstrosPiezas frame = new SuminstrosPiezas();
+        frame.setSize(700,490);
+        frame.setLocation(0,0);
+        panel_global.removeAll();
+        panel_global.add(frame, BorderLayout.CENTER);
+        panel_global.revalidate();
+        panel_global.repaint();
     }//GEN-LAST:event_botonSuminPiezasMousePressed
 
     private void botonEstadisticasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEstadisticasMousePressed
@@ -179,7 +199,13 @@ public class GestionGlobal extends javax.swing.JPanel {
         devolverColor(labelSuminProveedores);
         devolverColor(labelSuminPiezas);
         
-        
+        Estadisticas frame = new Estadisticas();
+        frame.setSize(700,490);
+        frame.setLocation(0,0);
+        panel_global.removeAll();
+        panel_global.add(frame, BorderLayout.CENTER);
+        panel_global.revalidate();
+        panel_global.repaint();
     }//GEN-LAST:event_botonEstadisticasMousePressed
 
     private void darColor(JLabel label) {

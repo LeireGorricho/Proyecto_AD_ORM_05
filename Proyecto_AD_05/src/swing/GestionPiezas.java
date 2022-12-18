@@ -44,7 +44,7 @@ public class GestionPiezas extends javax.swing.JPanel {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 TableHeader header = new TableHeader(value + "");
-                if(column==4){
+                if(column==nombreColumnas.length){
                     header.setHorizontalAlignment(JLabel.CENTER);
                 }
                 return header;
@@ -121,6 +121,8 @@ public class GestionPiezas extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaPiezas.setSelectionBackground(new java.awt.Color(224, 255, 255));
+        tablaPiezas.setSelectionForeground(new java.awt.Color(102, 102, 102));
         jScrollPane1.setViewportView(tablaPiezas);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 23, 580, 440));

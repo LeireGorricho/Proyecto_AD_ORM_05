@@ -192,7 +192,7 @@ public class NuevaGestion extends javax.swing.JPanel {
         infoProyecto.setBackground(new java.awt.Color(255, 255, 255));
         infoProyecto.setText("<html><p></p></html>");
         infoProyecto.setBorder(null);
-        jPanel1.add(infoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 240, 60));
+        jPanel1.add(infoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 285, 240, 60));
 
         codPieza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(codPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 100, -1));
@@ -201,13 +201,13 @@ public class NuevaGestion extends javax.swing.JPanel {
         infoProveedor.setBackground(new java.awt.Color(255, 255, 255));
         infoProveedor.setText("<html><p></p></html>");
         infoProveedor.setBorder(null);
-        jPanel1.add(infoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 240, 60));
+        jPanel1.add(infoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 105, 240, 60));
 
         infoPieza.setEditable(false);
         infoPieza.setBackground(new java.awt.Color(255, 255, 255));
         infoPieza.setText("<html><p></p></html>");
         infoPieza.setBorder(null);
-        jPanel1.add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 240, 60));
+        jPanel1.add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 195, 240, 60));
 
         codProyecto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(codProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 100, -1));

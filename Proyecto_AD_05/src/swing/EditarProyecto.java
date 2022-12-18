@@ -76,7 +76,7 @@ public class EditarProyecto extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 26)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 117, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("EDITAR PROVEEDOR");
+        jLabel1.setText("EDITAR PROYECTO");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 700, 40));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N

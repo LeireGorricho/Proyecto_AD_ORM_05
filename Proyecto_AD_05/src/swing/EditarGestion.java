@@ -4,8 +4,18 @@
  */
 package swing;
 
+import consultas.ConsultasGestion;
+import consultas.ConsultasPiezas;
+import consultas.ConsultasProveedores;
+import consultas.ConsultasProyectos;
+import hibernate_bd.GestionEntity;
+import hibernate_bd.PiezasEntity;
+import hibernate_bd.ProveedoresEntity;
+import hibernate_bd.ProyectosEntity;
+
 import java.awt.BorderLayout;
-import javax.swing.JPanel;
+import java.util.List;
+import javax.swing.*;
 
 /**
  *
@@ -14,14 +24,77 @@ import javax.swing.JPanel;
 public class EditarGestion extends javax.swing.JPanel {
 
     JPanel panel;
+    List<ProveedoresEntity> proveedores;
+    List<ProyectosEntity> proyectos;
+    List<PiezasEntity> piezas;
+    String codigo;
     
     /**
      * Creates new form EditarGestion
      */
-    public EditarGestion(JPanel panel) {
+    public EditarGestion(JPanel panel, String codigo) {
         initComponents();
         
         this.panel = panel;
+        this.codigo = codigo;
+
+        ConsultasGestion consultasGestion = new ConsultasGestion();
+        GestionEntity gestion = consultasGestion.recuperarGestion(codigo);
+        cantidad.setText(String.valueOf(gestion.getCantidad()));
+        ConsultasProyectos consultasProyectos = new ConsultasProyectos();
+        proyectos = consultasProyectos.cargarAltas();
+        consultasProyectos.cerrarConexion();
+        ConsultasProveedores consultasProveedores = new ConsultasProveedores();
+        proveedores = consultasProveedores.cargarAltas();
+        consultasProveedores.cerrarConexion();
+        ConsultasPiezas consultasPiezas = new ConsultasPiezas();
+        piezas = consultasPiezas.cargarAltas();
+        consultasPiezas.cerrarConexion();
+        if (proyectos.size() == 0 || proveedores.size() == 0 || piezas.size() == 0) {
+            JOptionPane.showMessageDialog(null, "Para crear una gestión se necesita una pieza, un proveedor y un proyecto");
+            GestionPedidos frame = new GestionPedidos(panel);
+            frame.setSize(700, 490);
+            frame.setLocation(0, 0);
+            panel.removeAll();
+            panel.add(frame, BorderLayout.CENTER);
+            panel.revalidate();
+            panel.repaint();
+        }else {
+            int proyectoSele = -1;
+            int proveSele = -1;
+            int piezaSele = -1;
+            for (int i = 0; i < proyectos.size(); i++) {
+                codProyecto.addItem(proyectos.get(i).getCodigo());
+                if (proyectos.get(i).getCodigo().equals(gestion.getProyectosByCodproyecto().getCodigo())) {
+                    proyectoSele = i;
+                }
+            }
+            for (int i = 0; i < proveedores.size(); i++) {
+                codProveedor.addItem(proveedores.get(i).getCodigo());
+                if (proveedores.get(i).getCodigo().equals(gestion.getProveedoresByCodproveedor().getCodigo())) {
+                    proveSele = i;
+                }
+            }
+            for (int i = 0; i < piezas.size(); i++) {
+                codPieza.addItem(piezas.get(i).getCodigo());
+                if (piezas.get(i).getCodigo().equals(gestion.getPiezasByCodpieza().getCodigo())) {
+                    piezaSele = i;
+                }
+            }
+
+            codigoGestion.setText(codigo);
+            codPieza.setSelectedIndex(piezaSele);
+            codProyecto.setSelectedIndex(proyectoSele);
+            codProveedor.setSelectedIndex(proveSele);
+            cantidad.setText(String.valueOf(gestion.getCantidad()));
+            estado.addItem("ALTA");
+            estado.addItem("BAJA");
+            if (gestion.getEstado().equals("ALTA")) {
+                estado.setSelectedIndex(0);
+            } else {
+                estado.setSelectedIndex(1);
+            }
+        }
     }
 
     /**
@@ -57,6 +130,9 @@ public class EditarGestion extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         estado = new javax.swing.JComboBox<>();
         jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        jLabel9 = new javax.swing.JLabel();
+        codigoGestion = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(700, 490));
@@ -66,27 +142,27 @@ public class EditarGestion extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(0, 117, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("EDITAR GESTIÓN");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 700, 40));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 700, 40));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Proveedor: ");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Pieza: ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Proyecto: ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Cantidad:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, -1, -1));
 
         botonEditar.setBackground(new java.awt.Color(0, 204, 204));
         botonEditar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -111,11 +187,11 @@ public class EditarGestion extends javax.swing.JPanel {
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(botonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 420, 160, 30));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 370, 20));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 370, 10));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 370, 10));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 375, 120, 10));
+        jPanel1.add(botonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 440, 160, 30));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 370, 20));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 370, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 370, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 120, 10));
 
         botonCancelar.setBackground(new java.awt.Color(0, 117, 153));
         botonCancelar.setPreferredSize(new java.awt.Dimension(170, 30));
@@ -143,43 +219,53 @@ public class EditarGestion extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 160, 30));
+        jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, 160, 30));
 
         codProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(codProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 100, -1));
+        jPanel1.add(codProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 100, -1));
 
         infoProyecto.setEditable(false);
         infoProyecto.setBackground(new java.awt.Color(255, 255, 255));
         infoProyecto.setText("<html><p></p></html>");
         infoProyecto.setBorder(null);
-        jPanel1.add(infoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 240, 60));
+        jPanel1.add(infoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 285, 240, 60));
 
         codPieza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(codPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 100, -1));
+        jPanel1.add(codPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 100, -1));
 
         infoProveedor.setEditable(false);
         infoProveedor.setBackground(new java.awt.Color(255, 255, 255));
         infoProveedor.setText("<html><p></p></html>");
         infoProveedor.setBorder(null);
-        jPanel1.add(infoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 240, 60));
+        jPanel1.add(infoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 105, 240, 60));
 
         infoPieza.setEditable(false);
         infoPieza.setBackground(new java.awt.Color(255, 255, 255));
         infoPieza.setText("<html><p></p></html>");
         infoPieza.setBorder(null);
-        jPanel1.add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 240, 60));
+        jPanel1.add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 195, 240, 60));
 
         codProyecto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(codProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 100, -1));
+        jPanel1.add(codProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 100, -1));
 
         cantidad.setBorder(null);
-        jPanel1.add(cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 120, -1));
+        jPanel1.add(cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 120, -1));
 
         jLabel8.setText("Estado:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, -1, -1));
 
-        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 350, 120, -1));
-        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 120, 10));
+        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 120, -1));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 120, 10));
+        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 130, 10));
+
+        jLabel9.setText("Código gestión:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
+
+        codigoGestion.setEditable(false);
+        codigoGestion.setBackground(new java.awt.Color(255, 255, 255));
+        codigoGestion.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        codigoGestion.setBorder(null);
+        jPanel1.add(codigoGestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 130, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -204,7 +290,32 @@ public class EditarGestion extends javax.swing.JPanel {
     }//GEN-LAST:event_botonCancelarMousePressed
 
     private void botonEditarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarMousePressed
-        // TODO add your handling code here:
+        try {
+            int cantidadNum = Integer.parseInt(cantidad.getText());
+            if (cantidad.getText().isBlank()) {
+                JOptionPane.showMessageDialog(null, "Debes rellenar todos los campos para poder editar");
+            } else {
+                ConsultasGestion consultasGestion = new ConsultasGestion();
+                String estadoText;
+                if (estado.getSelectedIndex() == 0) {
+                    estadoText = "ALTA";
+                } else {
+                    estadoText = "BAJA";
+                }
+                if (consultasGestion.modificarGestion(codigoGestion.getText().toUpperCase(), codProveedor.getSelectedItem().toString(), codPieza.getSelectedItem().toString(), codProyecto.getSelectedItem().toString(), cantidadNum, estadoText, piezas, proyectos, proveedores)) {
+                    consultasGestion.cerrarConexion();
+                    GestionPiezas frame = new GestionPiezas(panel);
+                    frame.setSize(700, 490);
+                    frame.setLocation(0, 0);
+                    panel.removeAll();
+                    panel.add(frame, BorderLayout.CENTER);
+                    panel.revalidate();
+                    panel.repaint();
+                }
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El precio debe ser un número");
+        }
     }//GEN-LAST:event_botonEditarMousePressed
 
 
@@ -215,6 +326,7 @@ public class EditarGestion extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> codPieza;
     private javax.swing.JComboBox<String> codProveedor;
     private javax.swing.JComboBox<String> codProyecto;
+    private javax.swing.JTextField codigoGestion;
     private javax.swing.JComboBox<String> estado;
     private javax.swing.JTextField infoPieza;
     private javax.swing.JTextField infoProveedor;
@@ -227,11 +339,13 @@ public class EditarGestion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     // End of variables declaration//GEN-END:variables
 }

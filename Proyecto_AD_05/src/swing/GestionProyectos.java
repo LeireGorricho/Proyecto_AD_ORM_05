@@ -144,6 +144,7 @@ public class GestionProyectos extends javax.swing.JPanel {
             }
         ));
         tablaProyectos.setSelectionBackground(new java.awt.Color(224, 255, 255));
+        tablaProyectos.setSelectionForeground(new java.awt.Color(102, 102, 102));
         jScrollPane1.setViewportView(tablaProyectos);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 25, 580, 440));

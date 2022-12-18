@@ -4,6 +4,8 @@
  */
 package swing;
 
+import consultas.ConsultasProveedores;
+
 /**
  *
  * @author leiii
@@ -15,6 +17,9 @@ public class Home extends javax.swing.JPanel {
      */
     public Home() {
         initComponents();
+
+        ConsultasProveedores con = new ConsultasProveedores();
+        con.cerrarConexion();
     }
 
     /**

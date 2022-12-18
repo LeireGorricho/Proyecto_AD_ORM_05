@@ -202,6 +202,7 @@ public class SuministrosProveedor extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaPiezasProveedor.setRowSelectionAllowed(false);
         jScrollPane1.setViewportView(tablaPiezasProveedor);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 420, 150));
@@ -217,6 +218,7 @@ public class SuministrosProveedor extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaProyectosProveedor.setRowSelectionAllowed(false);
         jScrollPane2.setViewportView(tablaProyectosProveedor);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, 420, 160));
