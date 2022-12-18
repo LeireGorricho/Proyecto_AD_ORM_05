@@ -54,6 +54,9 @@ public class EditarGestion extends javax.swing.JPanel {
         infoPieza = new javax.swing.JTextField();
         codProyecto = new javax.swing.JComboBox<>();
         cantidad = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        estado = new javax.swing.JComboBox<>();
+        jSeparator5 = new javax.swing.JSeparator();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(700, 490));
@@ -112,7 +115,7 @@ public class EditarGestion extends javax.swing.JPanel {
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 370, 20));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 370, 10));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 370, 10));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 120, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 375, 120, 10));
 
         botonCancelar.setBackground(new java.awt.Color(0, 117, 153));
         botonCancelar.setPreferredSize(new java.awt.Dimension(170, 30));
@@ -170,7 +173,13 @@ public class EditarGestion extends javax.swing.JPanel {
         jPanel1.add(codProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 100, -1));
 
         cantidad.setBorder(null);
-        jPanel1.add(cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, 120, -1));
+        jPanel1.add(cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 120, -1));
+
+        jLabel8.setText("Estado:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, -1, -1));
+
+        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 350, 120, -1));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 120, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -206,6 +215,7 @@ public class EditarGestion extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> codPieza;
     private javax.swing.JComboBox<String> codProveedor;
     private javax.swing.JComboBox<String> codProyecto;
+    private javax.swing.JComboBox<String> estado;
     private javax.swing.JTextField infoPieza;
     private javax.swing.JTextField infoProveedor;
     private javax.swing.JTextField infoProyecto;
@@ -216,10 +226,12 @@ public class EditarGestion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     // End of variables declaration//GEN-END:variables
 }

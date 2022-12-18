@@ -22,6 +22,8 @@ public class VerPieza extends javax.swing.JPanel {
         initComponents();
         
         this.panel = panel;
+
+
     }
 
     /**

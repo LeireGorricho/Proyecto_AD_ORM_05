@@ -40,7 +40,7 @@ public class ConsultasGestion {
         return gestion;
     }
 
-    public boolean anadirGestion(String codproveedor, String codpieza, String codproyecto, int cantidad) {
+    public boolean anadirGestion(String codigo, String codproveedor, String codpieza, String codproyecto, int cantidad) {
         try {
             ConsultasPiezas consultasPiezas = new ConsultasPiezas();
             PiezasEntity pieza = consultasPiezas.recuperarPieza(codpieza);
@@ -53,6 +53,7 @@ public class ConsultasGestion {
             consultasProveedores.cerrarConexion();
             Transaction tx = session.beginTransaction();
             GestionEntity gestion = new GestionEntity();
+            gestion.setCodigo(codigo);
             gestion.setPiezasByCodpieza(pieza);
             gestion.setProveedoresByCodproveedor(proveedor);
             gestion.setProyectosByCodproyecto(proyecto);

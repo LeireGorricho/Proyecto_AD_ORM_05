@@ -4,7 +4,17 @@
  */
 package swing;
 
-import javax.swing.JPanel;
+import consultas.ConsultasGestion;
+import consultas.ConsultasPiezas;
+import consultas.ConsultasProveedores;
+import consultas.ConsultasProyectos;
+import hibernate_bd.PiezasEntity;
+import hibernate_bd.ProveedoresEntity;
+import hibernate_bd.ProyectosEntity;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
 
 /**
  *
@@ -13,6 +23,7 @@ import javax.swing.JPanel;
 public class NuevaGestion extends javax.swing.JPanel {
 
     JPanel panel;
+    boolean anadirGestion;
     
     /**
      * Creates new form NuevaGestion
@@ -21,6 +32,32 @@ public class NuevaGestion extends javax.swing.JPanel {
         initComponents();
         
         this.panel = panel;
+
+        ConsultasProyectos consultasProyectos = new ConsultasProyectos();
+        List<ProyectosEntity> proyectos = consultasProyectos.cargarAltas();
+        consultasProyectos.cerrarConexion();
+        ConsultasProveedores consultasProveedores = new ConsultasProveedores();
+        List<ProveedoresEntity> proveedores = consultasProveedores.cargarAltas();
+        consultasProveedores.cerrarConexion();
+        ConsultasPiezas consultasPiezas = new ConsultasPiezas();
+        List<PiezasEntity> piezas = consultasPiezas.cargarAltas();
+        consultasPiezas.cerrarConexion();
+        // En el caso de que no hayan piezas, proveedores o proyectos no es posible crear una gestión
+        if (proyectos.size() == 0 || proveedores.size() == 0 || piezas.size() == 0) {
+            JOptionPane.showMessageDialog(null, "Para crear una gestión se necesita una pieza, un proveedor y un proyecto");
+            anadirGestion = false;
+        }else {
+            anadirGestion = true;
+            for (ProyectosEntity proyecto : proyectos) {
+                codProyecto.addItem(proyecto.getCodigo());
+            }
+            for (PiezasEntity pieza : piezas) {
+                codPieza.addItem(pieza.getCodigo());
+            }
+            for (ProveedoresEntity proveedor : proveedores) {
+                codProveedor.addItem(proveedor.getCodigo());
+            }
+        }
     }
 
     /**
@@ -55,6 +92,9 @@ public class NuevaGestion extends javax.swing.JPanel {
         cantidad = new javax.swing.JTextField();
         botonCancelar = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        codigoGestion = new javax.swing.JTextField();
+        jSeparator5 = new javax.swing.JSeparator();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -68,22 +108,22 @@ public class NuevaGestion extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Proveedor: ");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Pieza: ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Proyecto: ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Cantidad:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, -1, -1));
 
         botonAnadir.setBackground(new java.awt.Color(0, 204, 204));
         botonAnadir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -111,11 +151,11 @@ public class NuevaGestion extends javax.swing.JPanel {
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(botonAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 420, 160, 30));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 370, 20));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 370, 10));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 370, 10));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 120, 10));
+        jPanel1.add(botonAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 440, 160, 30));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 370, 20));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 370, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 370, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 130, 10));
 
         botonLimpiar.setBackground(new java.awt.Color(0, 117, 153));
         botonLimpiar.setPreferredSize(new java.awt.Dimension(170, 30));
@@ -143,34 +183,37 @@ public class NuevaGestion extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel1.add(botonLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 110, 30));
+        jPanel1.add(botonLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, 110, 30));
 
         codProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(codProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 85, 100, -1));
+        jPanel1.add(codProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 100, -1));
 
         infoProyecto.setEditable(false);
         infoProyecto.setBackground(new java.awt.Color(255, 255, 255));
+        infoProyecto.setText("<html><p></p></html>");
         infoProyecto.setBorder(null);
-        jPanel1.add(infoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 240, 60));
+        jPanel1.add(infoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 240, 60));
 
         codPieza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(codPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 175, 100, -1));
+        jPanel1.add(codPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 100, -1));
 
         infoProveedor.setEditable(false);
         infoProveedor.setBackground(new java.awt.Color(255, 255, 255));
+        infoProveedor.setText("<html><p></p></html>");
         infoProveedor.setBorder(null);
-        jPanel1.add(infoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 240, 60));
+        jPanel1.add(infoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 240, 60));
 
         infoPieza.setEditable(false);
         infoPieza.setBackground(new java.awt.Color(255, 255, 255));
+        infoPieza.setText("<html><p></p></html>");
         infoPieza.setBorder(null);
-        jPanel1.add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 240, 60));
+        jPanel1.add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 240, 60));
 
         codProyecto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(codProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 265, 100, -1));
+        jPanel1.add(codProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 100, -1));
 
         cantidad.setBorder(null);
-        jPanel1.add(cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, 120, -1));
+        jPanel1.add(cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 120, -1));
 
         botonCancelar.setBackground(new java.awt.Color(0, 117, 153));
         botonCancelar.setPreferredSize(new java.awt.Dimension(170, 30));
@@ -198,7 +241,15 @@ public class NuevaGestion extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, 110, 30));
+        jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 440, 110, 30));
+
+        jLabel9.setText("Código gestión:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
+
+        codigoGestion.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        codigoGestion.setBorder(null);
+        jPanel1.add(codigoGestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 130, -1));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 120, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -213,15 +264,41 @@ public class NuevaGestion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCancelarMousePressed
-        // TODO add your handling code here:
+        GestionPedidos frame = new GestionPedidos(panel);
+        frame.setSize(700, 490);
+        frame.setLocation(0, 0);
+        panel.removeAll();
+        panel.add(frame, BorderLayout.CENTER);
+        panel.revalidate();
+        panel.repaint();
     }//GEN-LAST:event_botonCancelarMousePressed
 
     private void botonAnadirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirMousePressed
-        // TODO add your handling code here:
+        if (anadirGestion) {
+            try {
+                int cantidadNum = Integer.parseInt(cantidad.getText());
+                ConsultasGestion consultasGestion = new ConsultasGestion();
+                if (consultasGestion.anadirGestion(codigoGestion.getText(), codProveedor.getSelectedItem().toString(), codPieza.getSelectedItem().toString(), codProyecto.getSelectedItem().toString(), cantidadNum)) {
+                    NuevaGestion frame = new NuevaGestion(panel);
+                    frame.setSize(700, 490);
+                    frame.setLocation(0, 0);
+                    panel.removeAll();
+                    panel.add(frame, BorderLayout.CENTER);
+                    panel.revalidate();
+                    panel.repaint();
+                }
+                consultasGestion.cerrarConexion();
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "La cantidad debe escribirse con números");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "La opción no esta disponible por que no cumples los requisitos");
+        }
     }//GEN-LAST:event_botonAnadirMousePressed
 
     private void botonLimpiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLimpiarMousePressed
-        // TODO add your handling code here:
+        codigoGestion.setText("");
+        cantidad.setText("");
     }//GEN-LAST:event_botonLimpiarMousePressed
 
 
@@ -233,6 +310,7 @@ public class NuevaGestion extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> codPieza;
     private javax.swing.JComboBox<String> codProveedor;
     private javax.swing.JComboBox<String> codProyecto;
+    private javax.swing.JTextField codigoGestion;
     private javax.swing.JTextField infoPieza;
     private javax.swing.JTextField infoProveedor;
     private javax.swing.JTextField infoProyecto;
@@ -244,10 +322,12 @@ public class NuevaGestion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     // End of variables declaration//GEN-END:variables
 }

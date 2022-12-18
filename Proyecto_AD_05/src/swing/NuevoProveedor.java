@@ -4,8 +4,10 @@
  */
 package swing;
 
+import consultas.ConsultasProveedores;
+
 import java.awt.BorderLayout;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  *
@@ -200,15 +202,32 @@ public class NuevoProveedor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAnadirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirMousePressed
-        // TODO add your handling code here:
+        if (codigo.getText().isBlank() || nombre.getText().isBlank() || apellidos.getText().isBlank() || dirPostal.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Debes rellenar todos los campos para poder añadir un nuevo proveedor");
+        } else {
+            ConsultasProveedores consultasProveedores = new ConsultasProveedores();
+            if (consultasProveedores.nuevoProveedor(codigo.getText().toUpperCase(), nombre.getText(), apellidos.getText(), dirPostal.getText())) {
+                GestionProveedores frame = new GestionProveedores(panel);
+                frame.setSize(700,490);
+                frame.setLocation(0,0);
+                panel.removeAll();
+                panel.add(frame, BorderLayout.CENTER);
+                panel.revalidate();
+                panel.repaint();
+            }
+            consultasProveedores.cerrarConexion();
+        }
     }//GEN-LAST:event_botonAnadirMousePressed
 
     private void botonLimpiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLimpiarMousePressed
-        // TODO add your handling code here:
+        codigo.setText("");
+        nombre.setText("");
+        apellidos.setText("");
+        dirPostal.setText("");
     }//GEN-LAST:event_botonLimpiarMousePressed
 
     private void botonCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCancelarMousePressed
-        Proveedores frame = new Proveedores(panel);
+        GestionProveedores frame = new GestionProveedores(panel);
         frame.setSize(700,490);
         frame.setLocation(0,0);
         panel.removeAll();

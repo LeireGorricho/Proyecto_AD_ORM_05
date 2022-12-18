@@ -4,8 +4,10 @@
  */
 package swing;
 
+import consultas.ConsultasPiezas;
+
 import java.awt.BorderLayout;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  *
@@ -45,7 +47,7 @@ public class NuevaPieza extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         nombre = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        apellidos = new javax.swing.JTextField();
+        precio = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         descripcion = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
@@ -75,7 +77,7 @@ public class NuevaPieza extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Apellidos: ");
+        jLabel4.setText("Precio:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -106,7 +108,7 @@ public class NuevaPieza extends javax.swing.JPanel {
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(botonAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, -1, 30));
+        jPanel1.add(botonAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, -1, 30));
 
         codigo.setForeground(new java.awt.Color(102, 102, 102));
         codigo.setBorder(null);
@@ -118,9 +120,9 @@ public class NuevaPieza extends javax.swing.JPanel {
         jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 210, 260, -1));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 260, 10));
 
-        apellidos.setForeground(new java.awt.Color(102, 102, 102));
-        apellidos.setBorder(null);
-        jPanel1.add(apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 250, 260, -1));
+        precio.setForeground(new java.awt.Color(102, 102, 102));
+        precio.setBorder(null);
+        jPanel1.add(precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 250, 260, -1));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 260, 10));
 
         descripcion.setForeground(new java.awt.Color(102, 102, 102));
@@ -154,7 +156,7 @@ public class NuevaPieza extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel1.add(botonLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 110, 30));
+        jPanel1.add(botonLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 110, 30));
 
         botonCancelar.setBackground(new java.awt.Color(0, 117, 153));
         botonCancelar.setPreferredSize(new java.awt.Dimension(170, 30));
@@ -182,7 +184,7 @@ public class NuevaPieza extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, 110, 30));
+        jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 350, 110, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -211,12 +213,30 @@ public class NuevaPieza extends javax.swing.JPanel {
     }//GEN-LAST:event_botonCancelarMousePressed
 
     private void botonAnadirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirMousePressed
-        // TODO add your handling code here:
+        if (codigo.getText().isBlank() || nombre.getText().isBlank() || precio.getText().isBlank() || descripcion.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Debes rellenar todos los campos para poder añadir");
+        } else {
+            ConsultasPiezas consultasPiezas = new ConsultasPiezas();
+            try {
+                float precioNum = Float.parseFloat(precio.getText());
+                if (consultasPiezas.anadirPieza(codigo.getText().toUpperCase(), nombre.getText(), precioNum, descripcion.getText())) {
+                    GestionPiezas frame = new GestionPiezas(panel);
+                    frame.setSize(700,490);
+                    frame.setLocation(0,0);
+                    panel.removeAll();
+                    panel.add(frame, BorderLayout.CENTER);
+                    panel.revalidate();
+                    panel.repaint();
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "El precio debe ser escrito con numeros");
+            }
+            consultasPiezas.cerrarConexion();
+        }
     }//GEN-LAST:event_botonAnadirMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField apellidos;
     private javax.swing.JPanel botonAnadir;
     private javax.swing.JPanel botonCancelar;
     private javax.swing.JPanel botonLimpiar;
@@ -236,5 +256,6 @@ public class NuevaPieza extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTextField nombre;
+    private javax.swing.JTextField precio;
     // End of variables declaration//GEN-END:variables
 }
