@@ -318,7 +318,7 @@ public class EditarGestion extends javax.swing.JPanel {
     private void codProveedorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codProveedorItemStateChanged
         for (ProveedoresEntity proveedor : proveedores) {
             if (proveedor.getCodigo().equals(codProveedor.getSelectedItem())) {
-                infoProveedor.setText("<html><p>Nombre: " + proveedor.getNombre() + " " + proveedor.getApellidos() + "</p><p>Direccion: " + proveedor.getDireccion() + "Estado: " + proveedor.getEstado() + "</p></html>");
+                infoProveedor.setText("<html><p>Nombre: " + proveedor.getNombre() + " " + proveedor.getApellidos() + "</p><p>Direccion: " + proveedor.getDireccion() + "</p><p>" + "Estado: " + proveedor.getEstado() + "</p></html>");
             }
         }
     }//GEN-LAST:event_codProveedorItemStateChanged

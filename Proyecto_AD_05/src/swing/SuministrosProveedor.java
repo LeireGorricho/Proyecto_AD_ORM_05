@@ -138,7 +138,6 @@ public class SuministrosProveedor extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         codProveedor = new javax.swing.JComboBox<>();
-        infoProveedor = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -150,6 +149,7 @@ public class SuministrosProveedor extends javax.swing.JPanel {
         tablaProyectosProveedor = new javax.swing.JTable();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
+        infoProveedor = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -165,12 +165,6 @@ public class SuministrosProveedor extends javax.swing.JPanel {
             }
         });
         jPanel1.add(codProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 100, -1));
-
-        infoProveedor.setEditable(false);
-        infoProveedor.setBackground(new java.awt.Color(255, 255, 255));
-        infoProveedor.setText("<html><p></p></html>");
-        infoProveedor.setBorder(null);
-        jPanel1.add(infoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 240, 60));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 370, 20));
 
         jLabel1.setText("Piezas suministradas:");
@@ -224,6 +218,7 @@ public class SuministrosProveedor extends javax.swing.JPanel {
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, 420, 160));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 50, 10));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 50, 10));
+        jPanel1.add(infoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 240, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -256,14 +251,25 @@ public class SuministrosProveedor extends javax.swing.JPanel {
 
         ConsultasProveedores consultasProveedores = new ConsultasProveedores();
         ProveedoresEntity proveedor = consultasProveedores.recuperarProveedor(codProveedor.getSelectedItem().toString());
-        infoProveedor.setText(proveedor.getCodigo() + ", " + proveedor.getNombre() + ", " + proveedor.getApellidos() + ", " + proveedor.getDireccion());
+        infoProveedor.setText("<html><p>Nombre: " + proveedor.getNombre() + "</p><p>Apellidos: " + proveedor.getApellidos() + "</p><p>Dirección: " + proveedor.getDireccion() + "</p><p>" + proveedor.getEstado() + "</p></html>");
         consultasProveedores.cerrarConexion();
+
+        //Piezas suministradas
+        int total = 0;
+        for (GestionEntity gestione : gestiones) {
+            if (gestione.getProveedoresByCodproveedor().getCodigo().equals(codProveedor.getSelectedItem())) {
+                total = total + gestione.getCantidad();
+            }
+        }
+        piezasSuministradas.setText(String.valueOf(total));
+        //numero de proyectos suministrados
+        numProyectos.setText(String.valueOf(proyectos.size()));
     }//GEN-LAST:event_codProveedorItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> codProveedor;
-    private javax.swing.JTextField infoProveedor;
+    private javax.swing.JLabel infoProveedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

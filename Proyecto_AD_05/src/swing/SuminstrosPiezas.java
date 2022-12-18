@@ -135,7 +135,6 @@ public class SuminstrosPiezas extends javax.swing.JPanel {
 
         jLabel2 = new javax.swing.JLabel();
         codPieza = new javax.swing.JComboBox<>();
-        infoPieza = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -150,6 +149,7 @@ public class SuminstrosPiezas extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         totalPiezas = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
+        infoPieza = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -165,11 +165,6 @@ public class SuminstrosPiezas extends javax.swing.JPanel {
             }
         });
         add(codPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 100, -1));
-
-        infoPieza.setEditable(false);
-        infoPieza.setBackground(new java.awt.Color(255, 255, 255));
-        infoPieza.setBorder(null);
-        add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 240, 60));
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 370, 20));
 
         jLabel1.setText("Nº de proyectos:");
@@ -233,6 +228,7 @@ public class SuminstrosPiezas extends javax.swing.JPanel {
         totalPiezas.setBorder(null);
         add(totalPiezas, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 70, -1));
         add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 70, 10));
+        add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 230, 60));
     }// </editor-fold>//GEN-END:initComponents
 
     private void codPiezaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codPiezaItemStateChanged
@@ -254,14 +250,28 @@ public class SuminstrosPiezas extends javax.swing.JPanel {
 
         ConsultasPiezas consultasPiezas = new ConsultasPiezas();
         PiezasEntity pieza = consultasPiezas.recuperarPieza(codPieza.getSelectedItem().toString());
-        infoPieza.setText(pieza.getCodigo() + ", " + pieza.getNombre() + ", " + pieza.getDescripcion());
+        infoPieza.setText("<html><p>Nombre: " + pieza.getNombre() + "</p><p>Precio: " + pieza.getPrecio() + "</p><p>Descripción: " + pieza.getDescripcion() + "</p><p>" + pieza.getEstado() + "</p></html>");
         consultasPiezas.cerrarConexion();
+
+        //numero de proyectos
+        numProyectos.setText(String.valueOf(proyectos.size()));
+        //numero de proveedores
+        numProveedores.setText(String.valueOf(proveedores.size()));
+
+        //numero totas de piezas suministradas
+        int total = 0;
+        for (int i = 0; i < gestiones.size(); i++) {
+            if (gestiones.get(i).getPiezasByCodpieza().getCodigo().equals(cod)) {
+                total = total + gestiones.get(i).getCantidad();
+            }
+        }
+        totalPiezas.setText(String.valueOf(total));
     }//GEN-LAST:event_codPiezaItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> codPieza;
-    private javax.swing.JTextField infoPieza;
+    private javax.swing.JLabel infoPieza;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
