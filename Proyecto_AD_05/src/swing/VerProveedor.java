@@ -33,7 +33,7 @@ public class VerProveedor extends javax.swing.JPanel {
         codigo.setText(cod);
         nombre.setText(proveedor.getNombre());
         apellidos.setText(proveedor.getApellidos());
-        dirPostal.setText(proveedor.getDireccion());
+        direccion.setText(proveedor.getDireccion());
         estado.setText(proveedor.getEstado());
 
         consultaProveedores.cerrarConexion();
@@ -60,7 +60,7 @@ public class VerProveedor extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         apellidos = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        dirPostal = new javax.swing.JTextField();
+        direccion = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         botonVolver = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -94,7 +94,7 @@ public class VerProveedor extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("Dirección postal: ");
+        jLabel5.setText("Dirección: ");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, -1));
 
         codigo.setForeground(new java.awt.Color(102, 102, 102));
@@ -115,10 +115,10 @@ public class VerProveedor extends javax.swing.JPanel {
         jPanel1.add(apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 250, 260, -1));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 260, 10));
 
-        dirPostal.setForeground(new java.awt.Color(102, 102, 102));
-        dirPostal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        dirPostal.setBorder(null);
-        jPanel1.add(dirPostal, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 290, 260, -1));
+        direccion.setForeground(new java.awt.Color(102, 102, 102));
+        direccion.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        direccion.setBorder(null);
+        jPanel1.add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 290, 260, -1));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 260, 10));
 
         botonVolver.setBackground(new java.awt.Color(0, 204, 204));
@@ -189,7 +189,7 @@ public class VerProveedor extends javax.swing.JPanel {
     private javax.swing.JTextField apellidos;
     private javax.swing.JPanel botonVolver;
     private javax.swing.JTextField codigo;
-    private javax.swing.JTextField dirPostal;
+    private javax.swing.JTextField direccion;
     private javax.swing.JTextField estado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

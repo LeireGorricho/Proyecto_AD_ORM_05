@@ -15,7 +15,15 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import consultas.ConsultasGestion;
+import consultas.ConsultasPiezas;
+import consultas.ConsultasProveedores;
+import consultas.ConsultasProyectos;
 import hibernate_bd.GestionEntity;
+import hibernate_bd.PiezasEntity;
+import hibernate_bd.ProveedoresEntity;
+import hibernate_bd.ProyectosEntity;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import scrollbar.ScrollBarCustom;
 import table.TableHeader;
 
@@ -27,6 +35,8 @@ public class GestionPedidos extends javax.swing.JPanel {
     
     String[] nombreColumnas = {"Código", "Proveedor", "Pieza", "Proyecto", "Estado"};
     JPanel panel;
+    Session session = null;
+    List<GestionEntity> gestion = new ArrayList<GestionEntity>();
     
     /**
      * Creates new form GestionPedidos
@@ -84,6 +94,56 @@ public class GestionPedidos extends javax.swing.JPanel {
             }
         });
         consultasGestion.cerrarConexion();
+    }
+
+    public boolean puedeEditar(String codigo) {
+        ConsultasGestion consultasGestion = new ConsultasGestion();
+        GestionEntity relacion = consultasGestion.recuperarGestion(codigo);
+        ConsultasProyectos consultasProyectos = new ConsultasProyectos();
+        List<ProyectosEntity> proyectos = consultasProyectos.cargarAltas();
+        consultasProyectos.cerrarConexion();
+        ConsultasProveedores consultasProveedores = new ConsultasProveedores();
+        List<ProveedoresEntity> proveedores = consultasProveedores.cargarAltas();
+        consultasProveedores.cerrarConexion();
+        ConsultasPiezas consultasPiezas = new ConsultasPiezas();
+        List<PiezasEntity> piezas = consultasPiezas.cargarAltas();
+        consultasPiezas.cerrarConexion();
+        if (proyectos.size() == 0 || proveedores.size() == 0 || piezas.size() == 0) {
+            JOptionPane.showMessageDialog(null, "Para poder editar una gestión debe haber por lo menos una pieza, un proyecto y un proveedor");
+            return false;
+        }
+        int proyectoSele = -1;
+        int proveSele = -1;
+        int piezaSele = -1;
+        for (int i = 0; i < proyectos.size(); i++) {
+            if (proyectos.get(i).getCodigo().equals(relacion.getProyectosByCodproyecto().getCodigo())) {
+                proyectoSele = i;
+            }
+        }
+        for (int i = 0; i < proveedores.size(); i++) {
+            if (proveedores.get(i).getCodigo().equals(relacion.getProveedoresByCodproveedor().getCodigo())) {
+                proveSele = i;
+            }
+        }
+        for (int i = 0; i < piezas.size(); i++) {
+            if (piezas.get(i).getCodigo().equals(relacion.getPiezasByCodpieza().getCodigo())) {
+                piezaSele = i;
+            }
+        }
+        if (proyectoSele == -1 || proveSele == -1 || piezaSele == -1) {
+            JOptionPane.showMessageDialog(null, "Uno de los campos tiene el estado de baja, para poder editar una gestión deben estar todos de alta");
+            return false;
+        }
+        return true;
+    }
+
+    public void eliminarGestion(int codigo) {
+        GestionEntity gestion = new GestionEntity();
+        Transaction tx = session.beginTransaction();
+        gestion = session.load(GestionEntity.class, codigo);
+        gestion.setEstado("BAJA");
+        tx.commit();
+        session.update(gestion);
     }
 
     /**
@@ -282,15 +342,18 @@ public class GestionPedidos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarMousePressed
-        ConsultasGestion consultasGestion = new ConsultasGestion();
         if (tablaGestion.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(null, "Para dar de baja debes seleccionar un elemento en la tabla");
         } else {
-            //Obtencion del id del objeto seleccionaod en la tabla
-            String codigo = tablaGestion.getValueAt(tablaGestion.getSelectedRow(), 0).toString();
-            consultasGestion.eliminarGestion(codigo);
-            consultasGestion.cerrarConexion();
-        }
+            int op = JOptionPane.showConfirmDialog(this, "¿Estas seguro de que quieres dar de baja este proyecto?");
+                if (op == 0) {
+                    //Obtencion del id del objeto seleccionaod en la tabla
+                    ConsultasGestion con = new ConsultasGestion();
+                    String codigo = tablaGestion.getValueAt(tablaGestion.getSelectedRow(), 0).toString();
+                    con.eliminarGestion(codigo);
+                    con.cerrarConexion();
+                }
+            }
         cargarDatos();
     }//GEN-LAST:event_botonEliminarMousePressed
 
@@ -299,13 +362,15 @@ public class GestionPedidos extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Para editar debes seleccionar un elemento en la tabla");
         } else {
             String cod = tablaGestion.getValueAt(tablaGestion.getSelectedRow(), 0).toString();
-            EditarGestion frame = new EditarGestion(panel, cod);
-            frame.setSize(700,490);
-            frame.setLocation(0,0);
-            panel.removeAll();
-            panel.add(frame, BorderLayout.CENTER);
-            panel.revalidate();
-            panel.repaint();
+            if (puedeEditar(cod)) {
+                EditarGestion frame = new EditarGestion(panel, cod);
+                frame.setSize(700, 490);
+                frame.setLocation(0, 0);
+                panel.removeAll();
+                panel.add(frame, BorderLayout.CENTER);
+                panel.revalidate();
+                panel.repaint();
+            }
         }
     }//GEN-LAST:event_BotonModificarMousePressed
 

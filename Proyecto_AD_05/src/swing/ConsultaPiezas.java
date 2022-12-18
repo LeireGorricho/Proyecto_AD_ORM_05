@@ -167,6 +167,7 @@ public class ConsultaPiezas extends javax.swing.JPanel {
         jLabel2.setText("Buscar:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, -1));
 
+        textBusqueda.setForeground(new java.awt.Color(102, 102, 102));
         textBusqueda.setBorder(null);
         textBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {

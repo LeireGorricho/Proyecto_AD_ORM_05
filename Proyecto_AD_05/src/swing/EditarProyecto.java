@@ -168,7 +168,6 @@ public class EditarProyecto extends javax.swing.JPanel {
         jLabel5.setText("Estado:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, -1));
 
-        estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 290, 260, -1));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 260, 10));
 

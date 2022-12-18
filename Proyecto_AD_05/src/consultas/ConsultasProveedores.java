@@ -36,7 +36,7 @@ public class ConsultasProveedores {
             proveedores.addAll(lista);
 
         } catch (ObjectNotFoundException o) {
-            System.out.println("ERROR");
+            System.out.println("Error");
         }
         return proveedores;
     }

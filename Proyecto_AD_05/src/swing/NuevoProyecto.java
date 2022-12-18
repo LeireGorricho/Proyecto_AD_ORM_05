@@ -7,6 +7,8 @@ package swing;
 import consultas.ConsultasProyectos;
 
 import java.awt.BorderLayout;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.*;
 
 /**
@@ -191,17 +193,23 @@ public class NuevoProyecto extends javax.swing.JPanel {
         if (codigo.getText().isBlank() || nombre.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Debes rellenar todos los campos para poder añadir un nuevo proyecto");
         } else {
-            ConsultasProyectos consultasProyectos = new ConsultasProyectos();
-            if (consultasProyectos.anadirProyecto(codigo.getText().toUpperCase(), nombre.getText(), ciudad.getText())) {
-                GestionProyectos frame = new GestionProyectos(panel);
-                frame.setSize(700,490);
-                frame.setLocation(0,0);
-                panel.removeAll();
-                panel.add(frame, BorderLayout.CENTER);
-                panel.revalidate();
-                panel.repaint();
+            Pattern pattern = Pattern.compile("^([A-Za-z]{4}[0-9]{2})$");
+            Matcher codPattern = pattern.matcher(codigo.getText());
+            if (codPattern.find()) {
+                ConsultasProyectos consultasProyectos = new ConsultasProyectos();
+                if (consultasProyectos.anadirProyecto(codigo.getText().toUpperCase(), nombre.getText(), ciudad.getText())) {
+                    GestionProyectos frame = new GestionProyectos(panel);
+                    frame.setSize(700,490);
+                    frame.setLocation(0,0);
+                    panel.removeAll();
+                    panel.add(frame, BorderLayout.CENTER);
+                    panel.revalidate();
+                    panel.repaint();
+                }
+                consultasProyectos.cerrarConexion();
+            } else {
+                JOptionPane.showMessageDialog(null, "El código debe contener 4 letras y 2 números");
             }
-            consultasProyectos.cerrarConexion();
         }
     }//GEN-LAST:event_botonAnadirMousePressed
 

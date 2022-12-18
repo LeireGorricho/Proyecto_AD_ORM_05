@@ -14,7 +14,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import consultas.ConsultasGestion;
 import consultas.ConsultasProyectos;
+import hibernate_bd.GestionEntity;
 import hibernate_bd.ProyectosEntity;
 import scrollbar.ScrollBarCustom;
 import table.TableHeader;
@@ -84,6 +86,13 @@ public class GestionProyectos extends javax.swing.JPanel {
             }
         });
         consultasProyectos.cerrarConexion();
+    }
+
+    public void bajaProyecto(String codigo) {
+        ConsultasProyectos con = new ConsultasProyectos();
+        con.eliminarProyecto(codigo);
+        con.cerrarConexion();
+        cargarDatos();
     }
 
     /**
@@ -287,10 +296,27 @@ public class GestionProyectos extends javax.swing.JPanel {
         } else {
             //Obtencion del id del objeto seleccionaod en la tabla
             String cod = tablaProyectos.getValueAt(tablaProyectos.getSelectedRow(), 0).toString();
-            ConsultasProyectos consultasProyectos = new ConsultasProyectos();
-            consultasProyectos.eliminarProyecto(cod);
-            consultasProyectos.cerrarConexion();
-            cargarDatos();
+            boolean relacion = false;
+            ConsultasGestion con = new ConsultasGestion();
+            List<GestionEntity> gestiones = con.recuperarDatosGestiones();
+            con.cerrarConexion();
+            for (GestionEntity gestion : gestiones) {
+                if (gestion.getProyectosByCodproyecto().getCodigo().equals(cod) && gestion.getEstado().equals("alta")) {
+                    relacion = true;
+                    break;
+                }
+            }
+            if (relacion) {
+                int op = JOptionPane.showConfirmDialog(this, "El proyecto que quieres dar de baja tiene una gestión activa.\n ¿Estas seguro de que quieres darlo de baja?");
+                if (op == 0) {
+                    bajaProyecto(cod);
+                }
+            } else {
+                int op = JOptionPane.showConfirmDialog(this, "¿Estas seguro de que quieres dar de baja este proyecto?");
+                if (op == 0) {
+                    bajaProyecto(cod);
+                }
+            }
         }
     }//GEN-LAST:event_botonEliminar1MousePressed
 

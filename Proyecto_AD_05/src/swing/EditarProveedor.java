@@ -31,7 +31,7 @@ public class EditarProveedor extends javax.swing.JPanel {
         codigo.setText(proveedor.getCodigo());
         nombre.setText(proveedor.getNombre());
         apellidos.setText(proveedor.getApellidos());
-        dirPostal.setText(proveedor.getDireccion());
+        direccion.setText(proveedor.getDireccion());
         consultaProv.cerrarConexion();
         estado.addItem("ALTA");
         estado.addItem("BAJA");
@@ -65,7 +65,7 @@ public class EditarProveedor extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         apellidos = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        dirPostal = new javax.swing.JTextField();
+        direccion = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         botonCancelar = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -102,7 +102,7 @@ public class EditarProveedor extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("Dirección postal: ");
+        jLabel5.setText("Dirección: ");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
 
         botonEditar.setBackground(new java.awt.Color(0, 204, 204));
@@ -147,9 +147,9 @@ public class EditarProveedor extends javax.swing.JPanel {
         jPanel1.add(apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 260, -1));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 260, 10));
 
-        dirPostal.setForeground(new java.awt.Color(102, 102, 102));
-        dirPostal.setBorder(null);
-        jPanel1.add(dirPostal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 260, -1));
+        direccion.setForeground(new java.awt.Color(102, 102, 102));
+        direccion.setBorder(null);
+        jPanel1.add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 260, -1));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 260, 10));
 
         botonCancelar.setBackground(new java.awt.Color(0, 117, 153));
@@ -183,7 +183,6 @@ public class EditarProveedor extends javax.swing.JPanel {
         jLabel8.setText("Estado:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, -1, -1));
 
-        estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 260, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -209,7 +208,7 @@ public class EditarProveedor extends javax.swing.JPanel {
     }//GEN-LAST:event_botonCancelarMousePressed
 
     private void botonEditarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarMousePressed
-        if (nombre.getText().isBlank() || apellidos.getText().isBlank() || dirPostal.getText().isBlank()) {
+        if (nombre.getText().isBlank() || apellidos.getText().isBlank() || direccion.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Debes rellenar todos los campos para poder editar");
         } else {
             ConsultasProveedores consultasProv = new ConsultasProveedores();
@@ -219,7 +218,7 @@ public class EditarProveedor extends javax.swing.JPanel {
             } else {
                 estadoText = "BAJA";
             }
-            if (consultasProv.modificarProveedor(codigo.getText().toUpperCase(), nombre.getText(), apellidos.getText(), dirPostal.getText(), estadoText)) {
+            if (consultasProv.modificarProveedor(codigo.getText().toUpperCase(), nombre.getText(), apellidos.getText(), direccion.getText(), estadoText)) {
                 consultasProv.cerrarConexion();
 
                 GestionProveedores frame = new GestionProveedores(panel);
@@ -239,7 +238,7 @@ public class EditarProveedor extends javax.swing.JPanel {
     private javax.swing.JPanel botonCancelar;
     private javax.swing.JPanel botonEditar;
     private javax.swing.JTextField codigo;
-    private javax.swing.JTextField dirPostal;
+    private javax.swing.JTextField direccion;
     private javax.swing.JComboBox<String> estado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

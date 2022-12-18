@@ -183,7 +183,6 @@ public class EditarPieza extends javax.swing.JPanel {
         jLabel8.setText("Estado:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, -1, -1));
 
-        estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 260, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

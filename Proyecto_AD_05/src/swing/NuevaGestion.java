@@ -15,6 +15,8 @@ import hibernate_bd.ProyectosEntity;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -277,21 +279,27 @@ public class NuevaGestion extends javax.swing.JPanel {
             if (codigoGestion.getText().isBlank() || cantidad.getText().isBlank()){
                 JOptionPane.showMessageDialog(null, "Debes rellenar todos los campos para poder añadir");
             } else {
-                try {
-                    int cantidadNum = Integer.parseInt(cantidad.getText());
-                    ConsultasGestion consultasGestion = new ConsultasGestion();
-                    if (consultasGestion.anadirGestion(codigoGestion.getText(), codProveedor.getSelectedItem().toString(), codPieza.getSelectedItem().toString(), codProyecto.getSelectedItem().toString(), cantidadNum)) {
-                        GestionPedidos frame = new GestionPedidos(panel);
-                        frame.setSize(700, 490);
-                        frame.setLocation(0, 0);
-                        panel.removeAll();
-                        panel.add(frame, BorderLayout.CENTER);
-                        panel.revalidate();
-                        panel.repaint();
+                Pattern pattern = Pattern.compile("^([A-Za-z]{4}[0-9]{2})$");
+                Matcher codPattern = pattern.matcher(codigoGestion.getText());
+                if (codPattern.find()) {
+                    try {
+                        int cantidadNum = Integer.parseInt(cantidad.getText());
+                        ConsultasGestion consultasGestion = new ConsultasGestion();
+                        if (consultasGestion.anadirGestion(codigoGestion.getText(), codProveedor.getSelectedItem().toString(), codPieza.getSelectedItem().toString(), codProyecto.getSelectedItem().toString(), cantidadNum)) {
+                            GestionPedidos frame = new GestionPedidos(panel);
+                            frame.setSize(700, 490);
+                            frame.setLocation(0, 0);
+                            panel.removeAll();
+                            panel.add(frame, BorderLayout.CENTER);
+                            panel.revalidate();
+                            panel.repaint();
+                        }
+                        consultasGestion.cerrarConexion();
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "La cantidad debe escribirse con números");
                     }
-                    consultasGestion.cerrarConexion();
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "La cantidad debe escribirse con números");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error para escribir el codigo tiene que contener 2 letras y 4 numeros.");
                 }
             }
         } else {

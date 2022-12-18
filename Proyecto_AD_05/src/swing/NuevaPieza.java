@@ -7,6 +7,8 @@ package swing;
 import consultas.ConsultasPiezas;
 
 import java.awt.BorderLayout;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.*;
 
 /**
@@ -219,22 +221,28 @@ public class NuevaPieza extends javax.swing.JPanel {
         if (codigo.getText().isBlank() || nombre.getText().isBlank() || precio.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Debes rellenar todos los campos para poder añadir");
         } else {
-            ConsultasPiezas consultasPiezas = new ConsultasPiezas();
-            try {
-                float precioNum = Float.parseFloat(precio.getText());
-                if (consultasPiezas.anadirPieza(codigo.getText().toUpperCase(), nombre.getText(), precioNum, descripcion.getText())) {
-                    GestionPiezas frame = new GestionPiezas(panel);
-                    frame.setSize(700,490);
-                    frame.setLocation(0,0);
-                    panel.removeAll();
-                    panel.add(frame, BorderLayout.CENTER);
-                    panel.revalidate();
-                    panel.repaint();
+            Pattern pattern = Pattern.compile("^([A-Za-z]{4}[0-9]{2})$");
+            Matcher codPattern = pattern.matcher(codigo.getText());
+            if (codPattern.find()) {
+                ConsultasPiezas consultasPiezas = new ConsultasPiezas();
+                try {
+                    float precioNum = Float.parseFloat(precio.getText());
+                    if (consultasPiezas.anadirPieza(codigo.getText().toUpperCase(), nombre.getText(), precioNum, descripcion.getText())) {
+                        GestionPiezas frame = new GestionPiezas(panel);
+                        frame.setSize(700,490);
+                        frame.setLocation(0,0);
+                        panel.removeAll();
+                        panel.add(frame, BorderLayout.CENTER);
+                        panel.revalidate();
+                        panel.repaint();
+                    }
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "El precio debe ser escrito con numeros");
                 }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "El precio debe ser escrito con numeros");
+                consultasPiezas.cerrarConexion();
+            } else {
+                JOptionPane.showMessageDialog(null, "El código debe contener 4 letras y 2 números");
             }
-            consultasPiezas.cerrarConexion();
         }
     }//GEN-LAST:event_botonAnadirMousePressed
 

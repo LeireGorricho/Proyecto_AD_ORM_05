@@ -25,7 +25,7 @@ import table.TableHeader;
  */
 public class ConsultaProveedores extends javax.swing.JPanel {
 
-    String[] nombreColumnas = {"Código", "Nombre", "Apellido", "Estado"};
+    String[] nombreColumnas = {"Código", "Nombre", "Apellidos", "Estado"};
     TableRowSorter<DefaultTableModel> sorter;
     JPanel panel;
     /**
@@ -140,7 +140,7 @@ public class ConsultaProveedores extends javax.swing.JPanel {
 
         jPanel1.add(opcionBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 14, 180, -1));
 
-        textBusqueda.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        textBusqueda.setForeground(new java.awt.Color(102, 102, 102));
         textBusqueda.setBorder(null);
         textBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {

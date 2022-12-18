@@ -7,6 +7,8 @@ package swing;
 import consultas.ConsultasProveedores;
 
 import java.awt.BorderLayout;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.*;
 
 /**
@@ -49,7 +51,7 @@ public class NuevoProveedor extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         apellidos = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        dirPostal = new javax.swing.JTextField();
+        direccion = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         botonLimpiar = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -83,7 +85,7 @@ public class NuevoProveedor extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("Dirección postal: ");
+        jLabel5.setText("Dirección: ");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, -1));
 
         botonAnadir.setBackground(new java.awt.Color(0, 204, 204));
@@ -128,9 +130,9 @@ public class NuevoProveedor extends javax.swing.JPanel {
         jPanel1.add(apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 250, 260, -1));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 260, 10));
 
-        dirPostal.setForeground(new java.awt.Color(102, 102, 102));
-        dirPostal.setBorder(null);
-        jPanel1.add(dirPostal, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 290, 260, -1));
+        direccion.setForeground(new java.awt.Color(102, 102, 102));
+        direccion.setBorder(null);
+        jPanel1.add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 290, 260, -1));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 260, 10));
 
         botonLimpiar.setBackground(new java.awt.Color(0, 117, 153));
@@ -202,20 +204,26 @@ public class NuevoProveedor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAnadirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirMousePressed
-        if (codigo.getText().isBlank() || nombre.getText().isBlank() || apellidos.getText().isBlank() || dirPostal.getText().isBlank()) {
+        if (codigo.getText().isBlank() || nombre.getText().isBlank() || apellidos.getText().isBlank() || direccion.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Debes rellenar todos los campos para poder añadir un nuevo proveedor");
         } else {
-            ConsultasProveedores consultasProveedores = new ConsultasProveedores();
-            if (consultasProveedores.nuevoProveedor(codigo.getText().toUpperCase(), nombre.getText(), apellidos.getText(), dirPostal.getText())) {
-                GestionProveedores frame = new GestionProveedores(panel);
-                frame.setSize(700,490);
-                frame.setLocation(0,0);
-                panel.removeAll();
-                panel.add(frame, BorderLayout.CENTER);
-                panel.revalidate();
-                panel.repaint();
+            Pattern pattern = Pattern.compile("^([A-Za-z]{4}[0-9]{2})$");
+            Matcher codPattern = pattern.matcher(codigo.getText());
+            if (codPattern.find()) {
+                ConsultasProveedores consultasProveedores = new ConsultasProveedores();
+                if (consultasProveedores.nuevoProveedor(codigo.getText().toUpperCase(), nombre.getText(), apellidos.getText(), direccion.getText())) {
+                    GestionProveedores frame = new GestionProveedores(panel);
+                    frame.setSize(700,490);
+                    frame.setLocation(0,0);
+                    panel.removeAll();
+                    panel.add(frame, BorderLayout.CENTER);
+                    panel.revalidate();
+                    panel.repaint();
+                }
+                consultasProveedores.cerrarConexion();
+            } else {
+                JOptionPane.showMessageDialog(null, "El código debe contener 4 letras y 2 números");
             }
-            consultasProveedores.cerrarConexion();
         }
     }//GEN-LAST:event_botonAnadirMousePressed
 
@@ -223,7 +231,7 @@ public class NuevoProveedor extends javax.swing.JPanel {
         codigo.setText("");
         nombre.setText("");
         apellidos.setText("");
-        dirPostal.setText("");
+        direccion.setText("");
     }//GEN-LAST:event_botonLimpiarMousePressed
 
     private void botonCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCancelarMousePressed
@@ -243,7 +251,7 @@ public class NuevoProveedor extends javax.swing.JPanel {
     private javax.swing.JPanel botonCancelar;
     private javax.swing.JPanel botonLimpiar;
     private javax.swing.JTextField codigo;
-    private javax.swing.JTextField dirPostal;
+    private javax.swing.JTextField direccion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

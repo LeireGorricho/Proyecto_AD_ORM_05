@@ -88,7 +88,7 @@ public class ConsultasProyectos {
 
     public List<ProyectosEntity> cargarAltas() {
         List<ProyectosEntity> proyectos = new ArrayList<ProyectosEntity>();
-        Query q = session.createQuery("from ProyectosEntity where estado = 'alta'");
+        Query q = session.createQuery("from ProyectosEntity where estado = 'ALTA'");
         proyectos = q.list();
         return proyectos;
     }

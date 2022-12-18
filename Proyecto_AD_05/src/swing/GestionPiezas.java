@@ -14,7 +14,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import consultas.ConsultasGestion;
 import consultas.ConsultasPiezas;
+import hibernate_bd.GestionEntity;
 import hibernate_bd.PiezasEntity;
 import scrollbar.ScrollBarCustom;
 import table.TableHeader;
@@ -86,6 +88,13 @@ public class GestionPiezas extends javax.swing.JPanel {
         consultasPiezas.cerrarConexion();
     }
 
+    public void bajaPieza(String codigo) {
+        ConsultasPiezas consultasPiezas = new ConsultasPiezas();
+        consultasPiezas.eliminarPieza(codigo);
+        consultasPiezas.cerrarConexion();
+        cargarDatos();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -110,6 +119,7 @@ public class GestionPiezas extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tablaPiezas.setForeground(new java.awt.Color(102, 102, 102));
         tablaPiezas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -264,10 +274,28 @@ public class GestionPiezas extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Para eliminar debes seleccionar una pieza en la tabla");
         } else {
             String cod = tablaPiezas.getValueAt(tablaPiezas.getSelectedRow(), 0).toString();
-            ConsultasPiezas consultasPiezas = new ConsultasPiezas();
-            consultasPiezas.eliminarPieza(cod);
-            consultasPiezas.cerrarConexion();
-            cargarDatos();
+            boolean relacion = false;
+            ConsultasGestion consultasGestion = new ConsultasGestion();
+            List<GestionEntity> piezas = consultasGestion.recuperarDatosGestiones();
+            consultasGestion.cerrarConexion();
+            for (GestionEntity gestion : piezas) {
+                if (gestion.getPiezasByCodpieza().getCodigo().equals(cod) && gestion.getEstado().equals("ALTA")) {
+                    relacion = true;
+                    break;
+                }
+            }
+            if (relacion) {
+                int op = JOptionPane.showConfirmDialog(this, "La pieza que quieres dar de baja tiene una gestión activa.\n ¿Estás seguro de que quieres darla de baja?");
+                if (op == 0) {
+                    bajaPieza(cod);
+                }
+            } else {
+                int op = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que quieres dar de baja esta pieza?");
+                if (op == 0) {
+                    bajaPieza(cod);
+                }
+            }
+
         }
     }//GEN-LAST:event_botonEliminar1MousePressed
 

@@ -13,7 +13,9 @@ import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import consultas.ConsultasGestion;
 import consultas.ConsultasProveedores;
+import hibernate_bd.GestionEntity;
 import hibernate_bd.ProveedoresEntity;
 import java.awt.BorderLayout;
 import scrollbar.ScrollBarCustom;
@@ -84,6 +86,13 @@ public class GestionProveedores extends javax.swing.JPanel {
             }
         });
         con.cerrarConexion();
+    }
+
+    public void bajaProveedor(String codigo) {
+        ConsultasProveedores con = new ConsultasProveedores();
+        con.eliminarProveedor(codigo);
+        con.cerrarConexion();
+        cargarDatos();
     }
 
     /**
@@ -287,10 +296,27 @@ public class GestionProveedores extends javax.swing.JPanel {
         } else {
             //Obtencion del id del objeto seleccionaod en la tabla
             String cod = tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 0).toString();
-            ConsultasProveedores consultasProveedores = new ConsultasProveedores();
-            consultasProveedores.eliminarProveedor(cod);
-            consultasProveedores.cerrarConexion();
-            cargarDatos();
+            boolean relacion = false;
+            ConsultasGestion con = new ConsultasGestion();
+            List<GestionEntity> gestiones = con.recuperarDatosGestiones();
+            con.cerrarConexion();
+            for (GestionEntity gestion : gestiones) {
+                if (gestion.getProveedoresByCodproveedor().getCodigo().equals(cod) && gestion.getEstado().equals("alta")) {
+                    relacion = true;
+                    break;
+                }
+            }
+            if (relacion) {
+                int op = JOptionPane.showConfirmDialog(this, "El proveedor que quieres dar de baja tiene una gestion activa.\n ¿Estas seguro de que quieres darlo de baja?");
+                if (op == 0) {
+                    bajaProveedor(cod);
+                }
+            } else {
+                int op = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que quieres dar de baja este proveedor?");
+                if (op == 0) {
+                    bajaProveedor(cod);
+                }
+            }
         }
     }//GEN-LAST:event_botonEliminarMousePressed
 
