@@ -165,7 +165,7 @@ public class SuminstrosPiezas extends javax.swing.JPanel {
             }
         });
         add(codPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 100, -1));
-        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 370, 20));
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 230, 20));
 
         jLabel1.setText("Nº de proyectos:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
@@ -250,7 +250,7 @@ public class SuminstrosPiezas extends javax.swing.JPanel {
 
         ConsultasPiezas consultasPiezas = new ConsultasPiezas();
         PiezasEntity pieza = consultasPiezas.recuperarPieza(codPieza.getSelectedItem().toString());
-        infoPieza.setText("<html><p>Nombre: " + pieza.getNombre() + "</p><p>Precio: " + pieza.getPrecio() + "</p><p>Descripción: " + pieza.getDescripcion() + "</p><p>" + pieza.getEstado() + "</p></html>");
+        infoPieza.setText("<html><p>Nombre: " + pieza.getNombre() + "</p><p>Precio: " + pieza.getPrecio() + "</p><p>Descripción: " + pieza.getDescripcion() + "</p><p>Estado:" + pieza.getEstado() + "</p></html>");
         consultasPiezas.cerrarConexion();
 
         //numero de proyectos

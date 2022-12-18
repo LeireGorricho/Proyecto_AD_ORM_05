@@ -194,15 +194,15 @@ public class EditarProyecto extends javax.swing.JPanel {
     }//GEN-LAST:event_botonCancelarMousePressed
 
     private void botonEditarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarMousePressed
-        if (nombre.getText().isBlank() || ciudad.getText().isBlank()) {
+        if (nombre.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Debes rellenar todos los campos para poder editar");
         } else {
             ConsultasProyectos con = new ConsultasProyectos();
             String estadoText;
             if (estado.getSelectedIndex() == 0) {
-                estadoText = "alta";
+                estadoText = "ALTA";
             } else {
-                estadoText = "baja";
+                estadoText = "BAJA";
             }
             if (con.editarProyecto(codigo.getText().toUpperCase(), nombre.getText(), ciudad.getText(), estadoText)) {
                 con.cerrarConexion();

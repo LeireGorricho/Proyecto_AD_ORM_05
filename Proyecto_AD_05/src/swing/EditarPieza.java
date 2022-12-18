@@ -210,7 +210,7 @@ public class EditarPieza extends javax.swing.JPanel {
     private void botonEditarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarMousePressed
         try {
             float precioFloat = Float.parseFloat(precio.getText());
-            if (nombre.getText().isBlank() || descripcion.getText().isBlank()) {
+            if (nombre.getText().isBlank() || precio.getText().isBlank()) {
                 JOptionPane.showMessageDialog(null, "Debes rellenar todos los campos para poder añadir");
             } else {
                 ConsultasPiezas consultasPiezas = new ConsultasPiezas();

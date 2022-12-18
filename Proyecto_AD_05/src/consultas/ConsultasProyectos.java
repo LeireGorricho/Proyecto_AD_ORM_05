@@ -47,7 +47,7 @@ public class ConsultasProyectos {
         proyecto.setCodigo(codigo);
         proyecto.setNombre(nombre);
         proyecto.setCiudad(ciudad);
-        proyecto.setEstado("alta");
+        proyecto.setEstado("ALTA");
         session.save(proyecto);
         try {
             tx.commit();

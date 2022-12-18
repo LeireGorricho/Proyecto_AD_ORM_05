@@ -97,7 +97,7 @@ public class SuministrosProveedor extends javax.swing.JPanel {
             d[i][0] = String.valueOf(piezas.get(i).getCodigo());
             d[i][1] = String.valueOf(piezas.get(i).getNombre());
             d[i][2] = String.valueOf(piezas.get(i).getPrecio());
-            d[i][3] = String.valueOf(piezas.get(i).getDescripcion());
+            d[i][3] = String.valueOf(piezas.get(i).getEstado());
         }
         //se carga el modelo de la tabla
         tablaPiezasProveedor.setModel(new DefaultTableModel(d, columnasPiezas) {
@@ -165,7 +165,7 @@ public class SuministrosProveedor extends javax.swing.JPanel {
             }
         });
         jPanel1.add(codProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 100, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 370, 20));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 240, 20));
 
         jLabel1.setText("Piezas suministradas:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
@@ -251,7 +251,7 @@ public class SuministrosProveedor extends javax.swing.JPanel {
 
         ConsultasProveedores consultasProveedores = new ConsultasProveedores();
         ProveedoresEntity proveedor = consultasProveedores.recuperarProveedor(codProveedor.getSelectedItem().toString());
-        infoProveedor.setText("<html><p>Nombre: " + proveedor.getNombre() + "</p><p>Apellidos: " + proveedor.getApellidos() + "</p><p>Dirección: " + proveedor.getDireccion() + "</p><p>" + proveedor.getEstado() + "</p></html>");
+        infoProveedor.setText("<html><p>Nombre: " + proveedor.getNombre() + "</p><p>Apellidos: " + proveedor.getApellidos() + "</p><p>Dirección: " + proveedor.getDireccion() + "</p><p>Estado:" + proveedor.getEstado() + "</p></html>");
         consultasProveedores.cerrarConexion();
 
         //Piezas suministradas
