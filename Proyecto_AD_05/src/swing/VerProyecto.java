@@ -93,16 +93,19 @@ public class VerProyecto extends javax.swing.JPanel {
         codigo.setEditable(false);
         codigo.setBackground(new java.awt.Color(255, 255, 255));
         codigo.setForeground(new java.awt.Color(102, 102, 102));
+        codigo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         codigo.setBorder(null);
         add(codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 170, 260, -1));
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 260, 20));
 
         nombre.setForeground(new java.awt.Color(102, 102, 102));
+        nombre.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         nombre.setBorder(null);
         add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 210, 260, -1));
         add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 260, 10));
 
         ciudad.setForeground(new java.awt.Color(102, 102, 102));
+        ciudad.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         ciudad.setBorder(null);
         add(ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 250, 260, -1));
         add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 260, 10));
@@ -113,6 +116,7 @@ public class VerProyecto extends javax.swing.JPanel {
 
         estado.setEditable(false);
         estado.setBackground(new java.awt.Color(255, 255, 255));
+        estado.setForeground(new java.awt.Color(102, 102, 102));
         estado.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         estado.setBorder(null);
         add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 260, -1));

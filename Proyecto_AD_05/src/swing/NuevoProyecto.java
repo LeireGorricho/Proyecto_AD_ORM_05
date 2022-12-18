@@ -188,7 +188,7 @@ public class NuevoProyecto extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAnadirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirMousePressed
-        if (codigo.getText().isBlank() || nombre.getText().isBlank() || ciudad.getText().isBlank()) {
+        if (codigo.getText().isBlank() || nombre.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Debes rellenar todos los campos para poder añadir un nuevo proyecto");
         } else {
             ConsultasProyectos consultasProyectos = new ConsultasProyectos();

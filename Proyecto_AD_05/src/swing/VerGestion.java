@@ -70,9 +70,6 @@ public class VerGestion extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
-        infoProyecto = new javax.swing.JTextField();
-        infoProveedor = new javax.swing.JTextField();
-        infoPieza = new javax.swing.JTextField();
         cantidad = new javax.swing.JTextField();
         codProveedor = new javax.swing.JTextField();
         codProyecto = new javax.swing.JTextField();
@@ -83,6 +80,9 @@ public class VerGestion extends javax.swing.JPanel {
         jSeparator5 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
         estado = new javax.swing.JTextField();
+        infoProveedor = new javax.swing.JLabel();
+        infoPieza = new javax.swing.JLabel();
+        infoProyecto = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -137,31 +137,14 @@ public class VerGestion extends javax.swing.JPanel {
         );
 
         jPanel1.add(botonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 440, 130, 30));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 175, 370, 20));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 265, 370, 10));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 355, 370, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 175, 250, 20));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 265, 250, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 355, 250, 10));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 400, 120, 10));
-
-        infoProyecto.setEditable(false);
-        infoProyecto.setBackground(new java.awt.Color(255, 255, 255));
-        infoProyecto.setText("<html><p></p></html>");
-        infoProyecto.setBorder(null);
-        jPanel1.add(infoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 240, 60));
-
-        infoProveedor.setEditable(false);
-        infoProveedor.setBackground(new java.awt.Color(255, 255, 255));
-        infoProveedor.setText("<html><p></p></html>");
-        infoProveedor.setBorder(null);
-        jPanel1.add(infoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 240, 60));
-
-        infoPieza.setEditable(false);
-        infoPieza.setBackground(new java.awt.Color(255, 255, 255));
-        infoPieza.setText("<html><p></p></html>");
-        infoPieza.setBorder(null);
-        jPanel1.add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 240, 60));
 
         cantidad.setEditable(false);
         cantidad.setBackground(new java.awt.Color(255, 255, 255));
+        cantidad.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         cantidad.setBorder(null);
         jPanel1.add(cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 120, -1));
 
@@ -202,6 +185,9 @@ public class VerGestion extends javax.swing.JPanel {
         estado.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         estado.setBorder(null);
         jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 120, -1));
+        jPanel1.add(infoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 240, 60));
+        jPanel1.add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 240, 60));
+        jPanel1.add(infoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 240, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -234,9 +220,9 @@ public class VerGestion extends javax.swing.JPanel {
     private javax.swing.JTextField codProyecto;
     private javax.swing.JTextField codigoGestion;
     private javax.swing.JTextField estado;
-    private javax.swing.JTextField infoPieza;
-    private javax.swing.JTextField infoProveedor;
-    private javax.swing.JTextField infoProyecto;
+    private javax.swing.JLabel infoPieza;
+    private javax.swing.JLabel infoProveedor;
+    private javax.swing.JLabel infoProyecto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

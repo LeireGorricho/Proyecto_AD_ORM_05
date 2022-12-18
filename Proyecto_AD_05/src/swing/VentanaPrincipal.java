@@ -79,7 +79,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/home (1).png"))); // NOI18N
         jLabel1.setText(" Home");
 
         bordeHome.setPreferredSize(new java.awt.Dimension(5, 0));
@@ -103,7 +102,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(bordeHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         botonHomeLayout.setVerticalGroup(
             botonHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,7 +110,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(botonHomeLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         panel_menu.add(botonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 200, 50));
@@ -125,7 +124,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/exit.png"))); // NOI18N
         jLabel2.setText("Salir");
 
         javax.swing.GroupLayout botonSalirLayout = new javax.swing.GroupLayout(botonSalir);
@@ -135,7 +133,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(botonSalirLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel2)
-                .addGap(0, 127, Short.MAX_VALUE))
+                .addGap(0, 151, Short.MAX_VALUE))
         );
         botonSalirLayout.setVerticalGroup(
             botonSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,7 +292,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/help.png"))); // NOI18N
         jLabel6.setText(" Ayuda");
 
         bordeAyuda.setBackground(new java.awt.Color(0, 0, 102));
@@ -428,7 +425,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonHomeMousePressed
 
     private void botonSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMousePressed
-        
+        dispose();
     }//GEN-LAST:event_botonSalirMousePressed
 
     private void botonPiezasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPiezasMousePressed

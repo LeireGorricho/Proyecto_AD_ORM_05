@@ -24,7 +24,7 @@ public class ConsultasGestion {
 
     public GestionEntity recuperarGestion(String codigo) {
         GestionEntity relacion = new GestionEntity();
-        relacion = session.load(GestionEntity.class, Integer.parseInt(codigo));
+        relacion = session.load(GestionEntity.class, codigo);
         return relacion;
     }
 
@@ -69,7 +69,7 @@ public class ConsultasGestion {
         return true;
     }
 
-    public void eliminarGestion(int codigo) {
+    public void eliminarGestion(String codigo) {
         GestionEntity gestion = new GestionEntity();
         Transaction tx = session.beginTransaction();
         gestion = session.load(GestionEntity.class, codigo);

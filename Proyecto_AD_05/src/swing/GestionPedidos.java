@@ -287,7 +287,7 @@ public class GestionPedidos extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Para dar de baja debes seleccionar un elemento en la tabla");
         } else {
             //Obtencion del id del objeto seleccionaod en la tabla
-            int codigo = Integer.parseInt(tablaGestion.getValueAt(tablaGestion.getSelectedRow(), 0).toString());
+            String codigo = tablaGestion.getValueAt(tablaGestion.getSelectedRow(), 0).toString();
             consultasGestion.eliminarGestion(codigo);
             consultasGestion.cerrarConexion();
         }

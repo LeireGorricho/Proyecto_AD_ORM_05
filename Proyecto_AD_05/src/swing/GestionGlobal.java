@@ -15,16 +15,16 @@ import javax.swing.JPanel;
  */
 public class GestionGlobal extends javax.swing.JPanel {
 
-    JPanel panel;
+    JPanel pane;
     /**
      * Creates new form GestionGlobal
      */
     public GestionGlobal(JPanel panel) {
         initComponents();
+
+        this.pane = panel;
         
-        this.panel = panel;
-        
-        GestionPedidos frame = new GestionPedidos(panel);
+        GestionPedidos frame = new GestionPedidos(panel_global);
         frame.setSize(700,490);
         frame.setLocation(0,0);
         panel_global.removeAll();
@@ -154,7 +154,7 @@ public class GestionGlobal extends javax.swing.JPanel {
         devolverColor(labelSuminProveedores);
         devolverColor(labelEstadisticas);
 
-        GestionPedidos frame = new GestionPedidos(panel);
+        GestionPedidos frame = new GestionPedidos(panel_global);
         frame.setSize(700,490);
         frame.setLocation(0,0);
         panel_global.removeAll();

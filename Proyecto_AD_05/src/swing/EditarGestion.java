@@ -121,10 +121,7 @@ public class EditarGestion extends javax.swing.JPanel {
         botonCancelar = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         codProveedor = new javax.swing.JComboBox<>();
-        infoProyecto = new javax.swing.JTextField();
         codPieza = new javax.swing.JComboBox<>();
-        infoProveedor = new javax.swing.JTextField();
-        infoPieza = new javax.swing.JTextField();
         codProyecto = new javax.swing.JComboBox<>();
         cantidad = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -133,6 +130,9 @@ public class EditarGestion extends javax.swing.JPanel {
         jSeparator6 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
         codigoGestion = new javax.swing.JTextField();
+        infoProveedor = new javax.swing.JLabel();
+        infoPieza = new javax.swing.JLabel();
+        infoProyecto = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(700, 490));
@@ -188,9 +188,9 @@ public class EditarGestion extends javax.swing.JPanel {
         );
 
         jPanel1.add(botonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 440, 160, 30));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 370, 20));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 370, 10));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 370, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 250, 20));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 250, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 250, 10));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 120, 10));
 
         botonCancelar.setBackground(new java.awt.Color(0, 117, 153));
@@ -221,31 +221,25 @@ public class EditarGestion extends javax.swing.JPanel {
 
         jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, 160, 30));
 
-        codProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        codProveedor.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                codProveedorItemStateChanged(evt);
+            }
+        });
         jPanel1.add(codProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 100, -1));
 
-        infoProyecto.setEditable(false);
-        infoProyecto.setBackground(new java.awt.Color(255, 255, 255));
-        infoProyecto.setText("<html><p></p></html>");
-        infoProyecto.setBorder(null);
-        jPanel1.add(infoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 285, 240, 60));
-
-        codPieza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        codPieza.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                codPiezaItemStateChanged(evt);
+            }
+        });
         jPanel1.add(codPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 100, -1));
 
-        infoProveedor.setEditable(false);
-        infoProveedor.setBackground(new java.awt.Color(255, 255, 255));
-        infoProveedor.setText("<html><p></p></html>");
-        infoProveedor.setBorder(null);
-        jPanel1.add(infoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 105, 240, 60));
-
-        infoPieza.setEditable(false);
-        infoPieza.setBackground(new java.awt.Color(255, 255, 255));
-        infoPieza.setText("<html><p></p></html>");
-        infoPieza.setBorder(null);
-        jPanel1.add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 195, 240, 60));
-
-        codProyecto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        codProyecto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                codProyectoItemStateChanged(evt);
+            }
+        });
         jPanel1.add(codProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 100, -1));
 
         cantidad.setBorder(null);
@@ -266,6 +260,9 @@ public class EditarGestion extends javax.swing.JPanel {
         codigoGestion.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         codigoGestion.setBorder(null);
         jPanel1.add(codigoGestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 130, -1));
+        jPanel1.add(infoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 240, 60));
+        jPanel1.add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 240, 60));
+        jPanel1.add(infoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 240, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -304,7 +301,7 @@ public class EditarGestion extends javax.swing.JPanel {
                 }
                 if (consultasGestion.modificarGestion(codigoGestion.getText().toUpperCase(), codProveedor.getSelectedItem().toString(), codPieza.getSelectedItem().toString(), codProyecto.getSelectedItem().toString(), cantidadNum, estadoText, piezas, proyectos, proveedores)) {
                     consultasGestion.cerrarConexion();
-                    GestionPiezas frame = new GestionPiezas(panel);
+                    GestionPedidos frame = new GestionPedidos(panel);
                     frame.setSize(700, 490);
                     frame.setLocation(0, 0);
                     panel.removeAll();
@@ -318,6 +315,30 @@ public class EditarGestion extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_botonEditarMousePressed
 
+    private void codProveedorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codProveedorItemStateChanged
+        for (ProveedoresEntity proveedor : proveedores) {
+            if (proveedor.getCodigo().equals(codProveedor.getSelectedItem())) {
+                infoProveedor.setText("<html><p>Nombre: " + proveedor.getNombre() + " " + proveedor.getApellidos() + "</p><p>Direccion: " + proveedor.getDireccion() + "Estado: " + proveedor.getEstado() + "</p></html>");
+            }
+        }
+    }//GEN-LAST:event_codProveedorItemStateChanged
+
+    private void codPiezaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codPiezaItemStateChanged
+        for (PiezasEntity pieza : piezas) {
+            if (pieza.getCodigo().equals(codPieza.getSelectedItem())) {
+                infoPieza.setText("<html><p>Nombre: " + pieza.getNombre() + "</p><p>Precio: " + pieza.getPrecio() + "</p><p>Descripcion: " + pieza.getDescripcion() + "Estado: " + pieza.getEstado() + "</p><html>");
+            }
+        }
+    }//GEN-LAST:event_codPiezaItemStateChanged
+
+    private void codProyectoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codProyectoItemStateChanged
+        for (ProyectosEntity proyecto : proyectos) {
+            if (proyecto.getCiudad().equals(codProyecto.getSelectedItem())) {
+                infoProyecto.setText("<html><p>Nombre: " + proyecto.getNombre() + "</p><p>Ciudad: " + proyecto.getCiudad() + "Estado: " + proyecto.getEstado()+ "</p></html>");
+            }
+        }
+    }//GEN-LAST:event_codProyectoItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel botonCancelar;
@@ -328,9 +349,9 @@ public class EditarGestion extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> codProyecto;
     private javax.swing.JTextField codigoGestion;
     private javax.swing.JComboBox<String> estado;
-    private javax.swing.JTextField infoPieza;
-    private javax.swing.JTextField infoProveedor;
-    private javax.swing.JTextField infoProyecto;
+    private javax.swing.JLabel infoPieza;
+    private javax.swing.JLabel infoProveedor;
+    private javax.swing.JLabel infoProyecto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
