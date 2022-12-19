@@ -285,7 +285,7 @@ public class NuevaGestion extends javax.swing.JPanel {
                     try {
                         int cantidadNum = Integer.parseInt(cantidad.getText());
                         ConsultasGestion consultasGestion = new ConsultasGestion();
-                        if (consultasGestion.anadirGestion(codigoGestion.getText(), codProveedor.getSelectedItem().toString(), codPieza.getSelectedItem().toString(), codProyecto.getSelectedItem().toString(), cantidadNum)) {
+                        if (consultasGestion.anadirGestion(codigoGestion.getText().toUpperCase(), codProveedor.getSelectedItem().toString(), codPieza.getSelectedItem().toString(), codProyecto.getSelectedItem().toString(), cantidadNum)) {
                             GestionPedidos frame = new GestionPedidos(panel);
                             frame.setSize(700, 490);
                             frame.setLocation(0, 0);
@@ -299,7 +299,7 @@ public class NuevaGestion extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(null, "La cantidad debe escribirse con números");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error para escribir el codigo tiene que contener 2 letras y 4 numeros.");
+                    JOptionPane.showMessageDialog(null, "Error para escribir el codigo tiene que contener 4 letras y 2 números");
                 }
             }
         } else {
