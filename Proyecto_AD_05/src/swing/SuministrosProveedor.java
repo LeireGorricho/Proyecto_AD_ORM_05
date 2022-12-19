@@ -31,7 +31,7 @@ import table.TableHeader;
  * @author leiii
  */
 public class SuministrosProveedor extends javax.swing.JPanel {
-    String[] columnasPiezas = {"Código", "Nombre", "Precio", "Descripción", "Estado"};
+    String[] columnasPiezas = {"Código", "Nombre", "Precio", "Estado"};
     String[] columnasProyectos = {"Código", "Nombre", "Ciudad", "Estado"};
 
     /**

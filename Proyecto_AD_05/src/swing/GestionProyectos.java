@@ -40,7 +40,7 @@ public class GestionProyectos extends javax.swing.JPanel {
         
         tablaProyectos.setShowHorizontalLines(true);
         tablaProyectos.setGridColor(new Color(230,230,230));
-        tablaProyectos.setRowHeight(27);
+        tablaProyectos.setRowHeight(35);
         tablaProyectos.getTableHeader().setReorderingAllowed(true);
         tablaProyectos.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
             @Override
@@ -299,24 +299,21 @@ public class GestionProyectos extends javax.swing.JPanel {
             boolean relacion = false;
             ConsultasGestion con = new ConsultasGestion();
             List<GestionEntity> gestiones = con.recuperarDatosGestiones();
-            con.cerrarConexion();
             for (GestionEntity gestion : gestiones) {
-                if (gestion.getProyectosByCodproyecto().getCodigo().equals(cod) && gestion.getEstado().equals("alta")) {
+                if (gestion.getProyectosByCodproyecto().getCodigo().equals(cod) && gestion.getEstado().equals("ALTA")) {
                     relacion = true;
                     break;
                 }
             }
             if (relacion) {
-                int op = JOptionPane.showConfirmDialog(this, "El proyecto que quieres dar de baja tiene una gestión activa.\n ¿Estas seguro de que quieres darlo de baja?");
-                if (op == 0) {
-                    bajaProyecto(cod);
-                }
+                JOptionPane.showMessageDialog(null, "No se puede dar de baja este proyecto porque tiene una gestión de alta");
             } else {
                 int op = JOptionPane.showConfirmDialog(this, "¿Estas seguro de que quieres dar de baja este proyecto?");
                 if (op == 0) {
                     bajaProyecto(cod);
                 }
             }
+            con.cerrarConexion();
         }
     }//GEN-LAST:event_botonEliminar1MousePressed
 

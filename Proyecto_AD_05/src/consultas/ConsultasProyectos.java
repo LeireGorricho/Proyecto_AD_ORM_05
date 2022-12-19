@@ -80,7 +80,7 @@ public class ConsultasProyectos {
             tx.commit();
             JOptionPane.showMessageDialog(null, "El proyecto se ha editado correctamente");
         } catch (PersistenceException e) {
-            JOptionPane.showMessageDialog(null, "No se ha podido editar el proyecto, comprueba que los datos introducidos son correctos");
+            JOptionPane.showMessageDialog(null, "No se ha podido editar el proyecto, comprueba que el código no exista ya y que no se supere el máximo de longitud");
             return false;
         }
         return true;

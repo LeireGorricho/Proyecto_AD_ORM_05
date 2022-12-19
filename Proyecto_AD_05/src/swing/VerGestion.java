@@ -185,8 +185,14 @@ public class VerGestion extends javax.swing.JPanel {
         estado.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         estado.setBorder(null);
         jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 120, -1));
+
+        infoProveedor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jPanel1.add(infoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 240, 60));
+
+        infoPieza.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jPanel1.add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 240, 60));
+
+        infoProyecto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jPanel1.add(infoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 240, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

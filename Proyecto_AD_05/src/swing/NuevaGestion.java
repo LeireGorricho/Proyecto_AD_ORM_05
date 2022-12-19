@@ -40,13 +40,10 @@ public class NuevaGestion extends javax.swing.JPanel {
 
         ConsultasProyectos consultasProyectos = new ConsultasProyectos();
         proyectos = consultasProyectos.cargarAltas();
-        consultasProyectos.cerrarConexion();
         ConsultasProveedores consultasProveedores = new ConsultasProveedores();
         proveedores = consultasProveedores.cargarAltas();
-        consultasProveedores.cerrarConexion();
         ConsultasPiezas consultasPiezas = new ConsultasPiezas();
         piezas = consultasPiezas.cargarAltas();
-        consultasPiezas.cerrarConexion();
         // En el caso de que no hayan piezas, proveedores o proyectos no es posible crear una gestión
         if (proyectos.size() == 0 || proveedores.size() == 0 || piezas.size() == 0) {
             JOptionPane.showMessageDialog(null, "Para crear una gestión se necesita una pieza, un proveedor y un proyecto");
@@ -63,6 +60,9 @@ public class NuevaGestion extends javax.swing.JPanel {
                 codProveedor.addItem(proveedor.getCodigo());
             }
         }
+        consultasProyectos.cerrarConexion();
+        consultasProveedores.cerrarConexion();
+        consultasPiezas.cerrarConexion();
     }
 
     /**
@@ -90,7 +90,6 @@ public class NuevaGestion extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         codProveedor = new javax.swing.JComboBox<>();
         codPieza = new javax.swing.JComboBox<>();
-        codProyecto = new javax.swing.JComboBox<>();
         cantidad = new javax.swing.JTextField();
         botonCancelar = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -99,6 +98,7 @@ public class NuevaGestion extends javax.swing.JPanel {
         jSeparator5 = new javax.swing.JSeparator();
         infoProveedor = new javax.swing.JLabel();
         infoPieza = new javax.swing.JLabel();
+        codProyecto = new javax.swing.JComboBox<>();
         infoProyecto = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -204,13 +204,6 @@ public class NuevaGestion extends javax.swing.JPanel {
         });
         jPanel1.add(codPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 100, -1));
 
-        codProyecto.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                codProyectoItemStateChanged(evt);
-            }
-        });
-        jPanel1.add(codProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 100, -1));
-
         cantidad.setBorder(null);
         jPanel1.add(cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 120, -1));
 
@@ -248,9 +241,16 @@ public class NuevaGestion extends javax.swing.JPanel {
         codigoGestion.setBorder(null);
         jPanel1.add(codigoGestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 130, -1));
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 120, 10));
-        jPanel1.add(infoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 240, 60));
-        jPanel1.add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 240, 60));
-        jPanel1.add(infoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 240, 60));
+        jPanel1.add(infoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 250, 70));
+        jPanel1.add(infoPieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 250, 70));
+
+        codProyecto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                codProyectoItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(codProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 100, -1));
+        jPanel1.add(infoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 280, 250, 70));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -323,15 +323,15 @@ public class NuevaGestion extends javax.swing.JPanel {
     private void codPiezaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codPiezaItemStateChanged
         for (PiezasEntity pieza : piezas) {
             if (pieza.getCodigo().equals(codPieza.getSelectedItem())) {
-                infoPieza.setText("<html><p>Nombre: " + pieza.getNombre() + "</p><p>Precio: " + pieza.getPrecio() + "</p><p>Descripcion: " + pieza.getDescripcion() + "</p><p>Estado: " + pieza.getEstado() + "</p><html>");
+                infoPieza.setText("<html><p>Nombre: " + pieza.getNombre() + "</p><p>Precio: " + pieza.getPrecio() + "</p><p>Estado: " + pieza.getEstado() + "</p><html>");
             }
         }
     }//GEN-LAST:event_codPiezaItemStateChanged
 
     private void codProyectoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codProyectoItemStateChanged
         for (ProyectosEntity proyecto : proyectos) {
-            if (proyecto.getCiudad().equals(codProyecto.getSelectedItem())) {
-                infoProyecto.setText("<html><p>Nombre: " + proyecto.getNombre() + "</p><p>Ciudad: " + proyecto.getCiudad() + "</p><p>Estado: " + proyecto.getEstado()+ "</p></html>");
+            if (proyecto.getCodigo().equals(codProyecto.getSelectedItem())) {
+                infoProyecto.setText("<html><p>Nombre: " + proyecto.getNombre() + "</p><p>Ciudad: " + proyecto.getCiudad()+ "</p><p>Estado: " + proyecto.getEstado() + "</p><html>");
             }
         }
     }//GEN-LAST:event_codProyectoItemStateChanged

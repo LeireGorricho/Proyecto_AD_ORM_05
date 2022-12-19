@@ -40,7 +40,7 @@ public class GestionPiezas extends javax.swing.JPanel {
         
         tablaPiezas.setShowHorizontalLines(true);
         tablaPiezas.setGridColor(new Color(230,230,230));
-        tablaPiezas.setRowHeight(27);
+        tablaPiezas.setRowHeight(35);
         tablaPiezas.getTableHeader().setReorderingAllowed(true);
         tablaPiezas.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
             @Override
@@ -285,10 +285,7 @@ public class GestionPiezas extends javax.swing.JPanel {
                 }
             }
             if (relacion) {
-                int op = JOptionPane.showConfirmDialog(this, "La pieza que quieres dar de baja tiene una gestión activa.\n ¿Estás seguro de que quieres darla de baja?");
-                if (op == 0) {
-                    bajaPieza(cod);
-                }
+                JOptionPane.showMessageDialog(null, "No se puede dar de baja esta pieza porque tiene una gestión de alta");
             } else {
                 int op = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que quieres dar de baja esta pieza?");
                 if (op == 0) {

@@ -156,9 +156,13 @@ public class VerPieza extends javax.swing.JPanel {
 
         estado.setEditable(false);
         estado.setBackground(new java.awt.Color(255, 255, 255));
+        estado.setForeground(new java.awt.Color(102, 102, 102));
         estado.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         estado.setBorder(null);
         add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, 260, -1));
+
+        descripcion.setForeground(new java.awt.Color(102, 102, 102));
+        descripcion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 260, 50));
     }// </editor-fold>//GEN-END:initComponents
 

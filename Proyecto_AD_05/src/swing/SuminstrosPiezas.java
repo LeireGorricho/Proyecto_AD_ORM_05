@@ -250,7 +250,7 @@ public class SuminstrosPiezas extends javax.swing.JPanel {
 
         ConsultasPiezas consultasPiezas = new ConsultasPiezas();
         PiezasEntity pieza = consultasPiezas.recuperarPieza(codPieza.getSelectedItem().toString());
-        infoPieza.setText("<html><p>Nombre: " + pieza.getNombre() + "</p><p>Precio: " + pieza.getPrecio() + "</p><p>Descripción: " + pieza.getDescripcion() + "</p><p>Estado:" + pieza.getEstado() + "</p></html>");
+        infoPieza.setText("<html><p>Nombre: " + pieza.getNombre() + "</p><p>Precio: " + pieza.getPrecio() + "</p><p>Estado:" + pieza.getEstado() + "</p></html>");
         consultasPiezas.cerrarConexion();
 
         //numero de proyectos

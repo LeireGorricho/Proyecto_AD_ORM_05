@@ -54,7 +54,7 @@ public class ConsultasProveedores {
             tx.commit();
             JOptionPane.showMessageDialog(null, "El proveedor se ha añadido correctamente");
         } catch (PersistenceException e) {
-            JOptionPane.showMessageDialog(null, "No se ha podido añadir el proveedor, comprueba que los datos introducidos son correctos");
+            JOptionPane.showMessageDialog(null, "No se ha podido añadir el proveedor, comprueba que el código no exista ya y que no se supere el máximo de longitud");
             return false;
         }
         return true;

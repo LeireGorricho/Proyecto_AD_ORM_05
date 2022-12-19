@@ -63,7 +63,7 @@ public class ConsultasGestion {
             tx.commit();
             JOptionPane.showMessageDialog(null, "La gestión se ha añadido correctamente");
         } catch (PersistenceException e) {
-            JOptionPane.showMessageDialog(null, "No se ha podido añadir la gestión, comprueba que los datos introducidos son correctos");
+            JOptionPane.showMessageDialog(null, "No se ha podido añadir la gestión, comprueba que el código no exista ya y que no se supere el máximo de longitud");
             return false;
         }
         return true;

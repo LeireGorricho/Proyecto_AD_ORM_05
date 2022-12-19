@@ -48,7 +48,7 @@ public class GestionPedidos extends javax.swing.JPanel {
         
         tablaGestion.setShowHorizontalLines(true);
         tablaGestion.setGridColor(new Color(230,230,230));
-        tablaGestion.setRowHeight(27);
+        tablaGestion.setRowHeight(35);
         tablaGestion.getTableHeader().setReorderingAllowed(true);
         tablaGestion.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
             @Override
@@ -101,13 +101,10 @@ public class GestionPedidos extends javax.swing.JPanel {
         GestionEntity relacion = consultasGestion.recuperarGestion(codigo);
         ConsultasProyectos consultasProyectos = new ConsultasProyectos();
         List<ProyectosEntity> proyectos = consultasProyectos.cargarAltas();
-        consultasProyectos.cerrarConexion();
         ConsultasProveedores consultasProveedores = new ConsultasProveedores();
         List<ProveedoresEntity> proveedores = consultasProveedores.cargarAltas();
-        consultasProveedores.cerrarConexion();
         ConsultasPiezas consultasPiezas = new ConsultasPiezas();
         List<PiezasEntity> piezas = consultasPiezas.cargarAltas();
-        consultasPiezas.cerrarConexion();
         if (proyectos.size() == 0 || proveedores.size() == 0 || piezas.size() == 0) {
             JOptionPane.showMessageDialog(null, "Para poder editar una gestión debe haber por lo menos una pieza, un proyecto y un proveedor");
             return false;
@@ -134,6 +131,9 @@ public class GestionPedidos extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Uno de los campos tiene el estado de baja, para poder editar una gestión deben estar todos de alta");
             return false;
         }
+        consultasProyectos.cerrarConexion();
+        consultasProveedores.cerrarConexion();
+        consultasPiezas.cerrarConexion();
         return true;
     }
 

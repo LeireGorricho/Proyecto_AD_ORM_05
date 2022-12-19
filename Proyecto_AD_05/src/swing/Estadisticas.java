@@ -348,36 +348,36 @@ public class Estadisticas extends javax.swing.JPanel {
         add(botonProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 160, 30));
 
         cod1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(cod1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 40, 20));
+        add(cod1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 50, 20));
 
         cantidad1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(cantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 40, 20));
+        add(cantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 50, 20));
 
         cod2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(cod2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 40, 20));
+        add(cod2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 50, 20));
 
         cantidad2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(cantidad2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 40, 20));
+        add(cantidad2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 50, 20));
 
         cod3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(cod3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 40, 20));
+        add(cod3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 50, 20));
 
         cantidad3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(cantidad3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 40, 20));
+        add(cantidad3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 50, 20));
 
         cod4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(cod4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, 40, 20));
+        add(cod4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, 50, 20));
 
         cantidad4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(cantidad4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 40, 20));
-        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 40, 10));
-        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 40, 10));
-        add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 40, 10));
-        add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 40, 10));
-        add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, 40, 10));
-        add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 40, 10));
-        add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 40, 10));
-        add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 40, 10));
+        add(cantidad4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 50, 20));
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 50, 10));
+        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 50, 10));
+        add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 50, 10));
+        add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 50, 10));
+        add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, 50, 10));
+        add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 50, 10));
+        add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 50, 10));
+        add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 50, 10));
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonProveedorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonProveedorMousePressed

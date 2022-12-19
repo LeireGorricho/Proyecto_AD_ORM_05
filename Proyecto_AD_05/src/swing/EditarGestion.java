@@ -43,13 +43,10 @@ public class EditarGestion extends javax.swing.JPanel {
         cantidad.setText(String.valueOf(gestion.getCantidad()));
         ConsultasProyectos consultasProyectos = new ConsultasProyectos();
         proyectos = consultasProyectos.cargarAltas();
-        consultasProyectos.cerrarConexion();
         ConsultasProveedores consultasProveedores = new ConsultasProveedores();
         proveedores = consultasProveedores.cargarAltas();
-        consultasProveedores.cerrarConexion();
         ConsultasPiezas consultasPiezas = new ConsultasPiezas();
         piezas = consultasPiezas.cargarAltas();
-        consultasPiezas.cerrarConexion();
         if (proyectos.size() == 0 || proveedores.size() == 0 || piezas.size() == 0) {
             JOptionPane.showMessageDialog(null, "Para crear una gestión se necesita una pieza, un proveedor y un proyecto");
             GestionPedidos frame = new GestionPedidos(panel);
@@ -95,6 +92,9 @@ public class EditarGestion extends javax.swing.JPanel {
                 estado.setSelectedIndex(1);
             }
         }
+        consultasProyectos.cerrarConexion();
+        consultasProveedores.cerrarConexion();
+        consultasPiezas.cerrarConexion();
     }
 
     /**
@@ -326,14 +326,14 @@ public class EditarGestion extends javax.swing.JPanel {
     private void codPiezaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codPiezaItemStateChanged
         for (PiezasEntity pieza : piezas) {
             if (pieza.getCodigo().equals(codPieza.getSelectedItem())) {
-                infoPieza.setText("<html><p>Nombre: " + pieza.getNombre() + "</p><p>Precio: " + pieza.getPrecio() + "</p><p>Descripcion: " + pieza.getDescripcion() + "</p><p>Estado: " + pieza.getEstado() + "</p><html>");
+                infoPieza.setText("<html><p>Nombre: " + pieza.getNombre() + "</p><p>Precio: " + pieza.getPrecio() + "</p><p>Estado: " + pieza.getEstado() + "</p><html>");
             }
         }
     }//GEN-LAST:event_codPiezaItemStateChanged
 
     private void codProyectoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codProyectoItemStateChanged
         for (ProyectosEntity proyecto : proyectos) {
-            if (proyecto.getCiudad().equals(codProyecto.getSelectedItem())) {
+            if (proyecto.getCodigo().equals(codProyecto.getSelectedItem())) {
                 infoProyecto.setText("<html><p>Nombre: " + proyecto.getNombre() + "</p><p>Ciudad: " + proyecto.getCiudad() + "</p><p>Estado: " + proyecto.getEstado()+ "</p></html>");
             }
         }

@@ -40,7 +40,7 @@ public class GestionProveedores extends javax.swing.JPanel {
         
         tablaProveedores.setShowHorizontalLines(true);
         tablaProveedores.setGridColor(new Color(230,230,230));
-        tablaProveedores.setRowHeight(27);
+        tablaProveedores.setRowHeight(35);
         tablaProveedores.getTableHeader().setReorderingAllowed(true);
         tablaProveedores.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
             @Override
@@ -301,16 +301,13 @@ public class GestionProveedores extends javax.swing.JPanel {
             List<GestionEntity> gestiones = con.recuperarDatosGestiones();
             con.cerrarConexion();
             for (GestionEntity gestion : gestiones) {
-                if (gestion.getProveedoresByCodproveedor().getCodigo().equals(cod) && gestion.getEstado().equals("alta")) {
+                if (gestion.getProveedoresByCodproveedor().getCodigo().equals(cod) && gestion.getEstado().equals("ALTA")) {
                     relacion = true;
                     break;
                 }
             }
             if (relacion) {
-                int op = JOptionPane.showConfirmDialog(this, "El proveedor que quieres dar de baja tiene una gestion activa.\n ¿Estas seguro de que quieres darlo de baja?");
-                if (op == 0) {
-                    bajaProveedor(cod);
-                }
+                JOptionPane.showMessageDialog(null, "No se puede dar de baja este proveedor porque tiene una gestión de alta");
             } else {
                 int op = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que quieres dar de baja este proveedor?");
                 if (op == 0) {
