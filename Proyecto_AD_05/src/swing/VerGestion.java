@@ -40,11 +40,11 @@ public class VerGestion extends javax.swing.JPanel {
 
         codigoGestion.setText(codigo);
         codPieza.setText(gestion.getPiezasByCodpieza().getCodigo());
-        infoPieza.setText(gestion.getPiezasByCodpieza().getNombre() + ", " + gestion.getPiezasByCodpieza().getPrecio() + ", " + gestion.getPiezasByCodpieza().getDescripcion());
+        infoPieza.setText("<html><p>Nombre: " + gestion.getPiezasByCodpieza().getNombre() + "</p><p>Precio: " + gestion.getPiezasByCodpieza().getPrecio());
         codProyecto.setText(gestion.getProyectosByCodproyecto().getCodigo());
-        infoProyecto.setText(gestion.getProyectosByCodproyecto().getNombre() + ", " + gestion.getProyectosByCodproyecto().getCiudad());
+        infoProyecto.setText("<html><p>Nombre: " + gestion.getProyectosByCodproyecto().getNombre() + "</p><p>Ciudad: " + gestion.getProyectosByCodproyecto().getCiudad());
         codProveedor.setText(gestion.getProveedoresByCodproveedor().getCodigo());
-        infoProveedor.setText(gestion.getProveedoresByCodproveedor().getNombre() + " " + gestion.getProveedoresByCodproveedor().getApellidos() + ", " + gestion.getProveedoresByCodproveedor().getDireccion());
+        infoProveedor.setText("<html><p>Nombre: " + gestion.getProveedoresByCodproveedor().getNombre() + "</p><p>Apellidos: " + gestion.getProveedoresByCodproveedor().getApellidos() + "</p><p>Dirección: " + gestion.getProveedoresByCodproveedor().getDireccion());
         cantidad.setText(String.valueOf(gestion.getCantidad()));
         estado.setText(gestion.getEstado());
     }

@@ -336,7 +336,7 @@ public class Estadisticas extends javax.swing.JPanel {
         botonProyecto.setLayout(botonProyectoLayout);
         botonProyectoLayout.setHorizontalGroup(
             botonProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
         );
         botonProyectoLayout.setVerticalGroup(
             botonProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

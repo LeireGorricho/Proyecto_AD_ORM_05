@@ -191,7 +191,7 @@ public class EditarGestion extends javax.swing.JPanel {
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 250, 20));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 250, 10));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 250, 10));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 120, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 120, 10));
 
         botonCancelar.setBackground(new java.awt.Color(0, 117, 153));
         botonCancelar.setPreferredSize(new java.awt.Dimension(170, 30));
@@ -248,7 +248,7 @@ public class EditarGestion extends javax.swing.JPanel {
         jLabel8.setText("Estado:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, -1, -1));
 
-        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 120, -1));
+        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 365, 120, -1));
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 120, 10));
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 130, 10));
 
@@ -318,7 +318,7 @@ public class EditarGestion extends javax.swing.JPanel {
     private void codProveedorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codProveedorItemStateChanged
         for (ProveedoresEntity proveedor : proveedores) {
             if (proveedor.getCodigo().equals(codProveedor.getSelectedItem())) {
-                infoProveedor.setText("<html><p>Nombre: " + proveedor.getNombre() + " " + proveedor.getApellidos() + "</p><p>Direccion: " + proveedor.getDireccion() + "</p><p>" + "Estado: " + proveedor.getEstado() + "</p></html>");
+                infoProveedor.setText("<html><p>Nombre: " + proveedor.getNombre() + " " + proveedor.getApellidos() + "</p><p>Direccion: " + proveedor.getDireccion() + "</p><p>Estado: " + proveedor.getEstado() + "</p></html>");
             }
         }
     }//GEN-LAST:event_codProveedorItemStateChanged
@@ -326,7 +326,7 @@ public class EditarGestion extends javax.swing.JPanel {
     private void codPiezaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codPiezaItemStateChanged
         for (PiezasEntity pieza : piezas) {
             if (pieza.getCodigo().equals(codPieza.getSelectedItem())) {
-                infoPieza.setText("<html><p>Nombre: " + pieza.getNombre() + "</p><p>Precio: " + pieza.getPrecio() + "</p><p>Descripcion: " + pieza.getDescripcion() + "Estado: " + pieza.getEstado() + "</p><html>");
+                infoPieza.setText("<html><p>Nombre: " + pieza.getNombre() + "</p><p>Precio: " + pieza.getPrecio() + "</p><p>Descripcion: " + pieza.getDescripcion() + "</p><p>Estado: " + pieza.getEstado() + "</p><html>");
             }
         }
     }//GEN-LAST:event_codPiezaItemStateChanged
@@ -334,7 +334,7 @@ public class EditarGestion extends javax.swing.JPanel {
     private void codProyectoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codProyectoItemStateChanged
         for (ProyectosEntity proyecto : proyectos) {
             if (proyecto.getCiudad().equals(codProyecto.getSelectedItem())) {
-                infoProyecto.setText("<html><p>Nombre: " + proyecto.getNombre() + "</p><p>Ciudad: " + proyecto.getCiudad() + "Estado: " + proyecto.getEstado()+ "</p></html>");
+                infoProyecto.setText("<html><p>Nombre: " + proyecto.getNombre() + "</p><p>Ciudad: " + proyecto.getCiudad() + "</p><p>Estado: " + proyecto.getEstado()+ "</p></html>");
             }
         }
     }//GEN-LAST:event_codProyectoItemStateChanged

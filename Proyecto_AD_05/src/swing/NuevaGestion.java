@@ -315,7 +315,7 @@ public class NuevaGestion extends javax.swing.JPanel {
     private void codProveedorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codProveedorItemStateChanged
         for (ProveedoresEntity proveedor : proveedores) {
             if (proveedor.getCodigo().equals(codProveedor.getSelectedItem())) {
-                infoProveedor.setText("<html><p>Nombre: " + proveedor.getNombre() + " " + proveedor.getApellidos() + "</p><p>Direccion: " + proveedor.getDireccion() + "Estado: " + proveedor.getEstado() + "</p></html>");
+                infoProveedor.setText("<html><p>Nombre: " + proveedor.getNombre() + " " + proveedor.getApellidos() + "</p><p>Direccion: " + proveedor.getDireccion() + "</p><p>Estado: " + proveedor.getEstado() + "</p></html>");
             }
         }
     }//GEN-LAST:event_codProveedorItemStateChanged
@@ -323,7 +323,7 @@ public class NuevaGestion extends javax.swing.JPanel {
     private void codPiezaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codPiezaItemStateChanged
         for (PiezasEntity pieza : piezas) {
             if (pieza.getCodigo().equals(codPieza.getSelectedItem())) {
-                infoPieza.setText("<html><p>Nombre: " + pieza.getNombre() + "</p><p>Precio: " + pieza.getPrecio() + "</p><p>Descripcion: " + pieza.getDescripcion() + "Estado: " + pieza.getEstado() + "</p><html>");
+                infoPieza.setText("<html><p>Nombre: " + pieza.getNombre() + "</p><p>Precio: " + pieza.getPrecio() + "</p><p>Descripcion: " + pieza.getDescripcion() + "</p><p>Estado: " + pieza.getEstado() + "</p><html>");
             }
         }
     }//GEN-LAST:event_codPiezaItemStateChanged
@@ -331,7 +331,7 @@ public class NuevaGestion extends javax.swing.JPanel {
     private void codProyectoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codProyectoItemStateChanged
         for (ProyectosEntity proyecto : proyectos) {
             if (proyecto.getCiudad().equals(codProyecto.getSelectedItem())) {
-                infoProyecto.setText("<html><p>Nombre: " + proyecto.getNombre() + "</p><p>Ciudad: " + proyecto.getCiudad() + "Estado: " + proyecto.getEstado()+ "</p></html>");
+                infoProyecto.setText("<html><p>Nombre: " + proyecto.getNombre() + "</p><p>Ciudad: " + proyecto.getCiudad() + "</p><p>Estado: " + proyecto.getEstado()+ "</p></html>");
             }
         }
     }//GEN-LAST:event_codProyectoItemStateChanged

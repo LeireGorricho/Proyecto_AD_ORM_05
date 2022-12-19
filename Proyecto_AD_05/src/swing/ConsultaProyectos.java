@@ -33,6 +33,8 @@ public class ConsultaProyectos extends javax.swing.JPanel {
      */
     public ConsultaProyectos(JPanel panel) {
         initComponents();
+
+        this.panel = panel;
         
         tablaProyectos.setShowHorizontalLines(true);
         tablaProyectos.setGridColor(new Color(230,230,230));

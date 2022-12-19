@@ -34,7 +34,7 @@ public class VerPieza extends javax.swing.JPanel {
         codigo.setText(cod);
         nombre.setText(pieza.getNombre());
         precio.setText(String.valueOf(pieza.getPrecio()));
-        descripcion.setText(pieza.getDescripcion());
+        descripcion.setText("<html><p>" + pieza.getDescripcion() + "</p></html>");
         estado.setText(pieza.getEstado());
 
         consultaPiezas.cerrarConexion();
@@ -62,11 +62,11 @@ public class VerPieza extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         precio = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        descripcion = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
         estado = new javax.swing.JTextField();
+        descripcion = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -123,7 +123,7 @@ public class VerPieza extends javax.swing.JPanel {
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        add(botonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 120, 30));
+        add(botonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 420, 120, 30));
 
         codigo.setEditable(false);
         codigo.setBackground(new java.awt.Color(255, 255, 255));
@@ -148,24 +148,18 @@ public class VerPieza extends javax.swing.JPanel {
         precio.setBorder(null);
         add(precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 250, 260, -1));
         add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 260, 10));
-
-        descripcion.setEditable(false);
-        descripcion.setBackground(new java.awt.Color(255, 255, 255));
-        descripcion.setForeground(new java.awt.Color(102, 102, 102));
-        descripcion.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        descripcion.setBorder(null);
-        add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 290, 260, -1));
-        add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 260, 10));
-        add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 260, 10));
+        add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 260, 10));
+        add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, 260, 10));
 
         jLabel8.setText("Estado:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, -1, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, -1, -1));
 
         estado.setEditable(false);
         estado.setBackground(new java.awt.Color(255, 255, 255));
         estado.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         estado.setBorder(null);
-        add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 260, -1));
+        add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, 260, -1));
+        add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 260, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonVolverMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVolverMousePressed
@@ -182,7 +176,7 @@ public class VerPieza extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel botonVolver;
     private javax.swing.JTextField codigo;
-    private javax.swing.JTextField descripcion;
+    private javax.swing.JLabel descripcion;
     private javax.swing.JTextField estado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
